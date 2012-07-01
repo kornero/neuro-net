@@ -1,5 +1,6 @@
-package com.neuronet.common;
+package com.neuronet.common.experimantal;
 
+import com.neuronet.common.classic.Neuron;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

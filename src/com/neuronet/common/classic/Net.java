@@ -1,5 +1,8 @@
-package com.neuronet.common;
+package com.neuronet.common.classic;
 
+import com.neuronet.common.api.INet;
+import com.neuronet.common.api.INeuronsFactory;
+import com.neuronet.util.FunctionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,24 +10,24 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Net {
+public class Net implements INet {
 
     private static final Logger logger = LoggerFactory.getLogger(Net.class);
+    private static final INeuronsFactory FACTORY = new NeuronsFactory();
 
     private final List<Layer> layers = new ArrayList<Layer>();
 
-    private final List<Neuron> neurons = new ArrayList<Neuron>();
-    private final List<Neuron> inputNeurons = new ArrayList<Neuron>();
-    private final List<Neuron> outputNeurons = new ArrayList<Neuron>();
-
-    public void addLayer(final int neurons, final int inputNeurons, final int functionType, final float alfa) {
-        layers.add(new Layer(neurons, inputNeurons, functionType, alfa));
+    @Override
+    public void addLayer(final int neurons, final int inputNeurons, final FunctionType functionType, final float alfa) {
+        layers.add(new Layer(neurons, inputNeurons, functionType, alfa, FACTORY));
     }
 
-    public void setLayer(final int layerIndex, final int neurons, final int inputNeurons, final int functionType, final float alfa) {
-        layers.set(layerIndex, new Layer(neurons, inputNeurons, functionType, alfa));
+    @Override
+    public void setLayer(final int layerIndex, final int neurons, final int inputNeurons, final FunctionType functionType, final float alfa) {
+        layers.set(layerIndex, new Layer(neurons, inputNeurons, functionType, alfa, FACTORY));
     }
 
+    @Override
     public float[] runNet(final float[] inputData) {
         float[] result = inputData;
 
@@ -35,6 +38,7 @@ public class Net {
         return result;
     }
 
+    @Override
     public float[] educate(final float[] expectedOutput, final float[] inputData) {
         float[] er = this.runNet(inputData);
 
