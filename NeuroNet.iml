@@ -10,6 +10,7 @@
     <orderEntry type="library" name="logback" level="project" />
     <orderEntry type="library" name="slf4j" level="project" />
     <orderEntry type="library" name="swt" level="project" />
+    <orderEntry type="library" name="guava" level="project" />
   </component>
 </module>
 
