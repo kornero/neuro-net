@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Layer implements ILayer {
@@ -106,6 +107,11 @@ public class Layer implements ILayer {
     @Override
     public float[] getLastResult() {
         return this.lastResult;
+    }
+
+    @Override
+    public Collection<INeuron> getNeurons() {
+        return this.neurons;
     }
 
     public void saveLayer(final String filename) throws IOException {

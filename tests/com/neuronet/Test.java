@@ -3,19 +3,22 @@ package com.neuronet;
 import com.neuronet.common.api.INet;
 import com.neuronet.util.FunctionType;
 import com.neuronet.util.Functions;
+import junit.framework.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
-public class NeuroNet {
+public class Test {
 
-    private static final Logger logger = LoggerFactory.getLogger(NeuroNet.class);
+    private static final Logger logger = LoggerFactory.getLogger(Test.class);
 
-    public static void main(String... args) {
+    @org.junit.Test
+    public void test() {
         logger.info("NeuroNet is starting.");
         float[] input = getData();
         final INet net = create(input);
+        final float[] expected = new float[]{-1, -1, 1};
 
         for (int i = 0; i < 10; i++) {
             input = Functions.randomWeights(3);
@@ -23,7 +26,16 @@ public class NeuroNet {
             final float[] runResult = net.runNet(input);
 
             logger.debug("run:" + Arrays.toString(runResult));
-            net.educate(new float[]{-1, -1, 1}, input);
+            net.educate(expected, input);
+        }
+
+        input = Functions.randomWeights(3);
+        normalize(input);
+        final float[] runResult = net.runNet(input);
+        for (int i = 0, expectedLength = expected.length; i < expectedLength; i++) {
+            float exp = expected[i];
+            float act = runResult[i];
+            Assert.assertTrue(Math.abs(exp - act) < 0.1);
         }
     }
 

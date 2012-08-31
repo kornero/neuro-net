@@ -19,34 +19,45 @@ public class Neuron implements INeuron {
     private final List<Edge> outputEdgeList = new ArrayList<Edge>();
 
     private final FunctionType functionType;
-    private final float[] weights;
     private final float alfa;
-    private final float b;
+
+    private float b;
 
     private float lastPotential = 0;
 
-    public Neuron(final float[] weights, final float b, final FunctionType functionType, final float alfa) {
-        this.weights = weights;
-        this.b = b;
+    public Neuron(final float dx, final FunctionType functionType, final float alfa) {
+        this.b = dx;
         this.alfa = alfa;
         this.functionType = functionType;
     }
 
+    public Edge createInputEdge(final INeuron inputNeuron, final float weight) {
+        final Edge edge = new Edge(inputNeuron, this, weight);
+        this.inputEdgeList.add(edge);
+        return edge;
+    }
+
+    public void addInputEdge(final Edge inputEdge) {
+        this.inputEdgeList.add(inputEdge);
+    }
+
+    public void addOutputEdge(final Edge outputEdge) {
+        this.outputEdgeList.add(outputEdge);
+    }
+
     @Override
     public float[] getWeights() {
-        /*
-        final float[] weights = new float[inputEdgeList.size()];
-        for (int i = 0, wLength = weights.length; i < wLength; i++) {
-            weights[i] = inputEdgeList.get(i).getWeight();
+        final float[] weights = new float[inputEdgeList.size() + 1];
+        weights[0] = this.b;
+        for (int i = 0; i < inputEdgeList.size(); i++) {
+            weights[i + 1] = inputEdgeList.get(i).getWeight();
         }
-        return weights;
-        */
         return weights;
     }
 
     @Override
     public float getFunction(float[] inputData) {
-        this.lastPotential = Functions.multiply(inputData, weights, b);
+        this.lastPotential = Functions.multiply(inputData, getWeights(), b);
         return Functions.getFunction(this.lastPotential, this.functionType, this.alfa);
     }
 
@@ -57,11 +68,12 @@ public class Neuron implements INeuron {
 
     @Override
     public float[] educate(float error, float[] _s) {
-        float[] tmp = new float[this.weights.length - 1];
+        final float[] weights = this.getWeights();
+        float[] tmp = new float[weights.length - 1];
 
         //  подсчитали ошибkу
-        for (int i = 1; i < this.weights.length; i++) {
-            tmp[i - 1] = this.weights[i] * error;
+        for (int i = 1; i < weights.length; i++) {
+            tmp[i - 1] = weights[i] * error;
         }
 
         //  изменили синапсы
@@ -74,10 +86,10 @@ public class Neuron implements INeuron {
      * Synapse educating.
      */
     private void educateWeights(float error, float[] _s) {
-        this.weights[0] += error * educationSpeed;
+        this.b += error * educationSpeed;
 
-        for (int i = 1; i < this.weights.length; i++) {
-            this.weights[i] += _s[i - 1] * error * educationSpeed;
+        for (int i = 0; i < _s.length; i++) {
+            this.inputEdgeList.get(i).incrementWeight(_s[i] * error * educationSpeed);
         }
     }
 }
