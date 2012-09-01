@@ -1,10 +1,12 @@
-package com.neuronet.common.classic;
+package com.neuronet.classic.impl;
 
-import com.neuronet.common.api.INeuron;
+import com.neuronet.classic.api.INeuron;
 import com.neuronet.util.FunctionType;
 import com.neuronet.util.Functions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static com.neuronet.util.Util.multiply;
 
 public class Neuron implements INeuron {
 
@@ -40,7 +42,7 @@ public class Neuron implements INeuron {
 
     @Override
     public float getFunction(float[] inputData) {
-        this.lastPotential = Functions.multiply(inputData, weights, b);
+        this.lastPotential = multiply(inputData, weights, b);
         return Functions.getFunction(this.lastPotential, this.functionType, this.alfa);
     }
 
@@ -73,5 +75,14 @@ public class Neuron implements INeuron {
         for (int i = 1; i < this.weights.length; i++) {
             this.weights[i] += _s[i - 1] * error * educationSpeed;
         }
+    }
+
+    public float getLastPotential() {
+        return lastPotential;
+    }
+
+    @Override
+    public void setLastPotential(float signal) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

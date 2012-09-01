@@ -1,6 +1,6 @@
-package com.neuronet.common.experimantal;
+package com.neuronet.edged;
 
-import com.neuronet.common.api.INeuron;
+import com.neuronet.edged.api.INeuron;
 import com.neuronet.util.FunctionType;
 import com.neuronet.util.Functions;
 import org.slf4j.Logger;
@@ -31,39 +31,37 @@ public class Neuron implements INeuron {
         this.functionType = functionType;
     }
 
+    @Override
     public Edge createInputEdge(final INeuron inputNeuron, final float weight) {
         final Edge edge = new Edge(inputNeuron, this, weight);
-        this.inputEdgeList.add(edge);
+        this.addInputEdge(edge);
         return edge;
     }
 
+    @Override
     public void addInputEdge(final Edge inputEdge) {
         this.inputEdgeList.add(inputEdge);
     }
 
+    @Override
     public void addOutputEdge(final Edge outputEdge) {
         this.outputEdgeList.add(outputEdge);
     }
 
     @Override
-    public float[] getWeights() {
-        final float[] weights = new float[inputEdgeList.size() + 1];
-        weights[0] = this.b;
-        for (int i = 0; i < inputEdgeList.size(); i++) {
-            weights[i + 1] = inputEdgeList.get(i).getWeight();
+    public float getFunction() {
+        float potential = b;
+        for (Edge edge : inputEdgeList) {
+            potential += edge.getWeight() * edge.getInput().getLastPotential();
         }
-        return weights;
-    }
-
-    @Override
-    public float getFunction(float[] inputData) {
-        this.lastPotential = Functions.multiply(inputData, getWeights(), b);
-        return Functions.getFunction(this.lastPotential, this.functionType, this.alfa);
+        this.lastPotential = potential;
+        //this.lastPotential = Functions.multiply(inputData, getWeights(), b);
+        return Functions.getFunction(this.getLastPotential(), this.functionType, this.alfa);
     }
 
     @Override
     public float getDerived() {
-        return Functions.getDerived(this.lastPotential, this.functionType, this.alfa);
+        return Functions.getDerived(this.getLastPotential(), this.functionType, this.alfa);
     }
 
     @Override
@@ -82,6 +80,16 @@ public class Neuron implements INeuron {
         return tmp;
     }
 
+    @Override
+    public float getLastPotential() {
+        return lastPotential;
+    }
+
+    @Override
+    public void setLastPotential(float signal) {
+        this.lastPotential = signal;
+    }
+
     /**
      * Synapse educating.
      */
@@ -91,5 +99,14 @@ public class Neuron implements INeuron {
         for (int i = 0; i < _s.length; i++) {
             this.inputEdgeList.get(i).incrementWeight(_s[i] * error * educationSpeed);
         }
+    }
+
+    private float[] getWeights() {
+        final float[] weights = new float[inputEdgeList.size() + 1];
+        weights[0] = this.b;
+        for (int i = 0; i < inputEdgeList.size(); i++) {
+            weights[i + 1] = inputEdgeList.get(i).getWeight();
+        }
+        return weights;
     }
 }

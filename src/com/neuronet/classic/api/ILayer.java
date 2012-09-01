@@ -1,4 +1,4 @@
-package com.neuronet.common.api;
+package com.neuronet.classic.api;
 
 import java.util.Collection;
 

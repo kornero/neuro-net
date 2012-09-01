@@ -1,7 +1,7 @@
-package com.neuronet.common.classic;
+package com.neuronet.classic.impl;
 
-import com.neuronet.common.api.INet;
-import com.neuronet.common.api.INeuronsFactory;
+import com.neuronet.classic.api.INet;
+import com.neuronet.classic.api.INeuronsFactory;
 import com.neuronet.util.FunctionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

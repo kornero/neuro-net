@@ -1,6 +1,6 @@
-package com.neuronet.common.experimantal;
+package com.neuronet.edged;
 
-import com.neuronet.common.api.INeuron;
+import com.neuronet.edged.api.INeuron;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +12,6 @@ public class Edge {
     private final INeuron output;
 
     private float weight = 0;
-    private float signal = 0;
 
     public Edge(INeuron input, INeuron output) {
         this.input = input;
@@ -37,19 +36,11 @@ public class Edge {
         return output;
     }
 
-    public float getSignal() {
-        return signal;
-    }
-
     public void incrementWeight(float incWeight) {
         this.weight += incWeight;
     }
 
     public void setWeight(float weight) {
         this.weight = weight;
-    }
-
-    public void setSignal(float signal) {
-        this.signal = signal;
     }
 }

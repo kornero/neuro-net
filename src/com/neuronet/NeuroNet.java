@@ -1,12 +1,15 @@
 package com.neuronet;
 
-import com.neuronet.common.api.INet;
+import com.neuronet.classic.api.INet;
+import com.neuronet.classic.impl.Net;
 import com.neuronet.util.FunctionType;
-import com.neuronet.util.Functions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+
+import static com.neuronet.util.Util.normalize;
+import static com.neuronet.util.Util.randomWeights;
 
 public class NeuroNet {
 
@@ -18,7 +21,7 @@ public class NeuroNet {
         final INet net = create(input);
 
         for (int i = 0; i < 10; i++) {
-            input = Functions.randomWeights(3);
+            input = randomWeights(3);
             normalize(input);
             final float[] runResult = net.runNet(input);
 
@@ -27,33 +30,12 @@ public class NeuroNet {
         }
     }
 
-    private static void normalize(final float[] inputData) {
-
-        //  находим норму:
-        final float norma = getNorm(inputData);
-
-        //  нормируем:
-        for (int i = 0; i < inputData.length; i++) {
-            inputData[i] = (inputData[i]) / norma;
-        }
-    }
-
     private static float[] getData() {
         return new float[]{1, 2, 3};
     }
 
-    private static float getNorm(float[] floats) {
-
-        //  находим норму:
-        float sum = 0;
-        for (final float d : floats) {
-            sum += d * d;
-        }
-        return (float) Math.sqrt(sum);
-    }
-
     private static INet create(final float[] inputData) {
-        final INet net = new com.neuronet.common.experimantal.Net();
+        final INet net = new Net();
 
         normalize(inputData);
 

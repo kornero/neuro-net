@@ -1,7 +1,7 @@
-package com.neuronet.common.experimantal;
+package com.neuronet.edged;
 
-import com.neuronet.common.api.ILayer;
-import com.neuronet.common.api.INeuron;
+import com.neuronet.edged.api.ILayer;
+import com.neuronet.edged.api.INeuron;
 import com.neuronet.util.FunctionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,18 +23,20 @@ public class Layer implements ILayer {
             final Neuron neuron = new Neuron(0.5f, functionType, alfa);
             for (INeuron n : inputNeurons) {
                 final Edge edge = neuron.createInputEdge(n, 0.5f);
-                ((Neuron) n).addOutputEdge(edge);
+                if (n instanceof Neuron) {
+                    n.addOutputEdge(edge);
+                }
             }
             this.getNeurons().add(neuron);
         }
     }
 
     @Override
-    public float[] runLayer(float[] inputData) {
+    public float[] runLayer() {
         this.lastResult = new float[this.getNeurons().size()];
 
         for (int i = 0; i < this.getNeurons().size(); i++) {
-            this.lastResult[i] = this.getNeurons().get(i).getFunction(inputData);
+            this.lastResult[i] = this.getNeurons().get(i).getFunction();
         }
 
         return this.lastResult;
