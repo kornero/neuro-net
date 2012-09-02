@@ -29,7 +29,7 @@ public class Net implements INet {
     }
 
     @Override
-    public float[] runNet(float[] inputData) {
+    public float[] runNet(final float[] inputData) {
         if (logger.isDebugEnabled()) {
             logger.debug("runNet(): " + Util.toString(inputData));
         }

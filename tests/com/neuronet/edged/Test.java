@@ -20,7 +20,7 @@ public class Test {
         final INet net = create(input.length);
         final float[] expected = new float[]{-1, -1, 1};
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             input = randomWeights(3);
             net.educate(expected, input);
         }

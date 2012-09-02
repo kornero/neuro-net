@@ -80,4 +80,8 @@ public class Util {
     public static String toString(final float f) {
         return String.format("%.2f", f);
     }
+
+    public static boolean chance(final int chances) {
+        return 0 == rnd.nextInt(chances);
+    }
 }

@@ -3,6 +3,7 @@ package com.neuronet.edged;
 import com.neuronet.edged.api.INeuron;
 import com.neuronet.util.FunctionType;
 import com.neuronet.util.Functions;
+import com.neuronet.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,19 +22,24 @@ public class Neuron implements INeuron {
     private final FunctionType functionType;
     private final float alfa;
 
-    private float b;
-
+    private float dx = 0;
     private float lastPotential = 0;
 
     public Neuron(final float dx, final FunctionType functionType, final float alfa) {
-        this.b = dx;
+        this.dx = dx;
         this.alfa = alfa;
         this.functionType = functionType;
     }
 
     @Override
     public Edge createInputEdge(final INeuron inputNeuron, final float weight) {
-        final Edge edge = new Edge(inputNeuron, this, weight);
+        final Edge edge;
+        // TODO: add metric, instead of randomization.
+        if (Util.chance(3)) {
+            edge = NullEdge.getInstance();
+        } else {
+            edge = new Edge(inputNeuron, this, weight);
+        }
         this.addInputEdge(edge);
         return edge;
     }
@@ -50,12 +56,11 @@ public class Neuron implements INeuron {
 
     @Override
     public float getFunction() {
-        float potential = b;
+        float potential = dx;
         for (Edge edge : inputEdgeList) {
             potential += edge.getWeight() * edge.getInput().getLastPotential();
         }
-        this.lastPotential = potential;
-        //this.lastPotential = Functions.multiply(inputData, getWeights(), b);
+        setLastPotential(potential);
         return Functions.getFunction(this.getLastPotential(), this.functionType, this.alfa);
     }
 
@@ -65,18 +70,18 @@ public class Neuron implements INeuron {
     }
 
     @Override
-    public float[] educate(float error, float[] _s) {
+    public float[] educate(float error, float[] s) {
         final float[] weights = this.getWeights();
-        float[] tmp = new float[weights.length - 1];
+        error *= this.getDerived();
 
-        //  подсчитали ошибkу
-        for (int i = 1; i < weights.length; i++) {
-            tmp[i - 1] = weights[i] * error;
+        //  Calculating error (dx not included, that's why "length - 1").
+        final float[] tmp = new float[weights.length];
+        for (int i = 0; i < weights.length; i++) {
+            tmp[i] = weights[i] * error;
         }
 
-        //  изменили синапсы
-        this.educateWeights(error, _s);
-
+        //  Changing synapses.
+        this.educateWeights(error, s);
         return tmp;
     }
 
@@ -93,19 +98,27 @@ public class Neuron implements INeuron {
     /**
      * Synapse educating.
      */
-    private void educateWeights(float error, float[] _s) {
-        this.b += error * educationSpeed;
+    private void educateWeights(final float error, final float[] s) {
+        this.dx += error * educationSpeed;
 
-        for (int i = 0; i < _s.length; i++) {
-            this.inputEdgeList.get(i).incrementWeight(_s[i] * error * educationSpeed);
+        if (s.length != this.inputEdgeList.size()) {
+            throw new RuntimeException();
+        }
+
+        int i = 0;
+        for (final Edge edge : inputEdgeList) {
+            edge.incrementWeight(s[i] * error * educationSpeed);
+            i++;
         }
     }
 
     private float[] getWeights() {
-        final float[] weights = new float[inputEdgeList.size() + 1];
-        weights[0] = this.b;
-        for (int i = 0; i < inputEdgeList.size(); i++) {
-            weights[i + 1] = inputEdgeList.get(i).getWeight();
+        final float[] weights = new float[inputEdgeList.size()];
+
+        int i = 0;
+        for (final Edge edge : inputEdgeList) {
+            weights[i] = edge.getWeight();
+            i++;
         }
         return weights;
     }

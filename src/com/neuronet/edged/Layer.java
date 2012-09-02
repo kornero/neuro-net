@@ -14,13 +14,14 @@ public class Layer implements ILayer {
 
     private static final Logger logger = LoggerFactory.getLogger(Layer.class);
 
-    private final List<INeuron> neurons = new ArrayList<INeuron>();
+    private final List<INeuron> neurons;
 
     private float[] lastResult;
 
     public Layer(final int neurons, final Collection<INeuron> inputNeurons, final FunctionType functionType, final float alfa) {
+        this.neurons = new ArrayList<INeuron>(neurons);
         for (int i = 0; i < neurons; i++) {
-            final Neuron neuron = new Neuron(0.5f, functionType, alfa);
+            final INeuron neuron = new Neuron(0.5f, functionType, alfa);
             for (INeuron n : inputNeurons) {
                 final Edge edge = neuron.createInputEdge(n, 0.5f);
                 if (n instanceof Neuron) {
@@ -33,35 +34,33 @@ public class Layer implements ILayer {
 
     @Override
     public float[] runLayer() {
-        this.lastResult = new float[this.getNeurons().size()];
+        final float[] result = new float[this.getNeurons().size()];
 
-        for (int i = 0; i < this.getNeurons().size(); i++) {
-            this.lastResult[i] = this.getNeurons().get(i).getFunction();
+        int i = 0;
+        for (final INeuron neuron : this.neurons) {
+            result[i] = neuron.getFunction();
+            i++;
         }
 
-        return this.lastResult;
+        return this.lastResult = result;
     }
 
     @Override
     public float[] educate(float[] inputData, float[] error) {
-        float[] errors = new float[this.getNeurons().size()];
 
-        float[] rez = new float[inputData.length];
-
-        float[][] tmp = new float[this.getNeurons().size()][];
-
+        final float[][] tmp = new float[this.getNeurons().size()][];
         for (int i = 0; i < this.getNeurons().size(); i++) {
-            errors[i] = this.getNeurons().get(i).getDerived() * error[i];
-            tmp[i] = this.getNeurons().get(i).educate(errors[i], inputData);
+            tmp[i] = this.getNeurons().get(i).educate(error[i], inputData);
         }
 
-        for (int j = 0; j < rez.length; j++) {
-            for (int i = 0; i < this.getNeurons().size(); i++) {
-                rez[j] += tmp[i][j];
+        final float[] result = new float[inputData.length];
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < this.getNeurons().size(); j++) {
+                result[i] += tmp[j][i];
             }
         }
 
-        return rez;
+        return result;
     }
 
     @Override
@@ -69,7 +68,8 @@ public class Layer implements ILayer {
         return this.lastResult;
     }
 
+    @Override
     public List<INeuron> getNeurons() {
-        return neurons;
+        return this.neurons;
     }
 }
