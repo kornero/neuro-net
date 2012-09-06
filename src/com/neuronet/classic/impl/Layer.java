@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import static com.neuronet.util.Util.randomWeights;
+import static com.neuronet.util.Util.randomFloats;
 
 public class Layer implements ILayer {
 
@@ -32,7 +32,7 @@ public class Layer implements ILayer {
         this.functionType = functionType;
         this.alfa = alfa;
         for (int i = 0; i < neurons; i++) {
-            float[] w = randomWeights(inputNeurons + 1);
+            float[] w = randomFloats(inputNeurons + 1);
             this.neurons.add(factory.newNeuron(w, 1, functionType, alfa));
         }
     }

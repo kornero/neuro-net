@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 
 import static com.neuronet.util.Util.normalize;
-import static com.neuronet.util.Util.randomWeights;
+import static com.neuronet.util.Util.randomFloats;
 
 public class NeuroNet {
 
@@ -21,7 +21,7 @@ public class NeuroNet {
         final INet net = create(input);
 
         for (int i = 0; i < 10; i++) {
-            input = randomWeights(3);
+            input = randomFloats(3);
             normalize(input);
             final float[] runResult = net.runNet(input);
 

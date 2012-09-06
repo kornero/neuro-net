@@ -14,21 +14,37 @@ public class Util {
     public static final int rand = 200;
     public static final float div = 100f;
 
-    public static float[] randomWeights(final int inputsAmount) {
-        float[] tmp = new float[inputsAmount];
+    /**
+     * Generates random floats.
+     * All floats are from interval: [-1.00; 1.00]
+     *
+     * @param amount Random floats amount.
+     * @return Array of floats from interval: [-1.00; 1.00]
+     */
+    public static float[] randomFloats(final int amount) {
+        final float[] tmp = new float[amount];
+        final float offset = rand / 2;
         for (int i = 0; i < tmp.length; i++) {
-            tmp[i] = ((rand / 2) - rnd.nextInt(rand)) / div;
+            tmp[i] = (offset - rnd.nextInt(rand)) / div;
         }
         return tmp;
     }
 
+    /**
+     * Multiplying input data with neuron weights and it's dx.
+     *
+     * @param inputData Input data.
+     * @param weights   Neuron weights.
+     * @param b         Neuron dx.
+     * @return Neuron potential.
+     */
     public static float multiply(final float[] inputData, final float[] weights, final float b) {
         float temp = 0;
 
-        //  смещение
+        //  Dx.
         temp += b * weights[0];
 
-        //  все остальное
+        //  Weights.
         for (int i = 0; i < inputData.length; i++) {
             temp += inputData[i] * weights[i + 1];
         }
@@ -42,7 +58,7 @@ public class Util {
      * @param floats Input data.
      * @return Norm for given data.
      */
-    public static float getNorm(float[] floats) {
+    public static float getNorm(float... floats) {
         float sum = 0;
         for (final float d : floats) {
             sum += d * d;
@@ -68,6 +84,24 @@ public class Util {
         }
     }
 
+    /**
+     * Returns true if generated random number is zero.
+     * 0 == rnd.nextInt(chances);
+     *
+     * @param chances Must be positive: > 0.
+     * @return True or false, depends on given chance.
+     */
+    public static boolean chance(final int chances) {
+        return 0 == rnd.nextInt(chances);
+    }
+
+    /**
+     * Formatting as 2 digits float:
+     * [-1,00, -1,00, 0,99]
+     *
+     * @param floats Floats array.
+     * @return String representation of array.
+     */
     public static String toString(final float... floats) {
         final StringBuilder stringBuilder = new StringBuilder("[");
         for (final float f : floats) {
@@ -77,15 +111,16 @@ public class Util {
         return stringBuilder.toString();
     }
 
+    /**
+     * Formatting as 2 digits float: "111,99".
+     * <p/>
+     * Implementation is:
+     * String.format("%.2f", f);
+     *
+     * @param f Float value.
+     * @return String representation of float.
+     */
     public static String toString(final float f) {
         return String.format("%.2f", f);
-    }
-
-    public static double calculateDistance(final float first, final float second) {
-        return Math.sqrt(first * first + second * second);
-    }
-
-    public static boolean chance(final int chances) {
-        return 0 == rnd.nextInt(chances);
     }
 }

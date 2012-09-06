@@ -7,6 +7,16 @@ public class Functions {
 
     private static final Logger logger = LoggerFactory.getLogger(Functions.class);
 
+    /**
+     * Calculating f(x), where f() - is a given function type: {@link FunctionType}.
+     * <p/>
+     * PS: f(x) = integral(f'(x)).
+     *
+     * @param x            Variable value.
+     * @param functionType Type of function.
+     * @param alfa         Function coefficient.
+     * @return Function value.
+     */
     public static float getFunction(final float x, final FunctionType functionType, final float alfa) {
         final float result;
         switch (functionType) {
@@ -50,6 +60,16 @@ public class Functions {
         return result;
     }
 
+    /**
+     * Calculating f'(x), where f() - is a given function type: {@link FunctionType}.
+     * <p/>
+     * PS: f'(x) = d(f(x)).
+     *
+     * @param x            Variable value.
+     * @param functionType Type of function.
+     * @param alfa         Function coefficient.
+     * @return Function value.
+     */
     public static float getDerived(final float x, final FunctionType functionType, final float alfa) {
         final float derived;
         switch (functionType) {

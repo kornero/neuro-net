@@ -63,7 +63,7 @@ public class Neuron implements INeuron {
 
     @Override
     public boolean isAccessible(INeuron neuron) {
-        return Util.chance((int) Util.calculateDistance(this.getPosition(), neuron.getPosition()) + 1);
+        return Util.chance((int) Util.getNorm(this.getPosition(), neuron.getPosition()) + 1);
     }
 
     @Override

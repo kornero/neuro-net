@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.neuronet.util.Util.randomWeights;
+import static com.neuronet.util.Util.randomFloats;
 
 public class TestSuite {
 
@@ -25,11 +25,11 @@ public class TestSuite {
         final INet net = createBig(input.length, expected.length);
 
         for (int i = 0; i < 100; i++) {
-            input = randomWeights(3);
+            input = randomFloats(3);
             net.educate(expected, input);
         }
 
-        input = randomWeights(3);
+        input = randomFloats(3);
         final float[] runResult = net.runNet(input);
         logger.debug("result:" + Util.toString(runResult));
         for (int i = 0, expectedLength = expected.length; i < expectedLength; i++) {
@@ -51,13 +51,13 @@ public class TestSuite {
         final INet net = createSmall(1, 1);
 
         for (int i = 0; i < 100; i++) {
-            input = randomWeights(1);
+            input = randomFloats(1);
             expected[0] = Math.signum(input[0]);
             net.educate(expected, input);
         }
 
         for (int i = 0; i < 10; i++) {
-            input = randomWeights(1);
+            input = randomFloats(1);
             expected[0] = Math.signum(input[0]);
             final float[] runResult = net.runNet(input);
 
@@ -70,7 +70,7 @@ public class TestSuite {
 
     private static float[] getData() {
         //return new float[]{1, 2, 3};
-        return randomWeights(3);
+        return randomFloats(3);
     }
 
     private static INet createBig(final int inputs, final int outputs) {
