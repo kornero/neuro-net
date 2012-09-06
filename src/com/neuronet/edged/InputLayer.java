@@ -1,5 +1,6 @@
 package com.neuronet.edged;
 
+import com.neuronet.edged.api.IEdge;
 import com.neuronet.edged.api.ILayer;
 import com.neuronet.edged.api.INeuron;
 import org.slf4j.Logger;
@@ -65,6 +66,16 @@ public class InputLayer implements ILayer {
         }
 
         @Override
+        public boolean isAccessible(INeuron neuron) {
+            return true;
+        }
+
+        @Override
+        public short getPosition() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         public float getFunction() {
             throw new UnsupportedOperationException();
         }
@@ -80,17 +91,17 @@ public class InputLayer implements ILayer {
         }
 
         @Override
-        public Edge createInputEdge(INeuron inputNeuron, float weight) {
+        public IEdge createInputEdge(INeuron inputNeuron, float weight) {
             throw new UnsupportedOperationException();
         }
 
         @Override
-        public void addInputEdge(Edge inputEdge) {
+        public void addInputEdge(IEdge inputEdge) {
             throw new UnsupportedOperationException();
         }
 
         @Override
-        public void addOutputEdge(Edge outputEdge) {
+        public void addOutputEdge(IEdge outputEdge) {
             throw new UnsupportedOperationException();
         }
     }

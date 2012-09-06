@@ -1,67 +1,46 @@
 package com.neuronet.edged;
 
+import com.neuronet.edged.api.IEdge;
 import com.neuronet.edged.api.INeuron;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class NullEdge extends Edge {
+public class NullEdge implements IEdge {
 
     private static final Logger logger = LoggerFactory.getLogger(NullEdge.class);
-    private static final Edge INSTANCE = new NullEdge();
+    private static final IEdge INSTANCE = new NullEdge();
 
     private NullEdge() {
-        super(null, null);
     }
 
-    public static Edge getInstance() {
+    public static IEdge getInstance() {
         return INSTANCE;
+    }
+
+    @Override
+    public float getPotential() {
+        return 0;
     }
 
     public float getWeight() {
         return 0;
     }
 
-    public INeuron getInput() {
-        return new INeuron() {
-            @Override
-            public float getFunction() {
-                return 0;
-            }
-
-            @Override
-            public float getDerived() {
-                return 0;
-            }
-
-            @Override
-            public float[] educate(float error, float[] signal) {
-                return new float[0];
-            }
-
-            @Override
-            public float getLastPotential() {
-                return 0;
-            }
-
-            @Override
-            public void setLastPotential(float signal) {
-            }
-
-            @Override
-            public Edge createInputEdge(INeuron inputNeuron, float weight) {
-                return null;
-            }
-
-            @Override
-            public void addInputEdge(Edge inputEdge) {
-            }
-
-            @Override
-            public void addOutputEdge(Edge outputEdge) {
-            }
-        };
+    public void incrementWeight(float incWeight) {
     }
 
-    public void incrementWeight(float incWeight) {
+    @Override
+    public INeuron getInput() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public INeuron getOutput() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setWeight(float weight) {
+        throw new UnsupportedOperationException();
     }
 }

@@ -81,6 +81,10 @@ public class Util {
         return String.format("%.2f", f);
     }
 
+    public static double calculateDistance(final float first, final float second) {
+        return Math.sqrt(first * first + second * second);
+    }
+
     public static boolean chance(final int chances) {
         return 0 == rnd.nextInt(chances);
     }

@@ -1,8 +1,10 @@
 package com.neuronet.edged.api;
 
-import com.neuronet.edged.Edge;
-
 public interface INeuron {
+
+    public boolean isAccessible(final INeuron neuron);
+
+    public short getPosition();
 
     public float getFunction();
 
@@ -14,9 +16,9 @@ public interface INeuron {
 
     public void setLastPotential(final float signal);
 
-    public Edge createInputEdge(final INeuron inputNeuron, final float weight);
+    public IEdge createInputEdge(final INeuron inputNeuron, final float weight);
 
-    public void addInputEdge(final Edge inputEdge);
+    public void addInputEdge(final IEdge inputEdge);
 
-    public void addOutputEdge(final Edge outputEdge);
+    public void addOutputEdge(final IEdge outputEdge);
 }

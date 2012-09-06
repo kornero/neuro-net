@@ -1,5 +1,6 @@
 package com.neuronet.edged;
 
+import com.neuronet.edged.api.IEdge;
 import com.neuronet.edged.api.ILayer;
 import com.neuronet.edged.api.INeuron;
 import com.neuronet.util.FunctionType;
@@ -9,23 +10,27 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Layer implements ILayer {
 
     private static final Logger logger = LoggerFactory.getLogger(Layer.class);
 
     private final List<INeuron> neurons;
+    public final AtomicInteger edgesCounter = new AtomicInteger();
+    public final AtomicInteger nullEdgesCounter = new AtomicInteger();
 
     private float[] lastResult;
 
     public Layer(final int neurons, final Collection<INeuron> inputNeurons, final FunctionType functionType, final float alfa) {
         this.neurons = new ArrayList<INeuron>(neurons);
         for (int i = 0; i < neurons; i++) {
-            final INeuron neuron = new Neuron(0.5f, functionType, alfa);
-            for (INeuron n : inputNeurons) {
-                final Edge edge = neuron.createInputEdge(n, 0.5f);
-                if (n instanceof Neuron) {
-                    n.addOutputEdge(edge);
+            final INeuron neuron = new Neuron(0.5f, functionType, alfa, (short) i);
+            for (INeuron inputNeuron : inputNeurons) {
+                final IEdge edge = createEdge(inputNeuron, neuron);
+                neuron.addInputEdge(edge);
+                if (inputNeuron instanceof Neuron) {
+                    inputNeuron.addOutputEdge(edge);
                 }
             }
             this.getNeurons().add(neuron);
@@ -71,5 +76,17 @@ public class Layer implements ILayer {
     @Override
     public List<INeuron> getNeurons() {
         return this.neurons;
+    }
+
+    private IEdge createEdge(final INeuron inputNeuron, final INeuron outputNeuron) {
+        final IEdge edge;
+        if (inputNeuron.isAccessible(outputNeuron)) {
+            edge = new Edge(inputNeuron, outputNeuron, 0.5f);
+            edgesCounter.incrementAndGet();
+        } else {
+            edge = NullEdge.getInstance();
+            nullEdgesCounter.incrementAndGet();
+        }
+        return edge;
     }
 }

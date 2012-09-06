@@ -30,8 +30,8 @@ public class Net implements INet {
 
     @Override
     public float[] runNet(final float[] inputData) {
-        if (logger.isDebugEnabled()) {
-            logger.debug("runNet(): " + Util.toString(inputData));
+        if (logger.isTraceEnabled()) {
+            logger.trace("runNet(): " + Util.toString(inputData));
         }
 
         this.setInputData(inputData);
@@ -54,9 +54,9 @@ public class Net implements INet {
             error[i] = expectedOutput[i] - result[i];
         }
 
-        if (logger.isDebugEnabled()) {
-            logger.debug("educate(): run result: " + Util.toString(result));
-            logger.debug("educate(): error: " + Util.toString(error));
+        if (logger.isTraceEnabled()) {
+            logger.trace("educate(): run result: " + Util.toString(result));
+            logger.trace("educate(): error: " + Util.toString(error));
         }
 
         // Running net in the reverse direction.
@@ -66,6 +66,21 @@ public class Net implements INet {
             error = layersArray[i].educate(layersArray[i - 1].getLastResult(), error);
         }
         return error;
+    }
+
+    public void printStatistic() {
+        if (logger.isDebugEnabled()) {
+            int edges = 0;
+            int nullEdges = 0;
+            for (final ILayer iLayer : layers) {
+                if (iLayer instanceof Layer) {
+                    edges += ((Layer) iLayer).edgesCounter.get();
+                    nullEdges += ((Layer) iLayer).nullEdgesCounter.get();
+                }
+            }
+            logger.debug("printStatistic(): edges = " + edges + ", nullEdges = " + nullEdges + ", % = "
+                    + Util.toString(nullEdges * 100f / (edges + nullEdges)));
+        }
     }
 
     private void setInputData(final float[] inputData) {
