@@ -11,8 +11,7 @@ public class Util {
 
     private static final Random rnd = new Random(System.currentTimeMillis());
 
-    public static final int rand = 200;
-    public static final float div = 100f;
+    public static final int UPPER_BOUND = 200;
 
     /**
      * Generates random floats.
@@ -23,9 +22,9 @@ public class Util {
      */
     public static float[] randomFloats(final int amount) {
         final float[] tmp = new float[amount];
-        final float offset = rand / 2;
+        final float offset = UPPER_BOUND / 2;
         for (int i = 0; i < tmp.length; i++) {
-            tmp[i] = (offset - rnd.nextInt(rand)) / div;
+            tmp[i] = (offset - rnd.nextInt(UPPER_BOUND)) / offset;
         }
         return tmp;
     }
@@ -34,7 +33,7 @@ public class Util {
      * Multiplying input data with neuron weights and it's dx.
      *
      * @param inputData Input data.
-     * @param weights   Neuron weights.
+     * @param weights   Neuron weights (size = inputData + 1).
      * @param b         Neuron dx.
      * @return Neuron potential.
      */

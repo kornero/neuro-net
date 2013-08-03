@@ -8,11 +8,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="logback" level="project" />
-    <orderEntry type="library" name="slf4j" level="project" />
-    <orderEntry type="library" name="swt" level="project" />
-    <orderEntry type="library" name="guava" level="project" />
-    <orderEntry type="library" name="junit-4.10" level="project" />
+    <orderEntry type="library" name="guava" level="application" />
+    <orderEntry type="library" name="junit" level="application" />
+    <orderEntry type="library" name="logback" level="application" />
+    <orderEntry type="library" name="slf4j" level="application" />
   </component>
 </module>
 
