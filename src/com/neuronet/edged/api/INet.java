@@ -4,6 +4,8 @@ import com.neuronet.util.FunctionType;
 
 public interface INet {
 
+    public void addLayer(int neurons, FunctionType functionType);
+
     public void addLayer(int neurons, FunctionType functionType, float alfa);
 
     public float[] runNet(final float[] inputData);

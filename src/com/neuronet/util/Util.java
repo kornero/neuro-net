@@ -11,7 +11,9 @@ public class Util {
 
     private static final Random rnd = new Random(System.currentTimeMillis());
 
-    public static final int UPPER_BOUND = 200;
+    public static final int UPPER_BOUND = 2 * 1000;
+
+    public static final float MIN_POSITIVE = 0.0001f;
 
     /**
      * Generates random floats.
@@ -25,6 +27,23 @@ public class Util {
         final float offset = UPPER_BOUND / 2;
         for (int i = 0; i < tmp.length; i++) {
             tmp[i] = (offset - rnd.nextInt(UPPER_BOUND)) / offset;
+        }
+        return tmp;
+    }
+
+    /**
+     * Generates random floats.
+     * All floats are from interval: [-1.00 * multiplexer; 1.00 * multiplexer]
+     *
+     * @param amount      Random floats amount.
+     * @param multiplexer Multiply each value.
+     * @return Array of floats from interval: [-1.00 * multiplexer; 1.00 * multiplexer]
+     */
+    public static float[] randomFloats(final int amount, final float multiplexer) {
+        final float[] tmp = new float[amount];
+        final float offset = UPPER_BOUND / 2;
+        for (int i = 0; i < tmp.length; i++) {
+            tmp[i] = (offset - rnd.nextInt(UPPER_BOUND)) * multiplexer / offset;
         }
         return tmp;
     }
@@ -79,7 +98,7 @@ public class Util {
 
         //  Normalizing.
         for (int i = 0; i < inputData.length; i++) {
-            inputData[i] = (inputData[i]) / norma;
+            inputData[i] = div(inputData[i], norma);
         }
     }
 
@@ -121,5 +140,24 @@ public class Util {
      */
     public static String toString(final float f) {
         return String.format("%.2f", f);
+    }
+
+    public static float div(final double a, final double b) {
+        return div((float) a, (float) b);
+    }
+
+    public static float div(float a, float b) {
+        if (Float.isInfinite(a)) {
+            a = (a == Float.POSITIVE_INFINITY) ? Float.MAX_VALUE : Float.MIN_VALUE;
+        }
+        if (Float.isInfinite(b)) {
+            b = (b == Float.POSITIVE_INFINITY) ? Float.MAX_VALUE : Float.MIN_VALUE;
+        }
+
+        if (Math.abs(b) < MIN_POSITIVE) {
+            return a / MIN_POSITIVE;
+        } else {
+            return a / b;
+        }
     }
 }

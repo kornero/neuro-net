@@ -16,16 +16,17 @@ public class Layer implements ILayer {
 
     private static final Logger logger = LoggerFactory.getLogger(Layer.class);
 
-    private final List<INeuron> neurons;
     public final AtomicInteger edgesCounter = new AtomicInteger();
     public final AtomicInteger nullEdgesCounter = new AtomicInteger();
 
+    private final List<INeuron> neurons;
     private float[] lastResult;
 
     public Layer(final int neurons, final Collection<INeuron> inputNeurons, final FunctionType functionType, final float alfa) {
         this.neurons = new ArrayList<INeuron>(neurons);
+
         for (int i = 0; i < neurons; i++) {
-            final INeuron neuron = new Neuron(0.5f, functionType, alfa, (short) i);
+            final INeuron neuron = new Neuron(functionType, alfa, (short) i);
             for (INeuron inputNeuron : inputNeurons) {
                 final IEdge edge = createEdge(inputNeuron, neuron);
                 neuron.addInputEdge(edge);
@@ -43,7 +44,7 @@ public class Layer implements ILayer {
 
         int i = 0;
         for (final INeuron neuron : this.neurons) {
-            result[i] = neuron.getFunction();
+            result[i] = neuron.runNeuron();
             i++;
         }
 
@@ -81,7 +82,7 @@ public class Layer implements ILayer {
     private IEdge createEdge(final INeuron inputNeuron, final INeuron outputNeuron) {
         final IEdge edge;
         if (inputNeuron.isAccessible(outputNeuron)) {
-            edge = new Edge(inputNeuron, outputNeuron, 0.5f);
+            edge = new Edge(inputNeuron, outputNeuron);
             edgesCounter.incrementAndGet();
         } else {
             edge = NullEdge.getInstance();

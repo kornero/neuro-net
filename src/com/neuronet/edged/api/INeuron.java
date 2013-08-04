@@ -6,7 +6,7 @@ public interface INeuron {
 
     public short getPosition();
 
-    public float getFunction();
+    public float runNeuron();
 
     public float getDerived();
 

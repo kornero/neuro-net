@@ -8,51 +8,60 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.neuronet.util.FunctionType.BIPOLAR_SIGMA;
+import static com.neuronet.util.FunctionType.GAUSS;
 import static com.neuronet.util.Util.randomFloats;
 
 public class TestSuite {
 
     private static final Logger logger = LoggerFactory.getLogger(TestSuite.class);
 
+    static {
+    }
+
     /**
      * Trivial memorizing net.
      */
     @Test()
-    public void test1() {
+    public void test_memorizingNet() {
         logger.info("NeuroNet is starting.");
-        float[] input = getData();
-        final float[] expected = new float[]{-1, -1, 1};
-        final INet net = createBig(input.length, expected.length);
+        final int inputs = 10;
+        final float[] expected = new float[]{-0.9f, -0.8f, 0.75f};
+        final INet net = createBig(inputs, expected.length);
 
-        for (int i = 0; i < 100; i++) {
-            input = randomFloats(3);
-            net.educate(expected, input);
+        for (int i = 0; i < 1000; i++) {
+            net.educate(expected, randomFloats(inputs));
         }
 
-        input = randomFloats(3);
-        final float[] runResult = net.runNet(input);
+        final float[] runResult = net.runNet(randomFloats(inputs));
         logger.debug("result:" + Util.toString(runResult));
         for (int i = 0, expectedLength = expected.length; i < expectedLength; i++) {
             float exp = expected[i];
             float act = runResult[i];
-            Assert.assertTrue(Math.abs(exp - act) < 0.1);
+            check(exp, act);
         }
     }
 
-
     /**
-     * Trivial net for signum function.
+     * Trivial net for signum function:
+     * <pre>
+     * sign(x):
+     *      x > 0 ->  1
+     *      x = 0 ->  0
+     *      x < 0 -> -1
+     * </pre>
      */
     @Test()
-    public void test2() {
+    public void test_signumNet() {
         logger.info("NeuroNet is starting.");
         float[] input;
         final float[] expected = new float[1];
         final INet net = createSmall(1, 1);
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             input = randomFloats(1);
             expected[0] = Math.signum(input[0]);
+
             net.educate(expected, input);
         }
 
@@ -63,29 +72,114 @@ public class TestSuite {
 
             float exp = expected[0];
             float act = runResult[0];
-            Assert.assertTrue(Math.abs(exp - act) < 0.1);
-            logger.trace("Data: " + Util.toString(input[0]) + ", expected = " + expected[0] + ", actual = " + Util.toString(runResult[0]));
+
+            logger.debug("Data: sign({}) = {}, actual = {}",
+                    new String[]{
+                            Util.toString(input[0]),
+                            Util.toString(expected[0]),
+                            Util.toString(runResult[0])
+                    }
+            );
+            check(exp, act);
         }
     }
 
-    private static float[] getData() {
-        //return new float[]{1, 2, 3};
-        return randomFloats(3);
+    @Test()
+    public void test_sinusNet() {
+        logger.info("NeuroNet is starting.");
+        float[] input;
+        final float[] expected = new float[1];
+        final INet net = createSinNet();
+
+        for (int i = 0; i < 10 * 1000; i++) {
+            input = randomFloats(1, (float) Math.PI);
+            expected[0] = (float) Math.sin(input[0]);
+
+            net.educate(expected, input);
+        }
+
+        for (int i = 0; i < 10; i++) {
+            input = randomFloats(1, (float) Math.PI);
+            expected[0] = (float) Math.sin(input[0]);
+            final float[] runResult = net.runNet(input);
+
+            float exp = expected[0];
+            float act = runResult[0];
+
+            logger.debug("Data: sin({}) = {}, actual = {}",
+                    new String[]{
+                            Util.toString(input[0]),
+                            Util.toString(exp),
+                            Util.toString(act)
+                    }
+            );
+//            check(exp, act);
+        }
+
+        float in = 0;
+        float out = net.runNet(new float[]{in})[0];
+        logger.debug("SIN({})={}", in, out);
+
+        in = (float) (Math.PI / 6);
+        out = net.runNet(new float[]{in})[0];
+        logger.debug("SIN({})={}", in, out);
+
+        in = (float) (Math.PI / 4);
+        out = net.runNet(new float[]{in})[0];
+        logger.debug("SIN({})={}", in, out);
+
+        in = (float) (Math.PI / 3);
+        out = net.runNet(new float[]{in})[0];
+        logger.debug("SIN({})={}", in, out);
+
+        in = (float) (Math.PI / 2);
+        out = net.runNet(new float[]{in})[0];
+        logger.debug("SIN({})={}", in, out);
+
+        in = (float) (Math.PI);
+        out = net.runNet(new float[]{in})[0];
+        logger.debug("SIN({})={}", in, out);
+    }
+
+    @Test
+    public void debug() {
+        for (int i = 0; i < 100; i++) {
+//            test_memorizingNet();
+            test_signumNet();
+        }
     }
 
     private static INet createBig(final int inputs, final int outputs) {
         final INet net = new Net(inputs);
 
-        final FunctionType functionType = FunctionType.BIPOLAR_SIGMA;
+        final FunctionType functionType = BIPOLAR_SIGMA;
 
-        final int multiplexer = 100;
+        net.addLayer(10, functionType);
+        net.addLayer(15, functionType);
+        net.addLayer(150, functionType);
+        net.addLayer(25, functionType);
+        net.addLayer(5, functionType);
+        net.addLayer(outputs, functionType);
 
-        net.addLayer(10, functionType, 0.0005f * multiplexer);
-        net.addLayer(15, functionType, 0.0001f * multiplexer);
-        net.addLayer(150, functionType, 0.0001f * multiplexer);
-        net.addLayer(25, functionType, 0.0001f * multiplexer);
-        net.addLayer(5, functionType, 0.0001f * multiplexer);
-        net.addLayer(outputs, functionType, 0.0001f * multiplexer);
+        logger.debug("createBig(): Net created successful.");
+
+        ((Net) net).printStatistic();
+
+        return net;
+    }
+
+    private static INet createSinNet() {
+        final INet net = new Net(1);
+
+        net.addLayer(100, BIPOLAR_SIGMA);
+//        net.addLayer(15, BIPOLAR_SIGMA);
+//        net.addLayer(500, BIPOLAR_SIGMA);
+        net.addLayer(250, GAUSS);
+        net.addLayer(50, BIPOLAR_SIGMA);
+        net.addLayer(15, BIPOLAR_SIGMA);
+        net.addLayer(5, BIPOLAR_SIGMA);
+        net.addLayer(2, BIPOLAR_SIGMA);
+        net.addLayer(1, BIPOLAR_SIGMA);
 
         logger.debug("createBig(): Net created successful.");
 
@@ -97,18 +191,22 @@ public class TestSuite {
     private static INet createSmall(final int inputs, final int outputs) {
         final INet net = new Net(inputs);
 
-        final FunctionType functionType = FunctionType.BIPOLAR_SIGMA;
+        final FunctionType functionType = BIPOLAR_SIGMA;
 
-        final int multiplexer = 100;
+        final int multiplexer = 10;
 
-        net.addLayer(10, functionType, 0.0005f * multiplexer);
-        net.addLayer(5, functionType, 0.0001f * multiplexer);
-        net.addLayer(outputs, functionType, 0.0001f * multiplexer);
+        net.addLayer(10, functionType, 0.005f * multiplexer);
+        net.addLayer(5, functionType, 0.001f * multiplexer);
+        net.addLayer(outputs, functionType, 0.001f * multiplexer);
 
         logger.debug("createSmall(): Net created successful.");
 
         ((Net) net).printStatistic();
 
         return net;
+    }
+
+    private static void check(final float expected, final float actual) {
+        Assert.assertTrue("Unexpected result: exp=" + expected + ", act=" + actual, Math.abs(expected - actual) < 0.25);
     }
 }

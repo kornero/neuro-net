@@ -28,6 +28,14 @@ public class UtilTest {
     }
 
     @Test
+    public void test_randomFloatsNoNaN() {
+        for (int i = 0; i < 1000; i++) {
+            final float[] floats = Util.randomFloats(1);
+            Assert.assertFalse("Random float is NaN!", "NaN".equalsIgnoreCase(Float.toString(floats[0])));
+        }
+    }
+
+    @Test
     public void test_multiply() {
         final float[] inputs = new float[]{2, 3, 4, 5};
         final float[] weights = new float[]{1, 2, 3, 4, 5};

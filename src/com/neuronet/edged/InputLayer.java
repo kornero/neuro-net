@@ -76,7 +76,7 @@ public class InputLayer implements ILayer {
         }
 
         @Override
-        public float getFunction() {
+        public float runNeuron() {
             throw new UnsupportedOperationException();
         }
 

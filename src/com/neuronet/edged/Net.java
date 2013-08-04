@@ -1,5 +1,6 @@
 package com.neuronet.edged;
 
+import com.neuronet.edged.api.Constants;
 import com.neuronet.edged.api.ILayer;
 import com.neuronet.edged.api.INet;
 import com.neuronet.edged.api.INeuron;
@@ -15,11 +16,15 @@ import java.util.LinkedList;
 public class Net implements INet {
 
     private static final Logger logger = LoggerFactory.getLogger(Net.class);
-
     private final Deque<ILayer> layers = new LinkedList<ILayer>();
 
     public Net(final int inputs) {
         layers.addFirst(new InputLayer(inputs));
+    }
+
+    @Override
+    public void addLayer(int neurons, FunctionType functionType) {
+        addLayer(neurons, functionType, Constants.DEFAULT_ALFA);
     }
 
     @Override
@@ -29,10 +34,12 @@ public class Net implements INet {
     }
 
     @Override
-    public float[] runNet(final float[] inputData) {
+    public float[] runNet(float[] inputData) {
         if (logger.isTraceEnabled()) {
             logger.trace("runNet(): " + Util.toString(inputData));
         }
+        inputData = inputData.clone();
+        Util.normalize(inputData);
 
         this.setInputData(inputData);
 
@@ -45,7 +52,7 @@ public class Net implements INet {
     }
 
     @Override
-    public float[] educate(float[] expectedOutput, float[] inputData) {
+    public float[] educate(final float[] expectedOutput, final float[] inputData) {
         final float[] result = this.runNet(inputData);
 
         //  Finding first ("previous") error.
@@ -90,10 +97,8 @@ public class Net implements INet {
         }
 
         int i = 0;
-        Util.normalize(inputData);
         for (final INeuron n : inputs) {
-            n.setLastPotential(inputData[i]);
-            i++;
+            n.setLastPotential(inputData[i++]);
         }
     }
 }

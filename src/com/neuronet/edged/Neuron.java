@@ -1,5 +1,6 @@
 package com.neuronet.edged;
 
+import com.neuronet.edged.api.Constants;
 import com.neuronet.edged.api.IEdge;
 import com.neuronet.edged.api.INeuron;
 import com.neuronet.util.FunctionType;
@@ -15,8 +16,6 @@ public class Neuron implements INeuron {
 
     private static final Logger logger = LoggerFactory.getLogger(Neuron.class);
 
-    private static final float educationSpeed = 0.2f;
-
     private final List<IEdge> inputEdgeList = new ArrayList<IEdge>();
     private final List<IEdge> outputEdgeList = new ArrayList<IEdge>();
 
@@ -27,8 +26,8 @@ public class Neuron implements INeuron {
     private float dx = 0;
     private float lastPotential = 0;
 
-    public Neuron(final float dx, final FunctionType functionType, final float alfa) {
-        this(dx, functionType, alfa, (short) 0);
+    public Neuron(final FunctionType functionType, final float alfa, short position) {
+        this(Constants.DEFAULT_DX, functionType, alfa, position);
     }
 
     public Neuron(final float dx, final FunctionType functionType, final float alfa, short position) {
@@ -63,11 +62,13 @@ public class Neuron implements INeuron {
 
     @Override
     public boolean isAccessible(INeuron neuron) {
-        return Util.chance((int) Util.getNorm(this.getPosition(), neuron.getPosition()) + 1);
+        int norm = (int) Math.ceil(Util.getNorm(this.getPosition(), neuron.getPosition())) + 1;
+        norm = (int) Math.floor(Math.sqrt(norm));
+        return Util.chance(norm);
     }
 
     @Override
-    public float getFunction() {
+    public float runNeuron() {
         float potential = dx;
         for (IEdge edge : inputEdgeList) {
             potential += edge.getPotential();
@@ -89,7 +90,7 @@ public class Neuron implements INeuron {
         final float[] commonNeuronError = new float[this.inputEdgeList.size()];
 
         final float commonError = error * this.getDerived();
-        final float errorCoefficient = commonError * educationSpeed;
+        final float errorCoefficient = commonError * Constants.EDUCATION_SPEED;
 
         // Educating neuron dx.
         this.dx += errorCoefficient;
@@ -127,7 +128,7 @@ public class Neuron implements INeuron {
      * Synapse educating.
      */
     private void educateWeights(final float error, final float[] s) {
-        final float er = error * educationSpeed;
+        final float er = error * Constants.EDUCATION_SPEED;
         this.dx += er;
 
         if (s.length != this.inputEdgeList.size()) {
