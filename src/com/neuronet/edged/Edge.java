@@ -1,6 +1,5 @@
 package com.neuronet.edged;
 
-import com.neuronet.edged.api.Configuration;
 import com.neuronet.edged.api.IEdge;
 import com.neuronet.edged.api.INeuron;
 import org.slf4j.Logger;
@@ -16,7 +15,7 @@ public class Edge implements IEdge {
     private float weight = 0;
 
     public Edge(INeuron input, INeuron output) {
-        this(input, output, Configuration.DEFAULT_EDGE_WEIGHT);
+        this(input, output, input.getLayer().getNet().getConfiguration().getDefaultEdgeWeight());
     }
 
     public Edge(INeuron input, INeuron output, float weight) {

@@ -1,5 +1,6 @@
 package com.neuronet.edged;
 
+import com.neuronet.edged.api.Configuration;
 import com.neuronet.edged.api.INet;
 import com.neuronet.util.FunctionType;
 import com.neuronet.util.Util;
@@ -25,9 +26,9 @@ public class TestSuite {
     @Test()
     public void test_memorizingNet() {
         logger.info("NeuroNet is starting.");
-        final int inputs = 10;
+        final int inputs = 3;
         final float[] expected = new float[]{-0.9f, -0.8f, 0.75f};
-        final INet net = createBig(inputs, expected.length);
+        final INet net = createMemorizingNet(inputs, expected.length);
 
         for (int i = 0; i < 1000; i++) {
             net.educate(expected, randomFloats(inputs));
@@ -152,13 +153,18 @@ public class TestSuite {
     @Test
     public void debug() {
         for (int i = 0; i < 100; i++) {
-//            test_memorizingNet();
-            test_signumNet();
+            test_memorizingNet();
+//            test_signumNet();
         }
     }
 
-    private static INet createBig(final int inputs, final int outputs) {
-        final INet net = new Net(inputs);
+    private static INet createMemorizingNet(final int inputs, final int outputs) {
+        final INet net = new Net(inputs, new Configuration(
+                0.001f,//Configuration.DEFAULT_ALFA,
+                0.0025f,//Configuration.DEFAULT_DX,
+                0.0025f,//Configuration.DEFAULT_EDGE_WEIGHT,
+                Configuration.EDUCATION_SPEED)
+        );
 
         final FunctionType functionType = BIPOLAR_SIGMA;
 
@@ -169,7 +175,7 @@ public class TestSuite {
         net.addLayer(5, functionType);
         net.addLayer(outputs, functionType);
 
-        logger.debug("createBig(): Net created successful.");
+        logger.debug("createMemorizingNet(): Net created successful.");
 
         ((Net) net).printStatistic();
 
@@ -189,7 +195,7 @@ public class TestSuite {
         net.addLayer(2, BIPOLAR_SIGMA);
         net.addLayer(1, BIPOLAR_SIGMA);
 
-        logger.debug("createBig(): Net created successful.");
+        logger.debug("createMemorizingNet(): Net created successful.");
 
         ((Net) net).printStatistic();
 

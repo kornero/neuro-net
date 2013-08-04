@@ -1,6 +1,6 @@
 package com.neuronet.edged;
 
-import com.neuronet.edged.api.Configuration;
+import com.neuronet.edged.api.IConfiguration;
 import com.neuronet.edged.api.IEdge;
 import com.neuronet.edged.api.ILayer;
 import com.neuronet.edged.api.INeuron;
@@ -22,23 +22,23 @@ public class Neuron implements INeuron {
 
     private final FunctionType functionType;
     private final ILayer layer;
-    private final float alfa;
     private final short position;
+    private final float alfa;
+    private final float educationSpeed;
 
     private float dx = 0;
     private float lastPotential = 0;
 
     public Neuron(final FunctionType functionType, final ILayer layer, short position) {
-        this(Configuration.DEFAULT_DX, functionType, layer, position);
-    }
-
-    public Neuron(final float dx, final FunctionType functionType, final ILayer layer, short position) {
-        this.dx = dx;
         this.layer = layer;
         this.functionType = functionType;
         this.position = position;
 
-        this.alfa = layer.getNet().getConfiguration().getDefaultAlfa();
+        final IConfiguration configuration = layer.getNet().getConfiguration();
+
+        this.dx = configuration.getDefaultDX();
+        this.alfa = configuration.getDefaultAlfa();
+        this.educationSpeed = configuration.getEducationSpeed();
     }
 
     @Override
@@ -99,7 +99,7 @@ public class Neuron implements INeuron {
         final float[] commonNeuronError = new float[this.inputEdgeList.size()];
 
         final float commonError = error * this.getDerived();
-        final float errorCoefficient = commonError * Configuration.EDUCATION_SPEED;
+        final float errorCoefficient = commonError * this.educationSpeed;
 
         // Educating neuron dx.
         this.dx += errorCoefficient;
@@ -137,7 +137,7 @@ public class Neuron implements INeuron {
      * Synapse educating.
      */
     private void educateWeights(final float error, final float[] s) {
-        final float er = error * Configuration.EDUCATION_SPEED;
+        final float er = error * this.educationSpeed;
         this.dx += er;
 
         if (s.length != this.inputEdgeList.size()) {
