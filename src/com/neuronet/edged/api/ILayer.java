@@ -11,4 +11,6 @@ public interface ILayer {
     public float[] getLastResult();
 
     public Collection<INeuron> getNeurons();
+
+    public INet getNet();
 }

@@ -56,12 +56,20 @@ public class TestSuite {
         logger.info("NeuroNet is starting.");
         float[] input;
         final float[] expected = new float[1];
-        final INet net = createSmall(1, 1);
+        final INet net = createSignumNet(1, 1);
 
-        for (int i = 0; i < 1000; i++) {
+        // sign(+-1) = +-1;
+        for (int i = 0; i < 10000; i++) {
             input = randomFloats(1);
             expected[0] = Math.signum(input[0]);
 
+            net.educate(expected, input);
+        }
+
+        // sign(0) = 0;
+        input = new float[]{0.0f};
+        expected[0] = 0.0f;
+        for (int i = 0; i < 1000; i++) {
             net.educate(expected, input);
         }
 
@@ -188,18 +196,16 @@ public class TestSuite {
         return net;
     }
 
-    private static INet createSmall(final int inputs, final int outputs) {
+    private static INet createSignumNet(final int inputs, final int outputs) {
         final INet net = new Net(inputs);
 
         final FunctionType functionType = BIPOLAR_SIGMA;
 
-        final int multiplexer = 10;
+        net.addLayer(10, functionType);
+        net.addLayer(5, functionType);
+        net.addLayer(outputs, functionType);
 
-        net.addLayer(10, functionType, 0.005f * multiplexer);
-        net.addLayer(5, functionType, 0.001f * multiplexer);
-        net.addLayer(outputs, functionType, 0.001f * multiplexer);
-
-        logger.debug("createSmall(): Net created successful.");
+        logger.debug("createSignumNet(): Net created successful.");
 
         ((Net) net).printStatistic();
 

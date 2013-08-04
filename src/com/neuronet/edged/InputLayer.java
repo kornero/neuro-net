@@ -2,6 +2,7 @@ package com.neuronet.edged;
 
 import com.neuronet.edged.api.IEdge;
 import com.neuronet.edged.api.ILayer;
+import com.neuronet.edged.api.INet;
 import com.neuronet.edged.api.INeuron;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +16,12 @@ public class InputLayer implements ILayer {
     private static final Logger logger = LoggerFactory.getLogger(InputLayer.class);
 
     private final List<INeuron> neurons;
-
+    private final INet net;
     private float[] lastResult;
 
-    public InputLayer(int inputs) {
+    public InputLayer(final int inputs, final INet net) {
         this.neurons = new ArrayList<INeuron>(inputs);
+        this.net = net;
         for (int i = 0; i < inputs; i++) {
             neurons.add(new InputNeuron());
         }
@@ -28,6 +30,11 @@ public class InputLayer implements ILayer {
     @Override
     public Collection<INeuron> getNeurons() {
         return neurons;
+    }
+
+    @Override
+    public INet getNet() {
+        return this.net;
     }
 
     @Override
@@ -51,7 +58,7 @@ public class InputLayer implements ILayer {
         throw new UnsupportedOperationException();
     }
 
-    private static class InputNeuron implements INeuron {
+    private class InputNeuron implements INeuron {
 
         private float signal = 0;
 
@@ -103,6 +110,11 @@ public class InputLayer implements ILayer {
         @Override
         public void addOutputEdge(IEdge outputEdge) {
             throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public ILayer getLayer() {
+            return InputLayer.this;
         }
     }
 }

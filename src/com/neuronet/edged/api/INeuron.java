@@ -21,4 +21,6 @@ public interface INeuron {
     public void addInputEdge(final IEdge inputEdge);
 
     public void addOutputEdge(final IEdge outputEdge);
+
+    public ILayer getLayer();
 }

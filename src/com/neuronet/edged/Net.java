@@ -1,9 +1,6 @@
 package com.neuronet.edged;
 
-import com.neuronet.edged.api.Constants;
-import com.neuronet.edged.api.ILayer;
-import com.neuronet.edged.api.INet;
-import com.neuronet.edged.api.INeuron;
+import com.neuronet.edged.api.*;
 import com.neuronet.util.FunctionType;
 import com.neuronet.util.Util;
 import org.slf4j.Logger;
@@ -17,20 +14,21 @@ public class Net implements INet {
 
     private static final Logger logger = LoggerFactory.getLogger(Net.class);
     private final Deque<ILayer> layers = new LinkedList<ILayer>();
+    private final IConfiguration configuration;
 
     public Net(final int inputs) {
-        layers.addFirst(new InputLayer(inputs));
+        this(inputs, Configuration.getDefaultConfiguration());
+    }
+
+    public Net(final int inputs, final IConfiguration configuration) {
+        layers.addFirst(new InputLayer(inputs, this));
+        this.configuration = configuration;
     }
 
     @Override
     public void addLayer(int neurons, FunctionType functionType) {
-        addLayer(neurons, functionType, Constants.DEFAULT_ALFA);
-    }
-
-    @Override
-    public void addLayer(int neurons, FunctionType functionType, float alfa) {
         final Collection<INeuron> inputNeurons = layers.getLast().getNeurons();
-        layers.add(new Layer(neurons, inputNeurons, functionType, alfa));
+        layers.add(new Layer(neurons, inputNeurons, functionType, this));
     }
 
     @Override
@@ -73,6 +71,11 @@ public class Net implements INet {
             error = layersArray[i].educate(layersArray[i - 1].getLastResult(), error);
         }
         return error;
+    }
+
+    @Override
+    public IConfiguration getConfiguration() {
+        return this.configuration;
     }
 
     public void printStatistic() {
