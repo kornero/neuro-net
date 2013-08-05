@@ -78,6 +78,21 @@ public class Net implements INet {
         return this.configuration;
     }
 
+    @Override
+    public Deque<ILayer> getLayers() {
+        return this.layers;
+    }
+
+    @Override
+    public int getInputsAmount() {
+        return this.layers.getFirst().getNeurons().size();
+    }
+
+    @Override
+    public int getOutputsAmount() {
+        return this.layers.getLast().getNeurons().size();
+    }
+
     public void printStatistic() {
         if (logger.isDebugEnabled()) {
             int edges = 0;
@@ -103,5 +118,10 @@ public class Net implements INet {
         for (final INeuron n : inputs) {
             n.setLastPotential(inputData[i++]);
         }
+    }
+
+    @Override
+    public String toString() {
+        return Util.toString(this);
     }
 }

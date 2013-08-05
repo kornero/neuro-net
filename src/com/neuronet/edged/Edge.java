@@ -2,6 +2,7 @@ package com.neuronet.edged;
 
 import com.neuronet.edged.api.IEdge;
 import com.neuronet.edged.api.INeuron;
+import com.neuronet.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,5 +53,10 @@ public class Edge implements IEdge {
     @Override
     public void setWeight(float weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return Util.toString(this);
     }
 }

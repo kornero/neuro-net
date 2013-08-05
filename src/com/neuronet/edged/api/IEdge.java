@@ -1,6 +1,8 @@
 package com.neuronet.edged.api;
 
-public interface IEdge {
+import java.io.Serializable;
+
+public interface IEdge extends Serializable {
     public float getPotential();
 
     public float getWeight();

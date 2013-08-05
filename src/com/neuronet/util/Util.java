@@ -1,8 +1,14 @@
 package com.neuronet.util;
 
+import com.neuronet.edged.NullEdge;
+import com.neuronet.edged.api.IEdge;
+import com.neuronet.edged.api.ILayer;
+import com.neuronet.edged.api.INet;
+import com.neuronet.edged.api.INeuron;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.*;
 import java.util.Random;
 
 public class Util {
@@ -113,6 +119,25 @@ public class Util {
         return 0 == rnd.nextInt(chances);
     }
 
+    public static float div(final double a, final double b) {
+        return div((float) a, (float) b);
+    }
+
+    public static float div(float a, float b) {
+        if (Float.isInfinite(a)) {
+            a = (a == Float.POSITIVE_INFINITY) ? Float.MAX_VALUE : Float.MIN_VALUE;
+        }
+        if (Float.isInfinite(b)) {
+            b = (b == Float.POSITIVE_INFINITY) ? Float.MAX_VALUE : Float.MIN_VALUE;
+        }
+
+        if (Math.abs(b) < MIN_POSITIVE) {
+            return a / MIN_POSITIVE;
+        } else {
+            return a / b;
+        }
+    }
+
     /**
      * Formatting as 2 digits float:
      * [-1,00, -1,00, 0,99]
@@ -142,22 +167,90 @@ public class Util {
         return String.format("%.2f", f);
     }
 
-    public static float div(final double a, final double b) {
-        return div((float) a, (float) b);
+    public static String summary(final INet net) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("NeuroNet [").append(net.getInputsAmount()).append(" -->(");
+
+        for (final ILayer iLayer : net.getLayers()) {
+            try {
+                builder.append(iLayer.getNeurons().size());
+                builder.append("{").append(iLayer.getFunctionType()).append("}");
+                builder.append("-->");
+            } catch (UnsupportedOperationException ignore) {
+                // Nothing bad.
+            }
+        }
+
+        builder.append(")--> ").append(net.getOutputsAmount()).append("]");
+        return builder.toString();
     }
 
-    public static float div(float a, float b) {
-        if (Float.isInfinite(a)) {
-            a = (a == Float.POSITIVE_INFINITY) ? Float.MAX_VALUE : Float.MIN_VALUE;
+    public static String toString(final INet net) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("NeuroNet [").append(net.getInputsAmount()).append(" --> ").append(net.getOutputsAmount()).append("]");
+        for (final ILayer iLayer : net.getLayers()) {
+            builder.append("\n").append(iLayer);
         }
-        if (Float.isInfinite(b)) {
-            b = (b == Float.POSITIVE_INFINITY) ? Float.MAX_VALUE : Float.MIN_VALUE;
-        }
+        return builder.toString();
+    }
 
-        if (Math.abs(b) < MIN_POSITIVE) {
-            return a / MIN_POSITIVE;
-        } else {
-            return a / b;
+    public static String toString(final ILayer layer) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Layer [").append(layer.getNeurons().size()).append("]");
+        for (final INeuron neuron : layer.getNeurons()) {
+            try {
+                builder.append("\n").append(neuron);
+            } catch (UnsupportedOperationException ignore) {
+                // Nothing bad.
+            }
         }
+        return builder.toString();
+    }
+
+    public static String toString(final INeuron neuron) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Neuron [").append(neuron.getPosition()).append("], ");
+        builder.append(" alfa=").append(neuron.getAlfa()).append(", dx=").append(neuron.getDX());
+        for (final IEdge edge : neuron.getInputEdges()) {
+            if (!(edge instanceof NullEdge)) {
+                builder.append("\n").append(edge);
+            }
+        }
+        return builder.toString();
+    }
+
+    public static String toString(final IEdge edge) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Edge [").append(edge.getWeight()).append("]");
+        return builder.toString();
+    }
+
+    public static void serialize(final Serializable object, final File file) {
+        try {
+            final FileOutputStream fileOut = new FileOutputStream(file);
+            final ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(object);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in: " + file);
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+    }
+
+    public static <T extends Serializable> T deserialize(T t, final File file) {
+        try {
+            FileInputStream fileIn = new FileInputStream(file);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            t = (T) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        } catch (ClassNotFoundException c) {
+            System.out.println("Employee class not found");
+            c.printStackTrace();
+        }
+        return t;
     }
 }

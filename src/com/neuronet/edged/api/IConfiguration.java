@@ -1,6 +1,8 @@
 package com.neuronet.edged.api;
 
-public interface IConfiguration {
+import java.io.Serializable;
+
+public interface IConfiguration extends Serializable {
     public float getDefaultAlfa();
 
     public float getDefaultDX();

@@ -65,6 +65,16 @@ public class Neuron implements INeuron {
     }
 
     @Override
+    public List<IEdge> getInputEdges() {
+        return this.inputEdgeList;
+    }
+
+    @Override
+    public List<IEdge> getOutputEdges() {
+        return this.outputEdgeList;
+    }
+
+    @Override
     public ILayer getLayer() {
         return this.layer;
     }
@@ -89,6 +99,16 @@ public class Neuron implements INeuron {
     @Override
     public float getDerived() {
         return Functions.getDerived(this.getLastPotential(), this.functionType, this.alfa);
+    }
+
+    @Override
+    public float getAlfa() {
+        return this.alfa;
+    }
+
+    @Override
+    public float getDX() {
+        return this.dx;
     }
 
     @Override
@@ -131,6 +151,11 @@ public class Neuron implements INeuron {
     @Override
     public short getPosition() {
         return position;
+    }
+
+    @Override
+    public String toString() {
+        return Util.toString(this);
     }
 
     /**

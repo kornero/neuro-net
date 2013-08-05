@@ -5,6 +5,7 @@ import com.neuronet.edged.api.ILayer;
 import com.neuronet.edged.api.INet;
 import com.neuronet.edged.api.INeuron;
 import com.neuronet.util.FunctionType;
+import com.neuronet.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,11 +23,14 @@ public class Layer implements ILayer {
 
     private final List<INeuron> neurons;
     private final INet net;
+    private final FunctionType functionType;
+
     private float[] lastResult;
 
     public Layer(final int neurons, final Collection<INeuron> inputNeurons, final FunctionType functionType, final INet net) {
         this.neurons = new ArrayList<INeuron>(neurons);
         this.net = net;
+        this.functionType = functionType;
 
         for (int i = 0; i < neurons; i++) {
             final INeuron neuron = new Neuron(functionType, this, (short) i);
@@ -85,6 +89,16 @@ public class Layer implements ILayer {
     @Override
     public INet getNet() {
         return this.net;
+    }
+
+    @Override
+    public FunctionType getFunctionType() {
+        return this.functionType;
+    }
+
+    @Override
+    public String toString() {
+        return Util.toString(this);
     }
 
     private IEdge createEdge(final INeuron inputNeuron, final INeuron outputNeuron) {

@@ -4,11 +4,12 @@ import com.neuronet.edged.api.IEdge;
 import com.neuronet.edged.api.ILayer;
 import com.neuronet.edged.api.INet;
 import com.neuronet.edged.api.INeuron;
+import com.neuronet.util.FunctionType;
+import com.neuronet.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class InputLayer implements ILayer {
@@ -22,19 +23,24 @@ public class InputLayer implements ILayer {
     public InputLayer(final int inputs, final INet net) {
         this.neurons = new ArrayList<INeuron>(inputs);
         this.net = net;
-        for (int i = 0; i < inputs; i++) {
-            neurons.add(new InputNeuron());
+        for (short i = 0; i < inputs; i++) {
+            neurons.add(new InputNeuron(i));
         }
     }
 
     @Override
-    public Collection<INeuron> getNeurons() {
+    public List<INeuron> getNeurons() {
         return neurons;
     }
 
     @Override
     public INet getNet() {
         return this.net;
+    }
+
+    @Override
+    public FunctionType getFunctionType() {
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -58,9 +64,19 @@ public class InputLayer implements ILayer {
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public String toString() {
+        return Util.toString(this);
+    }
+
     private class InputNeuron implements INeuron {
 
+        private final short position;
         private float signal = 0;
+
+        private InputNeuron(final short position) {
+            this.position = position;
+        }
 
         @Override
         public float getLastPotential() {
@@ -79,7 +95,7 @@ public class InputLayer implements ILayer {
 
         @Override
         public short getPosition() {
-            throw new UnsupportedOperationException();
+            return this.position;
         }
 
         @Override
@@ -89,6 +105,16 @@ public class InputLayer implements ILayer {
 
         @Override
         public float getDerived() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public float getAlfa() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public float getDX() {
             throw new UnsupportedOperationException();
         }
 
@@ -113,8 +139,23 @@ public class InputLayer implements ILayer {
         }
 
         @Override
+        public List<IEdge> getInputEdges() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public List<IEdge> getOutputEdges() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         public ILayer getLayer() {
             return InputLayer.this;
+        }
+
+        @Override
+        public String toString() {
+            return Util.toString(this);
         }
     }
 }

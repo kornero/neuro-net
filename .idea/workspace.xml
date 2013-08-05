@@ -2,32 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9c43230-5cc3-43df-b857-e60941c77ec4" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/neuronet/edged/api/RandomConfiguration.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/neuronet/edged/Edge.java" afterPath="$PROJECT_DIR$/src/com/neuronet/edged/Edge.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/neuronet/util/FunctionType.java" afterPath="$PROJECT_DIR$/src/com/neuronet/util/FunctionType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/neuronet/edged/api/IConfiguration.java" afterPath="$PROJECT_DIR$/src/com/neuronet/edged/api/IConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/neuronet/edged/api/IEdge.java" afterPath="$PROJECT_DIR$/src/com/neuronet/edged/api/IEdge.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/neuronet/edged/api/ILayer.java" afterPath="$PROJECT_DIR$/src/com/neuronet/edged/api/ILayer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/neuronet/edged/api/INet.java" afterPath="$PROJECT_DIR$/src/com/neuronet/edged/api/INet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/neuronet/edged/api/INeuron.java" afterPath="$PROJECT_DIR$/src/com/neuronet/edged/api/INeuron.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/neuronet/edged/InputLayer.java" afterPath="$PROJECT_DIR$/src/com/neuronet/edged/InputLayer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/neuronet/edged/Layer.java" afterPath="$PROJECT_DIR$/src/com/neuronet/edged/Layer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/neuronet/edged/Net.java" afterPath="$PROJECT_DIR$/src/com/neuronet/edged/Net.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/neuronet/edged/Neuron.java" afterPath="$PROJECT_DIR$/src/com/neuronet/edged/Neuron.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/neuronet/edged/NullEdge.java" afterPath="$PROJECT_DIR$/src/com/neuronet/edged/NullEdge.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/com/neuronet/edged/TestSuite.java" afterPath="$PROJECT_DIR$/tests/com/neuronet/edged/TestSuite.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/neuronet/util/Util.java" afterPath="$PROJECT_DIR$/src/com/neuronet/util/Util.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NeuroNet.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375628429270" ignored="false" />
-    <file path="/Util.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375617374888" ignored="false" />
+    <file path="/Dummy.txt" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375629197408" ignored="false" />
+    <file path="/Util.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375735186764" ignored="false" />
     <file path="/UtilTest.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375553827437" ignored="false" />
-    <file path="/TestSuite.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375628549167" ignored="false" />
-    <file path="/Net.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375627901224" ignored="false" />
-    <file path="/Neuron.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375629107951" ignored="false" />
+    <file path="/TestSuite.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375735227847" ignored="false" />
+    <file path="/Net.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375703782027" ignored="false" />
+    <file path="/Neuron.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375704137814" ignored="false" />
     <file path="/Functions.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375602380566" ignored="false" />
-    <file path="/Layer.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375627873135" ignored="false" />
+    <file path="/Layer.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375734876258" ignored="false" />
     <file path="/fragment.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375605688517" ignored="false" />
     <file path="/logback.xml" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375608423380" ignored="false" />
     <file path="/Edge.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375628949544" ignored="false" />
     <file path="/Constants.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375628505071" ignored="false" />
-    <file path="$PROJECT_DIR$/src/com/neuronet/util/Functions.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375626821780" ignored="false" />
     <file path="/IConfiguration.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375627058177" ignored="false" />
-    <file path="/INeuron.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375627492228" ignored="false" />
+    <file path="/INeuron.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375704085448" ignored="false" />
     <file path="/IEdge.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375627512469" ignored="false" />
-    <file path="/ILayer.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375627537874" ignored="false" />
-    <file path="/INet.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375627552875" ignored="false" />
-    <file path="/InputLayer.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375627644385" ignored="false" />
+    <file path="/ILayer.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375706025519" ignored="false" />
+    <file path="/INet.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375703307827" ignored="false" />
+    <file path="/InputLayer.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375706053434" ignored="false" />
+    <file path="/RandomConfiguration.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375697385000" ignored="false" />
+    <file path="/FunctionType.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375698197923" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,22 +108,66 @@
       <file leaf-file-name="TestSuite.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/com/neuronet/edged/TestSuite.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="30" selection-start="929" selection-end="929" vertical-scroll-proportion="0.6666667">
+            <state line="162" column="59" selection-start="5048" selection-end="5048" vertical-scroll-proportion="-1.3350168">
               <folding>
                 <element signature="initializer##0;class#TestSuite#0" expanded="false" />
                 <element signature="docComment;method#test_memorizingNet#0;class#TestSuite#0" expanded="false" />
+                <element signature="method#test_memorizingNet#0;class#TestSuite#0" expanded="false" />
                 <element signature="docComment;method#test_signumNet#0;class#TestSuite#0" expanded="false" />
                 <element signature="method#test_signumNet#0;class#TestSuite#0" expanded="false" />
-                <element signature="method#test_sinusNet#0;class#TestSuite#0" expanded="false" />
+                <element signature="method#debug#0;class#TestSuite#0" expanded="false" />
+                <element signature="method#createMemorizingNet#0;class#TestSuite#0" expanded="false" />
+                <element signature="method#createSignumNet#0;class#TestSuite#0" expanded="false" />
+                <element signature="method#createSinNet#0;class#TestSuite#0" expanded="false" />
+                <element signature="e#7450#7486#0" expanded="false" />
+                <element signature="e#7899#7942#0" expanded="false" />
+                <element signature="method#check#0;class#TestSuite#0" expanded="false" />
+                <element signature="e#8976#8983#0" expanded="true" />
+                <element signature="e#9693#9702#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Configuration.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/Configuration.java">
+      <file leaf-file-name="InputLayer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/InputLayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="20" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0">
+            <state line="42" column="24" selection-start="1061" selection-end="1061" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="method#getNet#0;class#InputLayer#0" expanded="false" />
+                <element signature="method#runLayer#0;class#InputLayer#0" expanded="false" />
+                <element signature="method#getLastResult#0;class#InputLayer#0" expanded="false" />
+                <element signature="method#educate#0;class#InputLayer#0" expanded="false" />
+                <element signature="method#getLastPotential#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+                <element signature="method#setLastPotential#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+                <element signature="method#isAccessible#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+                <element signature="method#runNeuron#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+                <element signature="method#getDerived#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+                <element signature="method#educate#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+                <element signature="method#createInputEdge#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+                <element signature="method#addInputEdge#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+                <element signature="method#addOutputEdge#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+                <element signature="method#getLayer#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ILayer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/ILayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="24" selection-start="409" selection-end="409" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Layer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/Layer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="95" column="33" selection-start="2796" selection-end="2796" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -119,8 +176,24 @@
       <file leaf-file-name="Neuron.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/Neuron.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="38" selection-start="3844" selection-end="3844" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="73" column="35" selection-start="2147" selection-end="2147" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="method#Neuron#0;class#Neuron#0" expanded="false" />
+                <element signature="method#createInputEdge#0;class#Neuron#0" expanded="false" />
+                <element signature="method#addInputEdge#0;class#Neuron#0" expanded="false" />
+                <element signature="method#addOutputEdge#0;class#Neuron#0" expanded="false" />
+                <element signature="method#getLayer#0;class#Neuron#0" expanded="false" />
+                <element signature="method#isAccessible#0;class#Neuron#0" expanded="false" />
+                <element signature="method#runNeuron#0;class#Neuron#0" expanded="false" />
+                <element signature="method#getDerived#0;class#Neuron#0" expanded="false" />
+                <element signature="method#educate#0;class#Neuron#0" expanded="false" />
+                <element signature="method#getLastPotential#0;class#Neuron#0" expanded="false" />
+                <element signature="method#setLastPotential#0;class#Neuron#0" expanded="false" />
+                <element signature="method#getPosition#0;class#Neuron#0" expanded="false" />
+                <element signature="docComment;method#educateWeights#0;class#Neuron#0" expanded="false" />
+                <element signature="method#educateWeights#0;class#Neuron#0" expanded="false" />
+                <element signature="method#getWeights#0;class#Neuron#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,9 +201,86 @@
       <file leaf-file-name="Edge.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/Edge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0">
+            <state line="60" column="5" selection-start="1339" selection-end="1339" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="method#Edge#0;class#Edge#0" expanded="false" />
+                <element signature="method#Edge#1;class#Edge#0" expanded="false" />
+                <element signature="method#getPotential#0;class#Edge#0" expanded="false" />
+                <element signature="method#getWeight#0;class#Edge#0" expanded="false" />
+                <element signature="method#getInput#0;class#Edge#0" expanded="false" />
+                <element signature="method#getOutput#0;class#Edge#0" expanded="false" />
+                <element signature="method#incrementWeight#0;class#Edge#0" expanded="false" />
+                <element signature="method#setWeight#0;class#Edge#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NullEdge.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/NullEdge.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="50" column="5" selection-start="1077" selection-end="1077" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="method#NullEdge#0;class#NullEdge#0" expanded="false" />
+                <element signature="method#getInstance#0;class#NullEdge#0" expanded="false" />
+                <element signature="method#getPotential#0;class#NullEdge#0" expanded="false" />
+                <element signature="method#getWeight#0;class#NullEdge#0" expanded="false" />
+                <element signature="method#incrementWeight#0;class#NullEdge#0" expanded="false" />
+                <element signature="method#getInput#0;class#NullEdge#0" expanded="false" />
+                <element signature="method#getOutput#0;class#NullEdge#0" expanded="false" />
+                <element signature="method#setWeight#0;class#NullEdge#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Util.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/neuronet/util/Util.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="203" column="31" selection-start="6386" selection-end="6386" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="docComment;method#randomFloats#0;class#Util#0" expanded="false" />
+                <element signature="method#randomFloats#0;class#Util#0" expanded="false" />
+                <element signature="docComment;method#randomFloats#1;class#Util#0" expanded="false" />
+                <element signature="method#randomFloats#1;class#Util#0" expanded="false" />
+                <element signature="docComment;method#multiply#0;class#Util#0" expanded="false" />
+                <element signature="method#multiply#0;class#Util#0" expanded="false" />
+                <element signature="docComment;method#getNorm#0;class#Util#0" expanded="false" />
+                <element signature="method#getNorm#0;class#Util#0" expanded="false" />
+                <element signature="docComment;method#normalize#0;class#Util#0" expanded="false" />
+                <element signature="method#normalize#0;class#Util#0" expanded="false" />
+                <element signature="docComment;method#chance#0;class#Util#0" expanded="false" />
+                <element signature="method#chance#0;class#Util#0" expanded="false" />
+                <element signature="method#div#0;class#Util#0" expanded="false" />
+                <element signature="method#div#1;class#Util#0" expanded="false" />
+                <element signature="docComment;method#toString#0;class#Util#0" expanded="false" />
+                <element signature="method#toString#0;class#Util#0" expanded="false" />
+                <element signature="docComment;method#toString#1;class#Util#0" expanded="false" />
+                <element signature="method#toString#1;class#Util#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="INeuron.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/INeuron.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="22" selection-start="408" selection-end="408" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Net.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/Net.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="126" column="5" selection-start="3869" selection-end="3951" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="method#Net#0;class#Net#0" expanded="false" />
+                <element signature="e#2070#2110#0" expanded="false" />
+                <element signature="method#getConfiguration#0;class#Net#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -154,21 +304,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/etc/logback.xml" />
-        <option value="$PROJECT_DIR$/src/com/neuronet/util/Util.java" />
-        <option value="$PROJECT_DIR$/src/com/neuronet/edged/api/IConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/com/neuronet/edged/api/DefaultConstants.java" />
-        <option value="$PROJECT_DIR$/src/com/neuronet/edged/api/Constants.java" />
-        <option value="$PROJECT_DIR$/src/com/neuronet/edged/api/INeuron.java" />
+        <option value="$PROJECT_DIR$/src/com/neuronet/edged/api/Configuration.java" />
+        <option value="$PROJECT_DIR$/src/com/neuronet/edged/api/RandomConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/com/neuronet/edged/api/INet.java" />
         <option value="$PROJECT_DIR$/src/com/neuronet/edged/api/IEdge.java" />
+        <option value="$PROJECT_DIR$/src/com/neuronet/util/FunctionType.java" />
+        <option value="$PROJECT_DIR$/src/com/neuronet/edged/api/IConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/com/neuronet/edged/Net.java" />
+        <option value="$PROJECT_DIR$/src/com/neuronet/edged/Edge.java" />
+        <option value="$PROJECT_DIR$/src/com/neuronet/edged/NullEdge.java" />
+        <option value="$PROJECT_DIR$/src/com/neuronet/edged/api/INeuron.java" />
+        <option value="$PROJECT_DIR$/src/com/neuronet/edged/Neuron.java" />
         <option value="$PROJECT_DIR$/src/com/neuronet/edged/api/ILayer.java" />
         <option value="$PROJECT_DIR$/src/com/neuronet/edged/InputLayer.java" />
         <option value="$PROJECT_DIR$/src/com/neuronet/edged/Layer.java" />
-        <option value="$PROJECT_DIR$/src/com/neuronet/edged/Net.java" />
-        <option value="$PROJECT_DIR$/src/com/neuronet/edged/api/INet.java" />
-        <option value="$PROJECT_DIR$/src/com/neuronet/edged/api/Configuration.java" />
-        <option value="$PROJECT_DIR$/src/com/neuronet/edged/Neuron.java" />
-        <option value="$PROJECT_DIR$/src/com/neuronet/edged/Edge.java" />
+        <option value="$PROJECT_DIR$/src/com/neuronet/util/Util.java" />
         <option value="$PROJECT_DIR$/tests/com/neuronet/edged/TestSuite.java" />
       </list>
     </option>
@@ -364,25 +514,41 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_directory_selection" value="$PROJECT_DIR$/tests/com/neuronet/edged" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="OverrideImplement.combined" value="true" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="136" />
     <property name="project.structure.proportion" value="0.15" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="154" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="158" />
     <property name="MemberChooser.sorted" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="160" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="832" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="840" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="153" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="147" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/tests/com/neuronet/edged" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="FullScreen" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
-    <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
     <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -401,35 +567,7 @@
       <recent name="com.neuronet" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestSuite.debug">
-    <configuration default="false" name="UtilTest" type="JUnit" factoryName="JUnit" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.neuronet.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="NeuroNet" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.neuronet.util" />
-      <option name="MAIN_CLASS_NAME" value="com.neuronet.util.UtilTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.TestSuite.sinNetGenerator">
     <configuration default="false" name="TestSuite.debug" type="JUnit" factoryName="JUnit" temporary="true">
       <extension name="coverage" enabled="false" merge="false" runner="idea">
         <pattern>
@@ -461,34 +599,6 @@
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="TestSuite.test_memorizingNet" type="JUnit" factoryName="JUnit" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.neuronet.edged.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="NeuroNet" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.neuronet.edged" />
-      <option name="MAIN_CLASS_NAME" value="com.neuronet.edged.TestSuite" />
-      <option name="METHOD_NAME" value="test_memorizingNet" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -533,6 +643,62 @@
       <option name="PACKAGE_NAME" value="com.neuronet.edged" />
       <option name="MAIN_CLASS_NAME" value="com.neuronet.edged.TestSuite" />
       <option name="METHOD_NAME" value="test_sinusNet" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestSuite.sinNetGenerator" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.neuronet.edged.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="NeuroNet" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.neuronet.edged" />
+      <option name="MAIN_CLASS_NAME" value="com.neuronet.edged.TestSuite" />
+      <option name="METHOD_NAME" value="sinNetGenerator" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestSuite.netGenerator" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.neuronet.edged.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="NeuroNet" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.neuronet.edged" />
+      <option name="MAIN_CLASS_NAME" value="com.neuronet.edged.TestSuite" />
+      <option name="METHOD_NAME" value="netGenerator" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -665,19 +831,19 @@
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Application.NeuroNet" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.TestSuite" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.UtilTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.TestSuite.debug" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.TestSuite.test_memorizingNet" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.TestSuite.test_signumNet" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.TestSuite.test_sinusNet" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.TestSuite.debug" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TestSuite.test_signumNet" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.TestSuite.test_sinusNet" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.TestSuite.sinNetGenerator" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.TestSuite.netGenerator" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.TestSuite.debug" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.TestSuite.test_sinusNet" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.TestSuite.test_memorizingNet" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.TestSuite.test_signumNet" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.UtilTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.TestSuite.sinNetGenerator" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.TestSuite.netGenerator" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.TestSuite.test_signumNet" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.TestSuite.test_sinusNet" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.TestSuite.debug" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -767,7 +933,11 @@
       <created>1375628435182</created>
       <updated>1375628435182</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="1) Memorizing test is ok.&#10;2) Configuration fixes.">
+      <created>1375629200985</created>
+      <updated>1375629200985</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -778,14 +948,14 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852808" sideWeight="0.67808217" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32580644" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3983287" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1389" y="73" width="1202" height="914" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3983287" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1389" y="73" width="1202" height="914" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32580644" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32419354" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24772727" sideWeight="0.67419356" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24772727" sideWeight="0.67096776" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.32096773" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1427" y="26" width="1207" height="935" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21168438" sideWeight="0.67808217" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928678" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -843,7 +1013,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add net configuration object." />
+    <option name="LAST_COMMIT_MESSAGE" value="1) Memorizing test is ok.&#10;2) Configuration fixes." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -868,6 +1038,7 @@
     <MESSAGE value="1) Rebase project.&#10;2) Add util test." />
     <MESSAGE value="1) Add logger config.&#10;2) Add constants class.&#10;3) Sign test is okay." />
     <MESSAGE value="Add net configuration object." />
+    <MESSAGE value="1) Memorizing test is ok.&#10;2) Configuration fixes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -877,15 +1048,183 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_17/src.zip!/java/util/Deque.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="193" column="34" selection-start="6237" selection-end="6237" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/neuronet/util/FunctionType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="25" selection-start="79" selection-end="79" vertical-scroll-proportion="0.14814815">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/IEdge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="79" selection-start="332" selection-end="332" vertical-scroll-proportion="0.5925926">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/INet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="22" selection-start="149" selection-end="170" vertical-scroll-proportion="0.18518518">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/IConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="53" selection-start="116" selection-end="116" vertical-scroll-proportion="0.14814815">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/RandomConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="46" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/NullEdge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="5" selection-start="1077" selection-end="1077" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="method#NullEdge#0;class#NullEdge#0" expanded="false" />
+            <element signature="method#getInstance#0;class#NullEdge#0" expanded="false" />
+            <element signature="method#getPotential#0;class#NullEdge#0" expanded="false" />
+            <element signature="method#getWeight#0;class#NullEdge#0" expanded="false" />
+            <element signature="method#incrementWeight#0;class#NullEdge#0" expanded="false" />
+            <element signature="method#getInput#0;class#NullEdge#0" expanded="false" />
+            <element signature="method#getOutput#0;class#NullEdge#0" expanded="false" />
+            <element signature="method#setWeight#0;class#NullEdge#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/INeuron.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="22" selection-start="408" selection-end="408" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/Neuron.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="35" selection-start="2147" selection-end="2147" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="method#Neuron#0;class#Neuron#0" expanded="false" />
+            <element signature="method#createInputEdge#0;class#Neuron#0" expanded="false" />
+            <element signature="method#addInputEdge#0;class#Neuron#0" expanded="false" />
+            <element signature="method#addOutputEdge#0;class#Neuron#0" expanded="false" />
+            <element signature="method#getLayer#0;class#Neuron#0" expanded="false" />
+            <element signature="method#isAccessible#0;class#Neuron#0" expanded="false" />
+            <element signature="method#runNeuron#0;class#Neuron#0" expanded="false" />
+            <element signature="method#getDerived#0;class#Neuron#0" expanded="false" />
+            <element signature="method#educate#0;class#Neuron#0" expanded="false" />
+            <element signature="method#getLastPotential#0;class#Neuron#0" expanded="false" />
+            <element signature="method#setLastPotential#0;class#Neuron#0" expanded="false" />
+            <element signature="method#getPosition#0;class#Neuron#0" expanded="false" />
+            <element signature="docComment;method#educateWeights#0;class#Neuron#0" expanded="false" />
+            <element signature="method#educateWeights#0;class#Neuron#0" expanded="false" />
+            <element signature="method#getWeights#0;class#Neuron#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/Edge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="5" selection-start="1339" selection-end="1339" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="method#Edge#0;class#Edge#0" expanded="false" />
+            <element signature="method#Edge#1;class#Edge#0" expanded="false" />
+            <element signature="method#getPotential#0;class#Edge#0" expanded="false" />
+            <element signature="method#getWeight#0;class#Edge#0" expanded="false" />
+            <element signature="method#getInput#0;class#Edge#0" expanded="false" />
+            <element signature="method#getOutput#0;class#Edge#0" expanded="false" />
+            <element signature="method#incrementWeight#0;class#Edge#0" expanded="false" />
+            <element signature="method#setWeight#0;class#Edge#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/Net.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="126" column="5" selection-start="3869" selection-end="3951" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="method#Net#0;class#Net#0" expanded="false" />
+            <element signature="e#2070#2110#0" expanded="false" />
+            <element signature="method#getConfiguration#0;class#Net#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/Layer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="33" selection-start="2796" selection-end="2796" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/InputLayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="24" selection-start="1061" selection-end="1061" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="method#getNet#0;class#InputLayer#0" expanded="false" />
+            <element signature="method#runLayer#0;class#InputLayer#0" expanded="false" />
+            <element signature="method#getLastResult#0;class#InputLayer#0" expanded="false" />
+            <element signature="method#educate#0;class#InputLayer#0" expanded="false" />
+            <element signature="method#getLastPotential#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+            <element signature="method#setLastPotential#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+            <element signature="method#isAccessible#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+            <element signature="method#runNeuron#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+            <element signature="method#getDerived#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+            <element signature="method#educate#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+            <element signature="method#createInputEdge#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+            <element signature="method#addInputEdge#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+            <element signature="method#addOutputEdge#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+            <element signature="method#getLayer#0;class#InputNeuron#0;class#InputLayer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/ILayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="24" selection-start="409" selection-end="409" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/neuronet/util/Util.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="26" selection-start="3196" selection-end="3196" vertical-scroll-proportion="0.0">
+        <state line="203" column="31" selection-start="6386" selection-end="6386" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="docComment;method#randomFloats#0;class#Util#0" expanded="false" />
+            <element signature="method#randomFloats#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#randomFloats#1;class#Util#0" expanded="false" />
+            <element signature="method#randomFloats#1;class#Util#0" expanded="false" />
             <element signature="docComment;method#multiply#0;class#Util#0" expanded="false" />
             <element signature="method#multiply#0;class#Util#0" expanded="false" />
             <element signature="docComment;method#getNorm#0;class#Util#0" expanded="false" />
+            <element signature="method#getNorm#0;class#Util#0" expanded="false" />
             <element signature="docComment;method#normalize#0;class#Util#0" expanded="false" />
+            <element signature="method#normalize#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#chance#0;class#Util#0" expanded="false" />
+            <element signature="method#chance#0;class#Util#0" expanded="false" />
+            <element signature="method#div#0;class#Util#0" expanded="false" />
+            <element signature="method#div#1;class#Util#0" expanded="false" />
             <element signature="docComment;method#toString#0;class#Util#0" expanded="false" />
             <element signature="method#toString#0;class#Util#0" expanded="false" />
             <element signature="docComment;method#toString#1;class#Util#0" expanded="false" />
@@ -894,121 +1233,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/util/Functions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="17" selection-start="835" selection-end="835" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/util/FunctionType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="4" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/IConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="33" selection-start="66" selection-end="66" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/INeuron.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="29" selection-start="597" selection-end="597" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/IEdge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="40" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/InputLayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="489" selection-end="516" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/NullEdge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="176" selection-end="176" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/Layer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="11" selection-start="779" selection-end="779" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/ILayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="25" selection-start="305" selection-end="305" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/INet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="164" selection-end="164" vertical-scroll-proportion="0.41621622">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/Net.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1025" selection-end="1025" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="method#runNet#0;class#Net#0" expanded="false" />
-            <element signature="method#educate#0;class#Net#0" expanded="false" />
-            <element signature="e#2047#2087#0" expanded="false" />
-            <element signature="method#printStatistic#0;class#Net#0" expanded="false" />
-            <element signature="method#setInputData#0;class#Net#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/Neuron.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="38" selection-start="3844" selection-end="3844" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/api/Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="20" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/neuronet/edged/Edge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/com/neuronet/edged/TestSuite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="30" selection-start="929" selection-end="929" vertical-scroll-proportion="0.6666667">
+        <state line="162" column="59" selection-start="5048" selection-end="5048" vertical-scroll-proportion="-1.3350168">
           <folding>
             <element signature="initializer##0;class#TestSuite#0" expanded="false" />
             <element signature="docComment;method#test_memorizingNet#0;class#TestSuite#0" expanded="false" />
+            <element signature="method#test_memorizingNet#0;class#TestSuite#0" expanded="false" />
             <element signature="docComment;method#test_signumNet#0;class#TestSuite#0" expanded="false" />
             <element signature="method#test_signumNet#0;class#TestSuite#0" expanded="false" />
-            <element signature="method#test_sinusNet#0;class#TestSuite#0" expanded="false" />
+            <element signature="method#debug#0;class#TestSuite#0" expanded="false" />
+            <element signature="method#createMemorizingNet#0;class#TestSuite#0" expanded="false" />
+            <element signature="method#createSignumNet#0;class#TestSuite#0" expanded="false" />
+            <element signature="method#createSinNet#0;class#TestSuite#0" expanded="false" />
+            <element signature="e#7450#7486#0" expanded="false" />
+            <element signature="e#7899#7942#0" expanded="false" />
+            <element signature="method#check#0;class#TestSuite#0" expanded="false" />
+            <element signature="e#8976#8983#0" expanded="true" />
+            <element signature="e#9693#9702#0" expanded="true" />
           </folding>
         </state>
       </provider>
