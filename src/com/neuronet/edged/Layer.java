@@ -32,7 +32,7 @@ public class Layer implements ILayer {
         this.net = net;
         this.functionType = functionType;
 
-        for (int i = 0; i < neurons; i++) {
+        for (int i = 1; i <= neurons; i++) {
             final INeuron neuron = new Neuron(functionType, this, (short) i);
             for (INeuron inputNeuron : inputNeurons) {
                 final IEdge edge = createEdge(inputNeuron, neuron);

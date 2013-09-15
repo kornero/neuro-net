@@ -144,29 +144,57 @@ public class TestSuite {
         final Random random = new Random();
         final int inputs = 2;
         final int outputs = 1;
+        final int educateRounds = 25;
+        final int maxLayers = 2;
+        final int maxNeurons = 200;
+        final float maxError = 7.0f;
 
-        for (int tries = 0; tries < 500; tries++) {
-            final int layers = random.nextInt(3) + 1;
+        for (int tries = 0; tries < 5000; tries++) {
+            if (tries % 500 == 0) {
+                System.out.println(tries);
+            }
+            final int layers = 2;//random.nextInt(maxLayers - 1) + 1;
             final INet net = new Net(inputs, new RandomConfiguration());
             for (int i = 1; i <= layers; i++) {
-                final int neurons = random.nextInt(500 / (i * i)) + 1;
+                final int neurons = random.nextInt(maxNeurons - 1) + 1;
                 net.addLayer(neurons, getRandomFunctionType());
             }
             net.addLayer(outputs, getRandomFunctionType());
-            if (examineNet(net, inputs)) {
-                educateSin(net);
-                if (examineNet(net, inputs) && examineSin(net)) {
-                    printSinValues(net);
-                    final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\sin." + tries + ".net");
-                    if (file.createNewFile()) {
-                        Util.serialize(net, file);
-                        System.out.println(Util.summary(net));
-                        break;
+
+            if (examineNet(net)) {
+                for (int i = 0; i < educateRounds; i++) {
+                    educateSin(net);
+                }
+                if (examineNet(net)) {
+                    final float error = examineSin(net);
+                    if (error < 10.0f) {
+                        System.out.println("10.0:" + Util.summary(net));
+                    }
+                    if (error < maxError) {
+                        printSinValues(net);
+                        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\" +
+                                "sin." + System.currentTimeMillis() + ".net");
+                        if (file.createNewFile()) {
+                            Util.serialize(net, file);
+                            System.out.println(Util.summary(net));
+                        }
                     }
                 }
             }
         }
         System.out.println(errors.pollFirst() + "<->" + errors.pollLast());
+    }
+
+    @Test
+    public void sinNetTest() {
+        final INet net = Util.deserialize(new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\sin.2271.net"));
+
+        for (int i = 0; i < 1500; i++) {
+            educateSin(net);
+        }
+
+        printSinValues(net);
+        printSinGraph(net);
     }
 
     @Test
@@ -188,7 +216,7 @@ public class TestSuite {
             net.addLayer(outputs, getRandomFunctionType());
 
 //            educateSin(net);
-            if (examineNet(net, inputs)) {
+            if (examineNet(net)) {
                 printSinValues(net);
             }
         }
@@ -268,29 +296,39 @@ public class TestSuite {
     }
 
     private static void educateSin(final INet net) {
-        float[] input;
+        final Random random = new Random();
+        final float[] input = new float[]{0, (float) (Math.PI * 2)};
         final float[] expected = new float[1];
-        for (int i = 0; i < 1000; i++) {
-            input = randomFloats(2, (float) (Math.PI * 2));
-            input[1] = (float) (Math.PI * 2);
+        final float start = 0.0f;
+        final float end = (float) Math.PI;
 
-            expected[0] = (float) Math.sin(input[0]);
+        for (float j = start; j < end; j += random.nextFloat()) {
+            input[0] = j;
 
-            net.educate(expected, input);
+            expected[0] = (float) Math.sin(j);
+
+            for (int i = 0; i < 10; i++) {
+                net.educate(expected, input);
+            }
         }
     }
 
     private static final NavigableSet<Float> errors = new TreeSet<Float>();
 
-    private static boolean examineSin(final INet net) {
-        float[] input;
+    private static float examineSin(final INet net) {
+        final float[] input = new float[]{0, (float) (Math.PI * 2)};
         final float[] expected = new float[1];
 
         float error = 0.0f;
-        for (int i = 0; i < 10; i++) {
-            input = randomFloats(2);
-            input[1] = (float) (Math.PI * 2);
-            expected[0] = (float) Math.sin(input[0]);
+
+        final float start = 0.0f;
+        final float end = (float) Math.PI;
+
+        for (float j = start; j < end; j += 0.1f) {
+            input[0] = j;
+
+            expected[0] = (float) Math.sin(j);
+
             final float[] runResult = net.runNet(input);
 
             float exp = expected[0];
@@ -299,17 +337,19 @@ public class TestSuite {
             error += Math.abs(exp - act);
         }
         errors.add(error);
-        return error < 2.5f;
+        return error;
     }
 
-    private static boolean examineNet(final INet net, final int in) {
+    private static boolean examineNet(final INet net) {
+        final int checks = 5;
         final Set<Integer> roundedResults = new HashSet<Integer>();
-        for (int i = 0; i < 10; i++) {
+        final int in = net.getInputsAmount();
+        for (int i = 0; i < checks; i++) {
             final float act = net.runNet(randomFloats(in))[0];
             final int round = (int) (1000 * act);
             roundedResults.add(round);
         }
-        return roundedResults.size() == 10;
+        return roundedResults.size() == checks;
     }
 
     private static void printSinValues(final INet net) {
@@ -341,5 +381,34 @@ public class TestSuite {
         in[0] = (float) (Math.PI * 2);
         out = net.runNet(in)[0];
         logger.debug("SIN({})={}", in[0], out);
+    }
+
+    private static void printSinGraph(final INet net) {
+        final int limitX = 20;
+        final int limitY = 32;
+        final float step = 0.1f;
+        final String dot = "_";
+        final String mark = "*";
+
+        final float[] input = new float[]{0, (float) (Math.PI * 2)};
+
+        for (float i = -1 * limitY * step; i < limitY * step; i += step) {
+            input[0] = i;
+            final float act = net.runNet(input)[0];
+
+            for (float j = -1 * limitX * step; j < limitX * step; j += step) {
+                if (Util.equals(j, 0.0f)) {
+                    if (act > 0) {
+                        System.out.print("+");
+                    }
+                    System.out.print(Util.toString(i));
+                } else if (j <= act && act <= j + step) {
+                    System.out.print(mark);
+                } else {
+                    System.out.print(dot);
+                }
+            }
+            System.out.println("(" + Util.toString(act) + ")");
+        }
     }
 }

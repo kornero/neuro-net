@@ -1,5 +1,7 @@
 package com.neuronet.util;
 
+import com.neuronet.edged.InputLayer;
+import com.neuronet.edged.Neuron;
 import com.neuronet.edged.NullEdge;
 import com.neuronet.edged.api.IEdge;
 import com.neuronet.edged.api.ILayer;
@@ -119,6 +121,17 @@ public class Util {
         return 0 == rnd.nextInt(chances);
     }
 
+    /**
+     * Returns true if generated random number is bigger than given.
+     * chances >= rnd.nextFloat();
+     *
+     * @param chances Must be positive: > 0.
+     * @return True or false, depends on given chance.
+     */
+    public static boolean chance(final float chances) {
+        return chances >= rnd.nextFloat();
+    }
+
     public static float div(final double a, final double b) {
         return div((float) a, (float) b);
     }
@@ -136,6 +149,31 @@ public class Util {
         } else {
             return a / b;
         }
+    }
+
+    public static boolean equals(final float a, final float b) {
+        return equals(a, b, MIN_POSITIVE);
+    }
+
+    public static boolean equals(final float a, final float b, final float delta) {
+        return Math.abs(a - b) < delta;
+    }
+
+    public static String summary(final INet net) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("NeuroNet [").append(net.getInputsAmount());
+
+        for (final ILayer iLayer : net.getLayers()) {
+            if (!(iLayer instanceof InputLayer)) {
+                builder.append("-->");
+                builder.append("{").append(iLayer.getFunctionType()).append("}");
+                builder.append("-->");
+                builder.append(iLayer.getNeurons().size());
+            }
+        }
+
+        builder.append("]");
+        return builder.toString();
     }
 
     /**
@@ -167,24 +205,6 @@ public class Util {
         return String.format("%.2f", f);
     }
 
-    public static String summary(final INet net) {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("NeuroNet [").append(net.getInputsAmount()).append(" -->(");
-
-        for (final ILayer iLayer : net.getLayers()) {
-            try {
-                builder.append(iLayer.getNeurons().size());
-                builder.append("{").append(iLayer.getFunctionType()).append("}");
-                builder.append("-->");
-            } catch (UnsupportedOperationException ignore) {
-                // Nothing bad.
-            }
-        }
-
-        builder.append(")--> ").append(net.getOutputsAmount()).append("]");
-        return builder.toString();
-    }
-
     public static String toString(final INet net) {
         final StringBuilder builder = new StringBuilder();
         builder.append("NeuroNet [").append(net.getInputsAmount()).append(" --> ").append(net.getOutputsAmount()).append("]");
@@ -198,10 +218,8 @@ public class Util {
         final StringBuilder builder = new StringBuilder();
         builder.append("Layer [").append(layer.getNeurons().size()).append("]");
         for (final INeuron neuron : layer.getNeurons()) {
-            try {
+            if (neuron instanceof Neuron) {
                 builder.append("\n").append(neuron);
-            } catch (UnsupportedOperationException ignore) {
-                // Nothing bad.
             }
         }
         return builder.toString();
@@ -232,25 +250,27 @@ public class Util {
             out.writeObject(object);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in: " + file);
+            logger.info("Serialized object {} is saved in: {}", object.getClass().getSimpleName(), file);
         } catch (IOException i) {
-            i.printStackTrace();
+            logger.error("deserialize(): File=" + file, i);
         }
     }
 
-    public static <T extends Serializable> T deserialize(T t, final File file) {
+    @SuppressWarnings("unchecked")
+    public static <T extends Serializable> T deserialize(final File file) {
         try {
-            FileInputStream fileIn = new FileInputStream(file);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            t = (T) in.readObject();
+            final FileInputStream fileIn = new FileInputStream(file);
+            final ObjectInputStream in = new ObjectInputStream(fileIn);
+            final T t = (T) in.readObject(); // Unchecked cast.
             in.close();
             fileIn.close();
+            logger.info("Deserialized object {} is loaded from: {}", t.getClass().getSimpleName(), file);
+            return t;
         } catch (IOException i) {
-            i.printStackTrace();
+            logger.error("deserialize(): File=" + file, i);
         } catch (ClassNotFoundException c) {
-            System.out.println("Employee class not found");
-            c.printStackTrace();
+            logger.error("deserialize(): Class not found, file=" + file, c);
         }
-        return t;
+        return null;
     }
 }

@@ -23,7 +23,7 @@ public class InputLayer implements ILayer {
     public InputLayer(final int inputs, final INet net) {
         this.neurons = new ArrayList<INeuron>(inputs);
         this.net = net;
-        for (short i = 0; i < inputs; i++) {
+        for (short i = 1; i <= inputs; i++) {
             neurons.add(new InputNeuron(i));
         }
     }
@@ -75,6 +75,10 @@ public class InputLayer implements ILayer {
         private float signal = 0;
 
         private InputNeuron(final short position) {
+            if (position <= 0) {
+                throw new IllegalArgumentException("Neuron position must be positive, but was = " + position);
+            }
+
             this.position = position;
         }
 

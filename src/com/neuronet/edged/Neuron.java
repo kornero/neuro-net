@@ -30,6 +30,10 @@ public class Neuron implements INeuron {
     private float lastPotential = 0;
 
     public Neuron(final FunctionType functionType, final ILayer layer, short position) {
+        if (position <= 0) {
+            throw new IllegalArgumentException("Neuron position must be positive, but was = " + position);
+        }
+
         this.layer = layer;
         this.functionType = functionType;
         this.position = position;
@@ -81,9 +85,8 @@ public class Neuron implements INeuron {
 
     @Override
     public boolean isAccessible(INeuron neuron) {
-        int norm = (int) Math.ceil(Util.getNorm(this.getPosition(), neuron.getPosition())) + 1;
-        norm = (int) Math.floor(Math.sqrt(norm));
-        return Util.chance(norm);
+//        System.out.println(10.0f / (1 + Math.abs(this.getPosition() - neuron.getPosition())));
+        return Util.chance(10.0f / (1 + Math.abs(this.getPosition() - neuron.getPosition())));
     }
 
     @Override
