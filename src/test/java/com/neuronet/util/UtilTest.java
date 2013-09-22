@@ -13,7 +13,7 @@ public class UtilTest {
 
     @Test
     public void test_randomFloats() {
-        for (int i = 2; i < 10; i++) {
+        for (int i = 4; i < 16; i++) {
             final float[] floats = Util.randomFloats(i);
             Assert.assertEquals("Wrong floats amount", i, floats.length);
 
@@ -23,7 +23,11 @@ public class UtilTest {
             }
 
             Arrays.sort(floats);
-            Assert.assertTrue("Bad randomisation", floats[0] - floats[i - 1] < 0.01f);
+            logger.debug("random floats: {}", floats);
+
+            Assert.assertTrue("Random floats must have negative values.", floats[0] < 0);
+            Assert.assertTrue("Random floats must have positive values.", floats[i - 1] > 0);
+            Assert.assertTrue("Bad randomisation", Math.abs(floats[0] - floats[i - 1]) > 0.1f);
         }
     }
 
@@ -44,7 +48,7 @@ public class UtilTest {
 
         final float actual = Util.multiply(inputs, weights, b);
 
-        Assert.assertEquals("Wrong result.", expected, actual, 0.1);
+        Assert.assertEquals("Wrong result.", expected, actual, 0.01);
     }
 
     @Test

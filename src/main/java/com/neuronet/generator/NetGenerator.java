@@ -43,6 +43,8 @@ public class NetGenerator {
                     final Thread me = Thread.currentThread();
                     try {
                         while (!me.isInterrupted()) {
+                            logger.trace("Thread {}", me.getName());
+
                             final int layers = random.nextInt(maxLayers - 1) + minLayers;
                             final INet net = new Net(inputs, maxValue, netInfo.getConfiguration());
                             for (int i = 1; i <= layers; i++) {
@@ -63,7 +65,7 @@ public class NetGenerator {
                             }
                         }
                     } catch (RuntimeException e) {
-
+                        logger.error("Thread " + me.getName(), e);
                     }
                 }
             });
@@ -104,14 +106,16 @@ public class NetGenerator {
     }
 
     public static boolean checkNet(final INet net) {
-        final int checks = 5;
+        final int checks = 10;
         final Set<Integer> roundedResults = new HashSet<>();
         final int in = net.getInputsAmount();
+        float sum = 0;
         for (int i = 0; i < checks; i++) {
             final float act = net.runNet(Util.randomFloats(in))[0];
             final int round = (int) (1000 * act);
             roundedResults.add(round);
+            sum += Math.abs(act);
         }
-        return roundedResults.size() == checks;
+        return sum > 1.0f && roundedResults.size() == checks;
     }
 }

@@ -14,7 +14,7 @@ public class SinNetInfo extends SimpleNetInfo {
     private static final int MAX_NEURONS = 500;
     private static final int MIN_LAYERS = 2;
     private static final int MAX_LAYERS = 5;
-    private static final int INPUTS = 2;
+    private static final int INPUTS = 1;
     private static final int OUTPUTS = 1;
 
     public SinNetInfo() {

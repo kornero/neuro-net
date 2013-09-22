@@ -31,12 +31,7 @@ public class Util {
      * @return Array of floats from interval: [-1.00; 1.00]
      */
     public static float[] randomFloats(final int amount) {
-        final float[] tmp = new float[amount];
-        final float offset = UPPER_BOUND / 2;
-        for (int i = 0; i < tmp.length; i++) {
-            tmp[i] = (offset - rnd.nextInt(UPPER_BOUND)) / offset;
-        }
-        return tmp;
+        return randomFloats(amount, 1);
     }
 
     /**

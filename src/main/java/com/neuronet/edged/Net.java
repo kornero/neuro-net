@@ -121,7 +121,7 @@ public class Net implements INet {
     private void setInputData(final float[] inputData) {
         final Collection<INeuron> inputs = layers.getFirst().getNeurons();
         if (inputData.length != inputs.size()) {
-            throw new RuntimeException(inputData.length + "!=" + inputs.size());
+            throw new RuntimeException("Inputs amount is: " + inputs.size() + ", but was: " + inputData.length);
         }
 
         int i = 0;
