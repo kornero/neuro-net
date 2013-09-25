@@ -1,4 +1,4 @@
-package com.neuronet.example;
+package com.neuronet.edged.example;
 
 import com.neuronet.generator.SimpleNetInfo;
 import org.slf4j.Logger;

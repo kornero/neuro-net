@@ -87,7 +87,7 @@ public class NetGenerator {
         float error = 0.0f;
         for (final Map.Entry<Float[], Float[]> entry : testData.entrySet()) {
             final float[] inputData = ArrayUtils.toPrimitive(entry.getKey());
-            final float[] expectedOutputData = ArrayUtils.toPrimitive(entry.getKey());
+            final float[] expectedOutputData = ArrayUtils.toPrimitive(entry.getValue());
 
             final float[] runResult = net.runNet(inputData);
 
@@ -103,7 +103,7 @@ public class NetGenerator {
         final Map<Float[], Float[]> educationData = netInfo.getEducationData(iteration);
         for (final Map.Entry<Float[], Float[]> entry : educationData.entrySet()) {
             final float[] inputData = ArrayUtils.toPrimitive(entry.getKey());
-            final float[] outputData = ArrayUtils.toPrimitive(entry.getKey());
+            final float[] outputData = ArrayUtils.toPrimitive(entry.getValue());
 
             net.educate(outputData, inputData);
         }
