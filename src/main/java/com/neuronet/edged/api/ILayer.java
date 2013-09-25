@@ -18,4 +18,6 @@ public interface ILayer extends Serializable {
     public INet getNet();
 
     public FunctionType getFunctionType();
+
+    public void setEducationSpeed(final float educationSpeed);
 }

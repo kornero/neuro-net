@@ -5,6 +5,7 @@ import com.neuronet.edged.api.INet;
 import com.neuronet.util.FunctionType;
 import com.neuronet.util.Util;
 import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.math.stat.StatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -90,7 +91,10 @@ public class NetGenerator {
 
             final float[] runResult = net.runNet(inputData);
 
-            error += Math.abs(Util.getNorm(runResult) - Util.getNorm(expectedOutputData));
+            error += StatUtils.meanDifference(
+                    Util.convertFloatsToDoubles(runResult),
+                    Util.convertFloatsToDoubles(expectedOutputData)
+            );
         }
         return error;
     }

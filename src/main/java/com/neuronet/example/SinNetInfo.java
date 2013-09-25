@@ -27,9 +27,8 @@ public class SinNetInfo extends SimpleNetInfo {
         final List<Map<Float[], Float[]>> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             final Map<Float[], Float[]> map = new HashMap<>();
-            for (int j = 0; j < 10; j++) {
-                final float x = random.nextFloat();
-                map.put(new Float[]{x}, new Float[]{(float) Math.sin(x)});
+            for (float j = (float) (Math.PI * (-2)); j < Math.PI * 2; j += random.nextFloat() / 10.0f) {
+                map.put(new Float[]{j}, new Float[]{(float) Math.sin(j)});
             }
             list.add(map);
         }

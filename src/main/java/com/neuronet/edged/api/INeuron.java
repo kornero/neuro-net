@@ -23,6 +23,8 @@ public interface INeuron extends Serializable {
 
     public void setLastPotential(final float signal);
 
+    public void setEducationSpeed(final float educationSpeed);
+
     public IEdge createInputEdge(final INeuron inputNeuron, final float weight);
 
     public void addInputEdge(final IEdge inputEdge);

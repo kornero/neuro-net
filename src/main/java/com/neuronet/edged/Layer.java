@@ -16,6 +16,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Layer implements ILayer {
 
+    private static final long serialVersionUID = 4801505622279837569L;
+
     private static final Logger logger = LoggerFactory.getLogger(Layer.class);
 
     public final AtomicInteger edgesCounter = new AtomicInteger();
@@ -94,6 +96,13 @@ public class Layer implements ILayer {
     @Override
     public FunctionType getFunctionType() {
         return this.functionType;
+    }
+
+    @Override
+    public void setEducationSpeed(final float educationSpeed) {
+        for (final INeuron neuron : getNeurons()) {
+            neuron.setEducationSpeed(educationSpeed);
+        }
     }
 
     @Override

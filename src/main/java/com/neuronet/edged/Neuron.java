@@ -15,6 +15,8 @@ import java.util.List;
 
 public class Neuron implements INeuron {
 
+    private static final long serialVersionUID = 1495286284441060682L;
+
     private static final Logger logger = LoggerFactory.getLogger(Neuron.class);
 
     private final List<IEdge> inputEdgeList = new ArrayList<>();
@@ -24,8 +26,8 @@ public class Neuron implements INeuron {
     private final ILayer layer;
     private final short position;
     private final float alfa;
-    private final float educationSpeed;
 
+    private float educationSpeed;
     private float dx = 0;
     private float lastPotential = 0;
 
@@ -125,7 +127,7 @@ public class Neuron implements INeuron {
         final float errorCoefficient = commonError * this.educationSpeed;
 
         // Educating neuron dx.
-        this.dx += errorCoefficient;
+//        this.dx += errorCoefficient; Do we really need this?
 
         int i = 0;
         for (final IEdge edge : inputEdgeList) {
@@ -147,8 +149,13 @@ public class Neuron implements INeuron {
     }
 
     @Override
-    public void setLastPotential(float signal) {
+    public void setLastPotential(final float signal) {
         this.lastPotential = signal;
+    }
+
+    @Override
+    public void setEducationSpeed(final float educationSpeed) {
+        this.educationSpeed = educationSpeed;
     }
 
     @Override

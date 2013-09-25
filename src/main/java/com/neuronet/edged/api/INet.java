@@ -20,4 +20,6 @@ public interface INet extends Serializable {
     public int getInputsAmount();
 
     public int getOutputsAmount();
+
+    public void setEducationSpeed(final float educationSpeed);
 }

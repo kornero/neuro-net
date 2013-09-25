@@ -156,6 +156,7 @@ public class TestSuite {
     @Ignore("Debug")
     @Test
     public void debug() {
+        final int iterations = 10 * 1000;
         final Random random = new Random();
 
 //        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\sin.1379863442168.net");
@@ -166,12 +167,17 @@ public class TestSuite {
 //        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\sin.1379863443255.net");
 
         final INet net = Util.deserialize(file);
+        net.setEducationSpeed(0.01f);
         printSinValues(net);
 
         final float[] input = new float[1];
         final float[] expected = new float[1];
-        for (int i = 0; i < 1000; i++) {
-            for (float j = (float) (Math.PI * (-2)); j < Math.PI * 2; j += random.nextFloat()) {
+        for (int i = 0; i < iterations; i++) {
+            if (i % (iterations / 20) == 0) {
+                logger.debug("Iterations left: {}", iterations - i);
+//                printSinValues(net);
+            }
+            for (float j = 0; j < Math.PI * 2; j += random.nextFloat()) {
                 input[0] = j;
                 expected[0] = (float) Math.sin(input[0]);
                 net.educate(expected, input);

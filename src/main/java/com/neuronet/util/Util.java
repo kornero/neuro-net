@@ -128,6 +128,17 @@ public class Util {
         }
     }
 
+    public static double[] convertFloatsToDoubles(final float[] input) {
+        if (input == null) {
+            return null;
+        }
+        final double[] output = new double[input.length];
+        for (int i = 0; i < input.length; i++) {
+            output[i] = input[i];
+        }
+        return output;
+    }
+
     /**
      * Returns true if generated random number is zero.
      * 0 == rnd.nextInt(chances);

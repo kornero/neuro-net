@@ -12,7 +12,10 @@ import java.util.LinkedList;
 
 public class Net implements INet {
 
+    private static final long serialVersionUID = -759059968976888401L;
+
     private static final Logger logger = LoggerFactory.getLogger(Net.class);
+
     private final Deque<ILayer> layers = new LinkedList<>();
     private final IConfiguration configuration;
     private final float maxInputValue;
@@ -101,6 +104,13 @@ public class Net implements INet {
     @Override
     public int getOutputsAmount() {
         return this.layers.getLast().getNeurons().size();
+    }
+
+    @Override
+    public void setEducationSpeed(final float educationSpeed) {
+        for (final ILayer layer : getLayers()) {
+            layer.setEducationSpeed(educationSpeed);
+        }
     }
 
     public void printStatistic() {

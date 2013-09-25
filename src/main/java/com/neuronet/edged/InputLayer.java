@@ -14,6 +14,8 @@ import java.util.List;
 
 public class InputLayer implements ILayer {
 
+    private static final long serialVersionUID = 3186131631068845365L;
+
     private static final Logger logger = LoggerFactory.getLogger(InputLayer.class);
 
     private final List<INeuron> neurons;
@@ -44,6 +46,13 @@ public class InputLayer implements ILayer {
     }
 
     @Override
+    public void setEducationSpeed(final float educationSpeed) {
+        for (final INeuron neuron : getNeurons()) {
+            neuron.setEducationSpeed(educationSpeed);
+        }
+    }
+
+    @Override
     public float[] runLayer() {
         this.lastResult = new float[neurons.size()];
         int i = 0;
@@ -71,6 +80,8 @@ public class InputLayer implements ILayer {
 
     private class InputNeuron implements INeuron {
 
+        private static final long serialVersionUID = -3624025048831900574L;
+
         private final short position;
         private float signal = 0;
 
@@ -90,6 +101,10 @@ public class InputLayer implements ILayer {
         @Override
         public void setLastPotential(float signal) {
             this.signal = signal;
+        }
+
+        @Override
+        public void setEducationSpeed(float educationSpeed) {
         }
 
         @Override
