@@ -2,6 +2,7 @@ package com.neuronet.generator;
 
 import com.neuronet.edged.api.IConfiguration;
 import com.neuronet.edged.api.RandomConfiguration;
+import com.neuronet.util.FunctionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,6 +63,11 @@ public abstract class SimpleNetInfo implements NetInfo {
     @Override
     public int getOutputs() {
         return this.outputs;
+    }
+
+    @Override
+    public FunctionType getOutputFunctionType() {
+        return FunctionType.getRandomFunctionType();
     }
 
     @Override

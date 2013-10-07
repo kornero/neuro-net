@@ -2,6 +2,7 @@ package com.neuronet.edged.example;
 
 import com.neuronet.edged.api.INet;
 import com.neuronet.generator.NetGenerator;
+import com.neuronet.generator.NetInfo;
 import com.neuronet.util.Util;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -10,9 +11,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.NavigableMap;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class UsageTest {
@@ -22,8 +23,7 @@ public class UsageTest {
     @Ignore("For debug only")
     @Test
     public void sinNetGenerator() throws IOException {
-        final NavigableMap<Float, INet> nets = NetGenerator.generateNet(new SinNetInfo(), 5, 10, 5, TimeUnit.MINUTES);
-        logger.info(nets.toString());
+        final NavigableMap<Float, INet> nets = NetGenerator.generateNet(new SinNetInfo(), 3, 0.1f, 1, TimeUnit.MINUTES);
 
         for (int i = 0; i < Math.min(10, nets.size()); i++) {
             Map.Entry<Float, INet> bestNet = nets.pollFirstEntry();
@@ -31,7 +31,7 @@ public class UsageTest {
             logger.info(Util.summary(bestNet.getValue()));
 
             final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\nets\\sinus_net\\" +
-                    "sin." + System.currentTimeMillis() + ".net");
+                    "sin.date[" + System.currentTimeMillis() + "].error[" + bestNet.getKey() + "].net");
             if (file.createNewFile()) {
                 Util.serialize(bestNet.getValue(), file);
             }
@@ -41,33 +41,26 @@ public class UsageTest {
     @Ignore("Debug")
     @Test
     public void debug() {
-        final int iterations = 10 * 1000;
-        final Random random = new Random();
-
-//        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\sin.1379863442168.net");
-        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\sin.1379863442314.net");
-//        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\sin.1379863442469.net");
-//        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\sin.1379863442554.net");
-//        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\sin.1379863443110.net");
-//        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\sin.1379863443255.net");
+        final int iterations = 10 * 10;
+        final NetInfo netInfo = new SinNetInfo();
+        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\nets\\sinus_net\\sin.1380482643721.net");
+//        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\nets\\sinus_net\\" +
+//                "sin.date[1380484558977].error[0.21036892].net");
 
         final INet net = Util.deserialize(file);
-        net.setEducationSpeed(0.01f);
-        printSinValues(net);
+        net.setEducationSpeed(0.001f);
 
-        final float[] input = new float[1];
-        final float[] expected = new float[1];
+        printSinValues(net);
+        printSinGraph(net);
+
+        logger.debug("Error before learning: {}", NetGenerator.examineNet(net, netInfo, 0));
         for (int i = 0; i < iterations; i++) {
-            if (i % (iterations / 20) == 0) {
+            if (i % (iterations / 10) == 0) {
                 logger.debug("Iterations left: {}", iterations - i);
-//                printSinValues(net);
             }
-            for (float j = 0; j < Math.PI * 2; j += random.nextFloat()) {
-                input[0] = j;
-                expected[0] = (float) Math.sin(input[0]);
-                net.educate(expected, input);
-            }
+            NetGenerator.educateNet(net, netInfo, i);
         }
+        logger.debug("Error after learning: {}", NetGenerator.examineNet(net, netInfo, 0));
 
         printSinValues(net);
         printSinGraph(net);
@@ -76,8 +69,7 @@ public class UsageTest {
     @Ignore("For debug only")
     @Test
     public void generateImageNet() throws IOException {
-        final NavigableMap<Float, INet> nets = NetGenerator.generateNet(new SimpleImageNetInfo(), 5, 10, 2, TimeUnit.MINUTES);
-        logger.info(nets.toString());
+        final NavigableMap<Float, INet> nets = NetGenerator.generateNet(new SimpleImageNetInfo(), 5, 10, 1, TimeUnit.MINUTES);
 
         for (int i = 0; i < Math.min(10, nets.size()); i++) {
             Map.Entry<Float, INet> bestNet = nets.pollFirstEntry();
@@ -90,6 +82,34 @@ public class UsageTest {
                 Util.serialize(bestNet.getValue(), file);
             }
         }
+    }
+
+    @Ignore("Debug")
+    @Test
+    public void debug2() {
+        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\nets\\image_net\\image.1380135053104.net");
+        final NetInfo netInfo = new SimpleImageNetInfo();
+
+        final INet net = Util.deserialize(file);
+        net.setEducationSpeed(0.0001f);
+        for (int i = 0; i < 5000; i++) {
+            NetGenerator.educateNet(net, netInfo, i);
+        }
+
+        System.out.println(Arrays.toString(net.runNet(new float[]{
+                1f, 0f, 1f,
+                1f, 0f, 1f,
+                1f, 1f, 1f,
+                1f, 0f, 1f,
+                1f, 0f, 1f,
+        })));
+        System.out.println(Arrays.toString(net.runNet(new float[]{
+                1f, 0f, 1f,
+                1f, 0f, 1f,
+                1f, 1f, 1f,
+                0f, 0f, 1f,
+                0f, 0f, 1f,
+        })));
     }
 
     private static void printSinValues(final INet net) {

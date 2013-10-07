@@ -113,4 +113,9 @@ public class SimpleImageNetInfo extends SimpleNetInfo {
         list.add(map);
         return list;
     }
+
+    @Override
+    public float getMaxInputValue() {
+        return 1.0f;
+    }
 }

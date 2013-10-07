@@ -1,6 +1,7 @@
 package com.neuronet.generator;
 
 import com.neuronet.edged.api.IConfiguration;
+import com.neuronet.util.FunctionType;
 
 import java.util.Map;
 
@@ -17,6 +18,10 @@ public interface NetInfo {
     public int getInputs();
 
     public int getOutputs();
+
+    public FunctionType getOutputFunctionType();
+
+    public float getMaxInputValue();
 
     public IConfiguration getConfiguration();
 

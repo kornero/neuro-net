@@ -43,7 +43,7 @@ public class Neuron implements INeuron {
         final IConfiguration configuration = layer.getNet().getConfiguration();
 
         this.dx = configuration.getDefaultDX();
-        this.alfa = configuration.getDefaultAlfa();
+        this.alfa = configuration.getDefaultAlfa(functionType);
         this.educationSpeed = configuration.getEducationSpeed();
     }
 

@@ -139,6 +139,22 @@ public class Util {
         return output;
     }
 
+    public static float absMeanDifference(final float[] sample1, final float[] sample2) throws IllegalArgumentException {
+        return absSumDifference(sample1, sample2) / (float) sample1.length;
+    }
+
+    public static float absSumDifference(final float[] sample1, final float[] sample2) throws IllegalArgumentException {
+        final int n = sample1.length;
+        if (n != sample2.length || n < 1) {
+            throw new IllegalArgumentException("Input arrays must have the same (positive) length.");
+        }
+        float result = 0.0f;
+        for (int i = 0; i < n; i++) {
+            result += Math.abs(sample1[i] - sample2[i]);
+        }
+        return result;
+    }
+
     /**
      * Returns true if generated random number is zero.
      * 0 == rnd.nextInt(chances);

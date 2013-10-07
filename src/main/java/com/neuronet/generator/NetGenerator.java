@@ -5,7 +5,6 @@ import com.neuronet.edged.api.INet;
 import com.neuronet.util.FunctionType;
 import com.neuronet.util.Util;
 import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.math.stat.StatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,13 +27,15 @@ public class NetGenerator {
         final int inputs = netInfo.getInputs();
         final int outputs = netInfo.getOutputs();
 
+        final FunctionType outputFunctionType = netInfo.getOutputFunctionType();
+
         final int minNeurons = netInfo.getMinNeurons();
         final int maxNeurons = netInfo.getMaxNeurons();
 
         final int minLayers = netInfo.getMinLayers();
         final int maxLayers = netInfo.getMaxLayers();
 
-        final float maxValue = (float) (Math.PI * 2);
+        final float maxValue = netInfo.getMaxInputValue();
 
         final ExecutorService service = Executors.newFixedThreadPool(threads);
         for (int i = 0; i < threads; i++) {
@@ -52,7 +53,7 @@ public class NetGenerator {
                                 final int neurons = random.nextInt(maxNeurons - 1) + minNeurons;
                                 net.addLayer(neurons, FunctionType.getRandomFunctionType());
                             }
-                            net.addLayer(outputs, FunctionType.getRandomFunctionType());
+                            net.addLayer(outputs, outputFunctionType);
 
                             if (checkNet(net)) {
                                 for (int i = 0; i < EDUCATE_ROUNDS; i++) {
@@ -91,12 +92,9 @@ public class NetGenerator {
 
             final float[] runResult = net.runNet(inputData);
 
-            error += StatUtils.meanDifference(
-                    Util.convertFloatsToDoubles(runResult),
-                    Util.convertFloatsToDoubles(expectedOutputData)
-            );
+            error += Util.absMeanDifference(runResult, expectedOutputData);
         }
-        return error;
+        return error / (float) testData.size();
     }
 
     public static void educateNet(final INet net, final NetInfo netInfo, final int iteration) {

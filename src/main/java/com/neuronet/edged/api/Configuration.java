@@ -1,5 +1,7 @@
 package com.neuronet.edged.api;
 
+import com.neuronet.util.FunctionType;
+
 public class Configuration implements IConfiguration {
 
     public static final float DEFAULT_ALFA = 0.00001f;
@@ -31,7 +33,7 @@ public class Configuration implements IConfiguration {
     }
 
     @Override
-    public float getDefaultAlfa() {
+    public float getDefaultAlfa(final FunctionType type) {
         return defaultAlfa;
     }
 
