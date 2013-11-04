@@ -1,13 +1,16 @@
 package com.neuronet.impl.example;
 
+import com.neuronet.api.IConfiguration;
+import com.neuronet.api.IFunction;
+import com.neuronet.api.RandomConfiguration;
+import com.neuronet.api.generator.EductionSample;
 import com.neuronet.api.generator.SimpleNetInfo;
+import com.neuronet.impl.functions.BinaryFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SimpleImageNetInfo extends SimpleNetInfo {
 
@@ -25,97 +28,103 @@ public class SimpleImageNetInfo extends SimpleNetInfo {
     }
 
     @Override
-    protected List<Map<Float[], Float[]>> loadEducationData() {
-        final List<Map<Float[], Float[]>> list = new ArrayList<>();
-        final Map<Float[], Float[]> map = new HashMap<>();
+    protected List<EductionSample> loadEducationData() {
+        final List<EductionSample> list = new ArrayList<>();
 
         // H
-        map.put(new Float[]
+        list.add(new EductionSample(new float[]
                 {
                         1f, 0f, 1f,
                         1f, 0f, 1f,
                         1f, 1f, 1f,
                         1f, 0f, 1f,
                         1f, 0f, 1f,
-                }, new Float[]{1f});
-        map.put(new Float[]
+                }, new float[]{1f}));
+        list.add(new EductionSample(new float[]
                 {
                         0f, 0f, 0f,
                         1f, 0f, 1f,
                         1f, 1f, 1f,
                         1f, 0f, 1f,
                         1f, 0f, 1f,
-                }, new Float[]{1f});
-        map.put(new Float[]
+                }, new float[]{1f}));
+        list.add(new EductionSample(new float[]
                 {
                         1f, 0f, 1f,
                         1f, 0f, 1f,
                         1f, 1f, 1f,
                         1f, 0f, 1f,
                         0f, 0f, 0f,
-                }, new Float[]{1f});
+                }, new float[]{1f}));
 
         // 4
-        map.put(new Float[]
+        list.add(new EductionSample(new float[]
                 {
                         0f, 0f, 0f,
                         1f, 0f, 1f,
                         1f, 0f, 1f,
                         1f, 1f, 1f,
                         1f, 0f, 1f,
-                }, new Float[]{0f});
-        map.put(new Float[]
+                }, new float[]{0f}));
+        list.add(new EductionSample(new float[]
                 {
                         1f, 0f, 1f,
                         1f, 0f, 1f,
                         1f, 1f, 1f,
                         0f, 0f, 1f,
                         0f, 0f, 1f,
-                }, new Float[]{0f});
-        map.put(new Float[]
+                }, new float[]{0f}));
+        list.add(new EductionSample(new float[]
                 {
                         1f, 0f, 1f,
                         1f, 1f, 1f,
                         0f, 0f, 1f,
                         0f, 0f, 1f,
                         0f, 0f, 0f,
-                }, new Float[]{0f});
+                }, new float[]{0f}));
 
-        list.add(map);
         return list;
     }
 
     @Override
-    protected List<Map<Float[], Float[]>> loadTestData() {
-        final List<Map<Float[], Float[]>> list = new ArrayList<>();
-        final Map<Float[], Float[]> map = new HashMap<>();
+    protected List<EductionSample> loadTestData() {
+        final List<EductionSample> list = new ArrayList<>();
 
         // H
-        map.put(new Float[]
+        list.add(new EductionSample(new float[]
                 {
                         1f, 0f, 1f,
                         1f, 1f, 1f,
                         1f, 0f, 1f,
                         1f, 0f, 1f,
                         0f, 0f, 0f,
-                }, new Float[]{1f});
+                }, new float[]{1f}));
 
         // 4
-        map.put(new Float[]
+        list.add(new EductionSample(new float[]
                 {
                         0f, 0f, 0f,
                         1f, 0f, 1f,
                         1f, 1f, 1f,
                         0f, 0f, 1f,
                         0f, 0f, 0f,
-                }, new Float[]{0f});
+                }, new float[]{0f}));
 
-        list.add(map);
         return list;
+    }
+
+    @Override
+    public IFunction getOutputFunction() {
+        return BinaryFunction.getInstance();
     }
 
     @Override
     public float getMaxInputValue() {
         return 1.0f;
+    }
+
+    @Override
+    public IConfiguration getConfiguration() {
+        return RandomConfiguration.getDefaultConfiguration();
     }
 }

@@ -1,11 +1,17 @@
 package com.neuronet.impl.example;
 
+import com.neuronet.api.IConfiguration;
+import com.neuronet.api.IFunction;
+import com.neuronet.api.RandomConfiguration;
+import com.neuronet.api.generator.EductionSample;
 import com.neuronet.api.generator.SimpleNetInfo;
-import com.neuronet.util.FunctionType;
+import com.neuronet.impl.functions.BipolarSigmaFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * net = sin(x), where x ~ [ 0; 3.1415].
@@ -30,21 +36,18 @@ public class SinNetInfo extends SimpleNetInfo {
     }
 
     @Override
-    protected List<Map<Float[], Float[]>> loadEducationData() {
+    protected List<EductionSample> loadEducationData() {
         final Random random = new Random();
-        final List<Map<Float[], Float[]>> list = new ArrayList<>();
-        for (int i = 0; i < 1000 * MAX_STEP_SIZE; i++) {
-            final Map<Float[], Float[]> map = new HashMap<>();
-            for (float j = MIN_X; j < MAX_X; j += random.nextFloat() * MAX_STEP_SIZE) {
-                map.put(new Float[]{j}, new Float[]{(float) Math.sin(j)});
-            }
-            list.add(map);
+        final List<EductionSample> list = new ArrayList<>();
+        for (float j = MIN_X; j < MAX_X; j += random.nextFloat() * MAX_STEP_SIZE) {
+            list.add(new EductionSample(j, (float) Math.sin(j)));
         }
+
         return list;
     }
 
     @Override
-    protected List<Map<Float[], Float[]>> loadTestData() {
+    protected List<EductionSample> loadTestData() {
         return loadEducationData(); // Generate test data in the same way.
     }
 
@@ -54,7 +57,12 @@ public class SinNetInfo extends SimpleNetInfo {
     }
 
     @Override
-    public FunctionType getOutputFunctionType() {
-        return FunctionType.BIPOLAR_SIGMA;
+    public IConfiguration getConfiguration() {
+        return RandomConfiguration.getDefaultConfiguration();
+    }
+
+    @Override
+    public IFunction getOutputFunction() {
+        return BipolarSigmaFunction.getInstance();
     }
 }

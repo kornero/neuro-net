@@ -1,15 +1,12 @@
 package com.neuronet.impl;
 
-import com.neuronet.api.IEdge;
-import com.neuronet.api.ILayer;
-import com.neuronet.api.INet;
-import com.neuronet.api.INeuron;
-import com.neuronet.util.FunctionType;
+import com.neuronet.api.*;
 import com.neuronet.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -18,8 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Layer implements ILayer {
 
-    private static final long serialVersionUID = 4801505622279837569L;
-
+    private static final long serialVersionUID = 202204112013L;
     private static final Logger logger = LoggerFactory.getLogger(Layer.class);
 
     private static final int threads = Runtime.getRuntime().availableProcessors();
@@ -30,17 +26,17 @@ public class Layer implements ILayer {
 
     private final List<INeuron> neurons;
     private final INet net;
-    private final FunctionType functionType;
+    private final IFunction function;
 
     private float[] lastResult;
 
-    public Layer(final int neurons, final Collection<INeuron> inputNeurons, final FunctionType functionType, final INet net) {
+    public Layer(final int neurons, final Collection<INeuron> inputNeurons, final IFunction function, final INet net) {
         this.neurons = new ArrayList<>(neurons);
         this.net = net;
-        this.functionType = functionType;
+        this.function = function;
 
         for (int i = 1; i <= neurons; i++) {
-            final INeuron neuron = new Neuron(functionType, this, (short) i);
+            final INeuron neuron = NeuronsFactory.createNeuron(function, net.getConfiguration().getDefaultDX(), i, this);
             for (INeuron inputNeuron : inputNeurons) {
                 final IEdge edge = createEdge(inputNeuron, neuron);
                 neuron.addInputEdge(edge);
@@ -53,14 +49,15 @@ public class Layer implements ILayer {
     }
 
     @Override
-    public float[] runLayer() {
+    public float[] run() {
         final float[] result = new float[this.getNeurons().size()];
 /*   */
         int i = 0;
-        for (final INeuron neuron : this.neurons) {
-            result[i] = neuron.runNeuron();
+        for (final INeuron neuron : this.getNeurons()) {
+            result[i] = neuron.run();
             i++;
         }
+
 /*
         final int neuronsSize = this.neurons.size();
         final int step = neuronsSize / threads + neuronsSize % threads;
@@ -73,7 +70,7 @@ public class Layer implements ILayer {
 //                @Override
 //                public void run() {
                     for (int j = start; j < start + step && j < neuronsSize; j++) {
-                        result[j] = neurons.get(j).runNeuron();
+                        result[j] = neurons.get(j).run();
                     }
                     countDownLatch.countDown();
 //                }
@@ -83,22 +80,24 @@ public class Layer implements ILayer {
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
-            logger.warn("runLayer(): Interrupted.", e);
+            logger.warn("run(): Interrupted.", e);
             Thread.currentThread().interrupt();
         }
 
  /**/
 //        System.out.println(this.neurons.size());
 //        System.out.println("--------------");
+        if (logger.isTraceEnabled()) {
+            logger.trace("Result: {}", Arrays.toString(result));
+        }
         return this.lastResult = result;
     }
 
     @Override
-    public float[] educate(float[] inputData, float[] error) {
-
+    public float[] educate(final float[] inputData, final float[] error, final float educationSpeed) {
         final float[][] tmp = new float[this.getNeurons().size()][];
         for (int i = 0; i < this.getNeurons().size(); i++) {
-            tmp[i] = this.getNeurons().get(i).educate(error[i], inputData);
+            tmp[i] = this.getNeurons().get(i).educate(error[i], inputData, educationSpeed);
         }
 
         final float[] result = new float[inputData.length];
@@ -122,20 +121,13 @@ public class Layer implements ILayer {
     }
 
     @Override
+    public IFunction getFunction() {
+        return this.function;
+    }
+
+    @Override
     public INet getNet() {
         return this.net;
-    }
-
-    @Override
-    public FunctionType getFunctionType() {
-        return this.functionType;
-    }
-
-    @Override
-    public void setEducationSpeed(final float educationSpeed) {
-        for (final INeuron neuron : getNeurons()) {
-            neuron.setEducationSpeed(educationSpeed);
-        }
     }
 
     @Override

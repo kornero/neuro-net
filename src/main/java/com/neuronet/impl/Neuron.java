@@ -1,11 +1,9 @@
 package com.neuronet.impl;
 
-import com.neuronet.api.IConfiguration;
 import com.neuronet.api.IEdge;
+import com.neuronet.api.IFunction;
 import com.neuronet.api.ILayer;
 import com.neuronet.api.INeuron;
-import com.neuronet.util.FunctionType;
-import com.neuronet.util.Functions;
 import com.neuronet.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,49 +13,28 @@ import java.util.List;
 
 public class Neuron implements INeuron {
 
-    private static final long serialVersionUID = 1495286284441060682L;
-
+    private static final long serialVersionUID = 200404112013L;
     private static final Logger logger = LoggerFactory.getLogger(Neuron.class);
 
     private final List<IEdge> inputEdgeList = new ArrayList<>();
     private final List<IEdge> outputEdgeList = new ArrayList<>();
 
-    private final FunctionType functionType;
+    private final IFunction function;
     private final ILayer layer;
-    private final short position;
-    private final float alfa;
+    private final int position;
 
-    private float educationSpeed;
     private float dx = 0;
     private float lastPotential = 0;
 
-    public Neuron(final FunctionType functionType, final ILayer layer, short position) {
+    public Neuron(final IFunction function, final float defaultDx, final int position, final ILayer layer) {
         if (position <= 0) {
             throw new IllegalArgumentException("Neuron position must be positive, but was = " + position);
         }
 
+        this.function = function;
         this.layer = layer;
-        this.functionType = functionType;
         this.position = position;
-
-        final IConfiguration configuration = layer.getNet().getConfiguration();
-
-        this.dx = configuration.getDefaultDX();
-        this.alfa = configuration.getDefaultAlfa(functionType);
-        this.educationSpeed = configuration.getEducationSpeed();
-    }
-
-    @Override
-    public IEdge createInputEdge(final INeuron inputNeuron, final float weight) {
-        final IEdge edge;
-
-        if (inputNeuron.isAccessible(this)) {
-            edge = NullEdge.getInstance();
-        } else {
-            edge = new Edge(inputNeuron, this, weight);
-        }
-        this.addInputEdge(edge);
-        return edge;
+        this.dx = defaultDx;
     }
 
     @Override
@@ -92,45 +69,44 @@ public class Neuron implements INeuron {
     }
 
     @Override
-    public float runNeuron() {
-        float potential = dx;
-        for (IEdge edge : inputEdgeList) {
-            potential += edge.getPotential();
+    public float run() {
+        float potential = this.getDx();
+        for (final IEdge edge : this.getInputEdges()) {
+            potential += edge.run();
+        }
+        if (logger.isTraceEnabled()) {
+            logger.trace("Potential: {}, Function: {}", potential,
+                    this.function.executeFunction(potential));
         }
         setLastPotential(potential);
-        return Functions.getFunction(this.getLastPotential(), this.functionType, this.alfa);
+        return this.function.executeFunction(this.getLastPotential());
     }
 
     @Override
     public float getDerived() {
-        return Functions.getDerived(this.getLastPotential(), this.functionType, this.alfa);
+        return this.function.executeDerived(this.getLastPotential());
     }
 
     @Override
-    public float getAlfa() {
-        return this.alfa;
-    }
-
-    @Override
-    public float getDX() {
+    public float getDx() {
         return this.dx;
     }
 
     @Override
-    public float[] educate(float error, float[] s) {
-        if (s.length != this.inputEdgeList.size()) {
+    public float[] educate(final float error, final float[] s, final float educationSpeed) {
+        if (s.length != this.getInputEdges().size()) {
             throw new RuntimeException();
         }
-        final float[] commonNeuronError = new float[this.inputEdgeList.size()];
+        final float[] commonNeuronError = new float[this.getInputEdges().size()];
 
         final float commonError = error * this.getDerived();
-        final float errorCoefficient = commonError * this.educationSpeed;
+        final float errorCoefficient = commonError * educationSpeed;
 
         // Educating neuron dx.
 //        this.dx += errorCoefficient; Do we really need this?
 
         int i = 0;
-        for (final IEdge edge : inputEdgeList) {
+        for (final IEdge edge : this.getInputEdges()) {
 
             //  Calculating common error.
             commonNeuronError[i] = edge.getWeight() * commonError;
@@ -145,7 +121,7 @@ public class Neuron implements INeuron {
 
     @Override
     public float getLastPotential() {
-        return lastPotential;
+        return this.lastPotential;
     }
 
     @Override
@@ -154,46 +130,12 @@ public class Neuron implements INeuron {
     }
 
     @Override
-    public void setEducationSpeed(final float educationSpeed) {
-        this.educationSpeed = educationSpeed;
-    }
-
-    @Override
-    public short getPosition() {
-        return position;
+    public int getPosition() {
+        return this.position;
     }
 
     @Override
     public String toString() {
         return Util.toString(this);
-    }
-
-    /**
-     * Synapse educating.
-     */
-    private void educateWeights(final float error, final float[] s) {
-        final float er = error * this.educationSpeed;
-        this.dx += er;
-
-        if (s.length != this.inputEdgeList.size()) {
-            throw new RuntimeException();
-        }
-
-        int i = 0;
-        for (final IEdge edge : inputEdgeList) {
-            edge.incrementWeight(s[i] * er);
-            i++;
-        }
-    }
-
-    private float[] getWeights() {
-        final float[] weights = new float[inputEdgeList.size()];
-
-        int i = 0;
-        for (final IEdge edge : inputEdgeList) {
-            weights[i] = edge.getWeight();
-            i++;
-        }
-        return weights;
     }
 }

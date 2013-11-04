@@ -211,7 +211,7 @@ public class Util {
         for (final ILayer iLayer : net.getLayers()) {
             if (!(iLayer instanceof InputLayer)) {
                 builder.append("-->");
-                builder.append("{").append(iLayer.getFunctionType()).append("}");
+                builder.append("{").append(iLayer.getFunction().getClass().getSimpleName()).append("}");
                 builder.append("-->");
                 builder.append(iLayer.getNeurons().size());
             }
@@ -273,7 +273,7 @@ public class Util {
     public static String toString(final INeuron neuron) {
         final StringBuilder builder = new StringBuilder();
         builder.append("Neuron [").append(neuron.getPosition()).append("], ");
-        builder.append(" alfa=").append(neuron.getAlfa()).append(", dx=").append(neuron.getDX());
+        builder.append("dx=").append(neuron.getDx());
         for (final IEdge edge : neuron.getInputEdges()) {
             if (edge != NullEdge.getInstance()) {
                 builder.append("\n").append(edge);

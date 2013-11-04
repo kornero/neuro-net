@@ -5,27 +5,21 @@ import java.util.List;
 
 public interface INeuron extends Serializable {
 
-    public float runNeuron();
+    public float run();
 
-    public float[] educate(final float error, final float[] signal);
+    public float[] educate(final float error, final float[] signal, final float educationSpeed);
 
     public boolean isAccessible(final INeuron neuron);
 
-    public short getPosition();
+    public int getPosition();
+
+    public float getDx();
 
     public float getDerived();
-
-    public float getAlfa();
-
-    public float getDX();
 
     public float getLastPotential();
 
     public void setLastPotential(final float signal);
-
-    public void setEducationSpeed(final float educationSpeed);
-
-    public IEdge createInputEdge(final INeuron inputNeuron, final float weight);
 
     public void addInputEdge(final IEdge inputEdge);
 

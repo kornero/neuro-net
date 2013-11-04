@@ -19,7 +19,7 @@ public class NullEdge implements IEdge {
     }
 
     @Override
-    public float getPotential() {
+    public float run() {
         return 0;
     }
 

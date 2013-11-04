@@ -1,10 +1,6 @@
 package com.neuronet.impl;
 
-import com.neuronet.api.IEdge;
-import com.neuronet.api.ILayer;
-import com.neuronet.api.INet;
-import com.neuronet.api.INeuron;
-import com.neuronet.util.FunctionType;
+import com.neuronet.api.*;
 import com.neuronet.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +10,7 @@ import java.util.List;
 
 public class InputLayer implements ILayer {
 
-    private static final long serialVersionUID = 3186131631068845365L;
+    private static final long serialVersionUID = 202204112013L;
 
     private static final Logger logger = LoggerFactory.getLogger(InputLayer.class);
 
@@ -41,19 +37,7 @@ public class InputLayer implements ILayer {
     }
 
     @Override
-    public FunctionType getFunctionType() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void setEducationSpeed(final float educationSpeed) {
-        for (final INeuron neuron : getNeurons()) {
-            neuron.setEducationSpeed(educationSpeed);
-        }
-    }
-
-    @Override
-    public float[] runLayer() {
+    public float[] run() {
         this.lastResult = new float[neurons.size()];
         int i = 0;
         for (INeuron n : getNeurons()) {
@@ -69,7 +53,12 @@ public class InputLayer implements ILayer {
     }
 
     @Override
-    public float[] educate(float[] inputData, float[] error) {
+    public IFunction getFunction() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public float[] educate(float[] inputData, float[] error, float educationSpeed) {
         throw new UnsupportedOperationException();
     }
 
@@ -80,12 +69,12 @@ public class InputLayer implements ILayer {
 
     private class InputNeuron implements INeuron {
 
-        private static final long serialVersionUID = -3624025048831900574L;
+        private static final long serialVersionUID = 201504112013L;
 
-        private final short position;
+        private final int position;
         private float signal = 0;
 
-        private InputNeuron(final short position) {
+        private InputNeuron(final int position) {
             if (position <= 0) {
                 throw new IllegalArgumentException("Neuron position must be positive, but was = " + position);
             }
@@ -104,21 +93,17 @@ public class InputLayer implements ILayer {
         }
 
         @Override
-        public void setEducationSpeed(float educationSpeed) {
-        }
-
-        @Override
         public boolean isAccessible(INeuron neuron) {
             return true;
         }
 
         @Override
-        public short getPosition() {
+        public int getPosition() {
             return this.position;
         }
 
         @Override
-        public float runNeuron() {
+        public float run() {
             throw new UnsupportedOperationException();
         }
 
@@ -128,22 +113,12 @@ public class InputLayer implements ILayer {
         }
 
         @Override
-        public float getAlfa() {
+        public float getDx() {
             throw new UnsupportedOperationException();
         }
 
         @Override
-        public float getDX() {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public float[] educate(float error, float[] signal) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public IEdge createInputEdge(INeuron inputNeuron, float weight) {
+        public float[] educate(float error, float[] signal, float educationSpeed) {
             throw new UnsupportedOperationException();
         }
 

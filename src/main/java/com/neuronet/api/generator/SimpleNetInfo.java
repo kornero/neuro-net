@@ -1,14 +1,10 @@
 package com.neuronet.api.generator;
 
-import com.neuronet.api.IConfiguration;
-import com.neuronet.api.RandomConfiguration;
-import com.neuronet.util.FunctionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public abstract class SimpleNetInfo implements NetInfo {
 
@@ -18,8 +14,8 @@ public abstract class SimpleNetInfo implements NetInfo {
     private final int minLayers, maxLayers;
     private final int inputs, outputs;
 
-    private final List<Map<Float[], Float[]>> educationData;
-    private final List<Map<Float[], Float[]>> testData;
+    private final List<EductionSample> educationData;
+    private final List<EductionSample> testData;
 
     protected SimpleNetInfo(final int minNeurons, final int maxNeurons,
                             final int minLayers, final int maxLayers,
@@ -66,27 +62,16 @@ public abstract class SimpleNetInfo implements NetInfo {
     }
 
     @Override
-    public FunctionType getOutputFunctionType() {
-        return FunctionType.getRandomFunctionType();
+    public List<EductionSample> getEducationData() {
+        return this.educationData;
     }
 
     @Override
-    public IConfiguration getConfiguration() {
-        return new RandomConfiguration();
+    public List<EductionSample> getTestData() {
+        return this.testData;
     }
 
+    protected abstract List<EductionSample> loadEducationData();
 
-    @Override
-    public Map<Float[], Float[]> getEducationData(int iteration) {
-        return educationData.get(iteration % educationData.size());
-    }
-
-    @Override
-    public Map<Float[], Float[]> getTestData(int iteration) {
-        return testData.get(iteration % testData.size());
-    }
-
-    protected abstract List<Map<Float[], Float[]>> loadEducationData();
-
-    protected abstract List<Map<Float[], Float[]>> loadTestData();
+    protected abstract List<EductionSample> loadTestData();
 }

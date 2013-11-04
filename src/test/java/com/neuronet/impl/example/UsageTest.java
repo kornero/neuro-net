@@ -53,14 +53,14 @@ public class UsageTest {
         printSinValues(net);
         printSinGraph(net);
 
-        logger.debug("Error before learning: {}", NetGenerator.examineNet(net, netInfo, 0));
+        logger.debug("Error before learning: {}", NetGenerator.examineNet(net, netInfo));
         for (int i = 0; i < iterations; i++) {
             if (i % (iterations / 10) == 0) {
                 logger.debug("Iterations left: {}", iterations - i);
             }
-            NetGenerator.educateNet(net, netInfo, i);
+            NetGenerator.educateNet(net, netInfo);
         }
-        logger.debug("Error after learning: {}", NetGenerator.examineNet(net, netInfo, 0));
+        logger.debug("Error after learning: {}", NetGenerator.examineNet(net, netInfo));
 
         printSinValues(net);
         printSinGraph(net);
@@ -93,17 +93,17 @@ public class UsageTest {
         final INet net = Util.deserialize(file);
         net.setEducationSpeed(0.0001f);
         for (int i = 0; i < 5000; i++) {
-            NetGenerator.educateNet(net, netInfo, i);
+            NetGenerator.educateNet(net, netInfo);
         }
 
-        System.out.println(Arrays.toString(net.runNet(new float[]{
+        System.out.println(Arrays.toString(net.run(new float[]{
                 1f, 0f, 1f,
                 1f, 0f, 1f,
                 1f, 1f, 1f,
                 1f, 0f, 1f,
                 1f, 0f, 1f,
         })));
-        System.out.println(Arrays.toString(net.runNet(new float[]{
+        System.out.println(Arrays.toString(net.run(new float[]{
                 1f, 0f, 1f,
                 1f, 0f, 1f,
                 1f, 1f, 1f,
@@ -115,31 +115,31 @@ public class UsageTest {
     private static void printSinValues(final INet net) {
         final float[] in = new float[]{0};
         in[0] = 0.0f;
-        float out = net.runNet(in)[0];
+        float out = net.run(in)[0];
         logger.debug("SIN({})={}", in[0], out);
 
         in[0] = (float) (Math.PI / 6);
-        out = net.runNet(in)[0];
+        out = net.run(in)[0];
         logger.debug("SIN({})={}", in[0], out);
 
         in[0] = (float) (Math.PI / 4);
-        out = net.runNet(in)[0];
+        out = net.run(in)[0];
         logger.debug("SIN({})={}", in[0], out);
 
         in[0] = (float) (Math.PI / 3);
-        out = net.runNet(in)[0];
+        out = net.run(in)[0];
         logger.debug("SIN({})={}", in[0], out);
 
         in[0] = (float) (Math.PI / 2);
-        out = net.runNet(in)[0];
+        out = net.run(in)[0];
         logger.debug("SIN({})={}", in[0], out);
 
         in[0] = (float) (Math.PI);
-        out = net.runNet(in)[0];
+        out = net.run(in)[0];
         logger.debug("SIN({})={}", in[0], out);
 
         in[0] = (float) (Math.PI * 2);
-        out = net.runNet(in)[0];
+        out = net.run(in)[0];
         logger.debug("SIN({})={}", in[0], out);
     }
 
@@ -155,7 +155,7 @@ public class UsageTest {
         for (float i = -1 * limitY * step; i < limitY * step; i += step) {
             input[0] = i;
 
-            final float act = net.runNet(input)[0];
+            final float act = net.run(input)[0];
 
             if (act < -1 * limitX * step) {                     // Print value mark before interval.
                 System.out.print(mark);

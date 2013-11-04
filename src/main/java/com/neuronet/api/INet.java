@@ -1,17 +1,15 @@
 package com.neuronet.api;
 
-import com.neuronet.util.FunctionType;
-
 import java.io.Serializable;
 import java.util.Deque;
 
 public interface INet extends Serializable {
 
-    public void addLayer(int neurons, FunctionType functionType);
+    public void addLayer(final int neurons, final IFunction function);
 
-    public float[] runNet(final float[] inputData);
+    public float[] run(final float[] inputData);
 
-    public float[] educate(final float[] expectedOutput, final float[] inputData);
+    public float[] educate(final float[] inputData, final float[] expectedOutput);
 
     public IConfiguration getConfiguration();
 

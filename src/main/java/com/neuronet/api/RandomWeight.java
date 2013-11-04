@@ -8,8 +8,8 @@ public class RandomWeight extends Configuration {
 
     private static final Logger logger = LoggerFactory.getLogger(RandomWeight.class);
 
-    public RandomWeight(float defaultAlfa, float defaultDX, float educationSpeed) {
-        super(defaultAlfa, defaultDX, 0, educationSpeed);
+    public RandomWeight(float defaultDX, float educationSpeed) {
+        super(defaultDX, 0, educationSpeed);
     }
 
     @Override

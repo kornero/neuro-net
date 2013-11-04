@@ -26,7 +26,10 @@ public class Edge implements IEdge {
     }
 
     @Override
-    public float getPotential() {
+    public float run() {
+        if (logger.isTraceEnabled()) {
+            logger.trace("Weight: {}, LastPotential: {}", weight, input.getLastPotential());
+        }
         return weight * input.getLastPotential();
     }
 

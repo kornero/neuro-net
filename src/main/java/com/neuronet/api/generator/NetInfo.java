@@ -1,9 +1,9 @@
 package com.neuronet.api.generator;
 
 import com.neuronet.api.IConfiguration;
-import com.neuronet.util.FunctionType;
+import com.neuronet.api.IFunction;
 
-import java.util.Map;
+import java.util.List;
 
 public interface NetInfo {
 
@@ -19,13 +19,13 @@ public interface NetInfo {
 
     public int getOutputs();
 
-    public FunctionType getOutputFunctionType();
+    public IFunction getOutputFunction();
 
     public float getMaxInputValue();
 
     public IConfiguration getConfiguration();
 
-    public Map<Float[], Float[]> getEducationData(final int iteration);
+    public List<EductionSample> getEducationData();
 
-    public Map<Float[], Float[]> getTestData(final int iteration);
+    public List<EductionSample> getTestData();
 }

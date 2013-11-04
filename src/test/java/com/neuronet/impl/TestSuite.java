@@ -1,9 +1,11 @@
 package com.neuronet.impl;
 
 import com.neuronet.api.Configuration;
+import com.neuronet.api.IFunction;
 import com.neuronet.api.INet;
 import com.neuronet.api.RandomWeight;
-import com.neuronet.util.FunctionType;
+import com.neuronet.impl.functions.BinarySigmaFunction;
+import com.neuronet.impl.functions.BipolarSigmaFunction;
 import com.neuronet.util.Util;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -11,8 +13,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.neuronet.util.FunctionType.BINARY_SIGMA;
-import static com.neuronet.util.FunctionType.BIPOLAR_SIGMA;
 import static com.neuronet.util.Util.randomFloats;
 
 public class TestSuite {
@@ -30,10 +30,10 @@ public class TestSuite {
         final INet net = createMemorizingNet(inputs, expected.length);
 
         for (int i = 0; i < 1000; i++) {
-            net.educate(expected, randomFloats(inputs));
+            net.educate(randomFloats(inputs), expected);
         }
 
-        final float[] runResult = net.runNet(randomFloats(inputs));
+        final float[] runResult = net.run(randomFloats(inputs));
         logger.debug("result:{}", Util.toString(runResult));
         for (int i = 0, expectedLength = expected.length; i < expectedLength; i++) {
             float exp = expected[i];
@@ -57,26 +57,27 @@ public class TestSuite {
         float[] input;
         final float[] expected = new float[1];
         final INet net = createSignumNet(1, 1);
+        net.setEducationSpeed(0.5f);
 
         // sign(+-1) = +-1;
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 100 * 1000; i++) {
             input = randomFloats(1);
             expected[0] = Math.signum(input[0]);
 
-            net.educate(expected, input);
+            net.educate(input, expected);
         }
 
         // sign(0) = 0;
         input = new float[]{0.0f};
         expected[0] = 0.0f;
         for (int i = 0; i < 1000; i++) {
-            net.educate(expected, input);
+            net.educate(input, expected);
         }
 
         for (int i = 0; i < 10; i++) {
             input = randomFloats(1);
             expected[0] = Math.signum(input[0]);
-            final float[] runResult = net.runNet(input);
+            final float[] runResult = net.run(input);
 
             float exp = expected[0];
             float act = runResult[0];
@@ -102,14 +103,14 @@ public class TestSuite {
             for (float j = 0; j < Math.PI; j += 0.1) {
                 input[0] = j;
                 expected[0] = (float) Math.sin(input[0]);
-                net.educate(expected, input);
+                net.educate(input, expected);
             }
         }
 
         for (int i = 0; i < 10; i++) {
             input = randomFloats(1, (float) Math.PI * 2);
             expected[0] = (float) Math.sin(input[0]);
-            final float[] runResult = net.runNet(input);
+            final float[] runResult = net.run(input);
 
             float exp = expected[0];
             float act = runResult[0];
@@ -124,14 +125,14 @@ public class TestSuite {
     }
 
     private static INet createMemorizingNet(final int inputs, final int outputs) {
-        final INet net = new Net(inputs, new Configuration(
-                0.001f,//Configuration.DEFAULT_ALFA,
-                0.0025f,//Configuration.DEFAULT_DX,
-                0.0025f,//Configuration.DEFAULT_EDGE_WEIGHT,
-                Configuration.EDUCATION_SPEED)
+        final INet net = new Net(inputs, 0.0f, new Configuration(
+                0.05f,  //Configuration.DEFAULT_DX,
+                0.025f,//Configuration.DEFAULT_EDGE_WEIGHT,
+                0.01f   //Configuration.DEFAULT_EDUCATION_SPEED,
+        )
         );
 
-        final FunctionType functionType = BIPOLAR_SIGMA;
+        final IFunction functionType = BipolarSigmaFunction.getInstance();
 
         net.addLayer(10, functionType);
         net.addLayer(15, functionType);
@@ -148,9 +149,9 @@ public class TestSuite {
     }
 
     private static INet createSignumNet(final int inputs, final int outputs) {
-        final INet net = new Net(inputs);
+        final INet net = new Net(inputs, 1.0f);
 
-        final FunctionType functionType = BIPOLAR_SIGMA;
+        final IFunction functionType = BipolarSigmaFunction.getInstance();
 
         net.addLayer(10, functionType);
         net.addLayer(5, functionType);
@@ -167,14 +168,15 @@ public class TestSuite {
         final INet net = new Net(1, (float) Math.PI,
                 new RandomWeight(
                         0.18f, //Configuration.DEFAULT_ALFA,
-                        0.15f,//Configuration.DEFAULT_DX,
-                        0.1f  //Configuration.EDUCATION_SPEED
+                        0.15f  //Configuration.DEFAULT_DX,
                 )
 //                new RandomConfiguration()
         );
 
-        net.addLayer(25, BINARY_SIGMA);
-        net.addLayer(1, BINARY_SIGMA);
+        final IFunction functionType = BinarySigmaFunction.getInstance();
+
+        net.addLayer(25, functionType);
+        net.addLayer(1, functionType);
 
         logger.debug("createSinNet(): Net created successful.");
 
