@@ -4,7 +4,7 @@ public class Configuration implements IConfiguration {
 
     public static final float DEFAULT_DX = 0.25f;
     public static final float DEFAULT_EDGE_WEIGHT = 0.25f;
-    public static final float DEFAULT_EDUCATION_SPEED = 0.001f;
+    public static final float DEFAULT_EDUCATION_SPEED = 0.1f;
 
     private static final IConfiguration INSTANCE = new Configuration();
 

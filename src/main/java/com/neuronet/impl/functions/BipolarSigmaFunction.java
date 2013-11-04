@@ -5,8 +5,6 @@ import org.apache.mahout.math.map.OpenFloatObjectHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.neuronet.util.Util.div;
-
 public class BipolarSigmaFunction implements IFunction {
 
     private static final Logger logger = LoggerFactory.getLogger(BipolarSigmaFunction.class);
@@ -34,11 +32,13 @@ public class BipolarSigmaFunction implements IFunction {
 
     @Override
     public float executeFunction(float x) {
-        return div(x, alfa + Math.abs(x));
+        return x / (alfa + Math.abs(x));
+        //return div(x, alfa + Math.abs(x));
     }
 
     @Override
     public float executeDerived(float x) {
-        return div(alfa - x * Math.abs(x) + Math.abs(x), (alfa + Math.abs(x)) * (alfa + Math.abs(x)));
+        return (alfa - x * Math.abs(x) + Math.abs(x)) / ((alfa + Math.abs(x)) * (alfa + Math.abs(x)));
+        //return div(alfa - x * Math.abs(x) + Math.abs(x), (alfa + Math.abs(x)) * (alfa + Math.abs(x)));
     }
 }

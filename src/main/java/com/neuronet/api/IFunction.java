@@ -1,6 +1,8 @@
 package com.neuronet.api;
 
-public interface IFunction {
+import java.io.Serializable;
+
+public interface IFunction extends Serializable {
 
     public float executeFunction(final float x);
 

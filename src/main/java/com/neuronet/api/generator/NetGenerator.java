@@ -3,7 +3,7 @@ package com.neuronet.api.generator;
 import com.neuronet.api.IFunction;
 import com.neuronet.api.INet;
 import com.neuronet.impl.Net;
-import com.neuronet.impl.functions.BinarySigmaFunction;
+import com.neuronet.impl.functions.FunctionsFactory;
 import com.neuronet.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,7 +57,7 @@ public class NetGenerator {
                             final INet net = new Net(inputs, maxValue, netInfo.getConfiguration());
                             for (int i = 1; i <= layers; i++) {
                                 final int neurons = random.nextInt(maxNeurons - 1) + minNeurons;
-                                net.addLayer(neurons, BinarySigmaFunction.getInstance());
+                                net.addLayer(neurons, FunctionsFactory.getRandomFunction());
                             }
                             net.addLayer(outputs, outputFunctionType);
 

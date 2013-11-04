@@ -4,7 +4,6 @@ import com.neuronet.api.Configuration;
 import com.neuronet.api.IFunction;
 import com.neuronet.api.INet;
 import com.neuronet.api.RandomWeight;
-import com.neuronet.impl.functions.BinarySigmaFunction;
 import com.neuronet.impl.functions.BipolarSigmaFunction;
 import com.neuronet.util.Util;
 import org.junit.Assert;
@@ -99,16 +98,16 @@ public class TestSuite {
         final float[] expected = new float[1];
         final INet net = createSinNet();
 
-        for (int i = 0; i < 100; i++) {
-            for (float j = 0; j < Math.PI; j += 0.1) {
+        for (int i = 0; i < 10 * 10; i++) {
+            for (float j = 0; j < Math.PI; j += 0.01) {
                 input[0] = j;
                 expected[0] = (float) Math.sin(input[0]);
                 net.educate(input, expected);
             }
         }
 
-        for (int i = 0; i < 10; i++) {
-            input = randomFloats(1, (float) Math.PI * 2);
+        for (float i = 0; i < Math.PI; i += 0.5f) {
+            input[0] = i;
             expected[0] = (float) Math.sin(input[0]);
             final float[] runResult = net.run(input);
 
@@ -120,14 +119,14 @@ public class TestSuite {
                     Util.toString(exp),
                     Util.toString(act)
             );
-//            check(exp, act);    // TODO
+//            Assert.assertEquals("Unexpected result.", exp, act, 0.25);
         }
     }
 
     private static INet createMemorizingNet(final int inputs, final int outputs) {
-        final INet net = new Net(inputs, 0.0f, new Configuration(
+        final INet net = new Net(inputs, 1.0f, new Configuration(
                 0.05f,  //Configuration.DEFAULT_DX,
-                0.025f,//Configuration.DEFAULT_EDGE_WEIGHT,
+                0.025f, //Configuration.DEFAULT_EDGE_WEIGHT,
                 0.01f   //Configuration.DEFAULT_EDUCATION_SPEED,
         )
         );
@@ -167,14 +166,14 @@ public class TestSuite {
     private static INet createSinNet() {
         final INet net = new Net(1, (float) Math.PI,
                 new RandomWeight(
-                        0.18f, //Configuration.DEFAULT_ALFA,
-                        0.15f  //Configuration.DEFAULT_DX,
+                        0.05f, //Configuration.DEFAULT_DX,
+                        0.001f  //Configuration.DEFAULT_EDUCATION_SPEED,
                 )
 //                new RandomConfiguration()
         );
 
-        final IFunction functionType = BinarySigmaFunction.getInstance();
-
+        final IFunction functionType = BipolarSigmaFunction.getInstance();
+        net.addLayer(150, functionType);
         net.addLayer(25, functionType);
         net.addLayer(1, functionType);
 

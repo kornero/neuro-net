@@ -23,7 +23,7 @@ public class UsageTest {
     @Ignore("For debug only")
     @Test
     public void sinNetGenerator() throws IOException {
-        final NavigableMap<Float, INet> nets = NetGenerator.generateNet(new SinNetInfo(), 0.22f, 1, TimeUnit.MINUTES);
+        final NavigableMap<Float, INet> nets = NetGenerator.generateNet(new SinNetInfo(), 1, 0.8f, 1, TimeUnit.MINUTES);
 
         for (int i = 0; i < Math.min(10, nets.size()); i++) {
             Map.Entry<Float, INet> bestNet = nets.pollFirstEntry();
@@ -41,14 +41,12 @@ public class UsageTest {
     @Ignore("Debug")
     @Test
     public void debug() {
-        final int iterations = 10 * 10;
+        final int iterations = 20;
         final NetInfo netInfo = new SinNetInfo();
-        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\nets\\sinus_net\\sin.1380482643721.net");
-//        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\nets\\sinus_net\\" +
-//                "sin.date[1380484558977].error[0.21036892].net");
-
+        final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\nets\\sinus_net\\sin.date[1383593252607].error[0.4962418].net");
+//
         final INet net = Util.deserialize(file);
-        net.setEducationSpeed(0.001f);
+        net.setEducationSpeed(0.01f);
 
         printSinValues(net);
         printSinGraph(net);
