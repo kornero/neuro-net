@@ -275,7 +275,7 @@ public class Util {
         builder.append("Neuron [").append(neuron.getPosition()).append("], ");
         builder.append(" alfa=").append(neuron.getAlfa()).append(", dx=").append(neuron.getDX());
         for (final IEdge edge : neuron.getInputEdges()) {
-            if (!(edge instanceof NullEdge)) {
+            if (edge != NullEdge.getInstance()) {
                 builder.append("\n").append(edge);
             }
         }

@@ -20,6 +20,12 @@ public class NetGenerator {
 
     private static final int EDUCATE_ROUNDS = 10;
 
+    public static NavigableMap<Float, INet> generateNet(final NetInfo netInfo, final float threshold,
+                                                        final long timeout, final TimeUnit timeUnit) {
+        final int threads = Runtime.getRuntime().availableProcessors();
+        return generateNet(netInfo, threads, threshold, timeout, timeUnit);
+    }
+
     public static NavigableMap<Float, INet> generateNet(final NetInfo netInfo, final int threads, final float threshold,
                                                         final long timeout, final TimeUnit timeUnit) {
         final Map<Float, INet> iNets = new ConcurrentHashMap<>();

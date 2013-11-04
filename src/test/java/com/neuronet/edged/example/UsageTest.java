@@ -23,7 +23,7 @@ public class UsageTest {
     @Ignore("For debug only")
     @Test
     public void sinNetGenerator() throws IOException {
-        final NavigableMap<Float, INet> nets = NetGenerator.generateNet(new SinNetInfo(), 3, 0.1f, 1, TimeUnit.MINUTES);
+        final NavigableMap<Float, INet> nets = NetGenerator.generateNet(new SinNetInfo(), 0.22f, 1, TimeUnit.MINUTES);
 
         for (int i = 0; i < Math.min(10, nets.size()); i++) {
             Map.Entry<Float, INet> bestNet = nets.pollFirstEntry();
