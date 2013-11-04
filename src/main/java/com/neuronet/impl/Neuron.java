@@ -1,9 +1,9 @@
-package com.neuronet.edged;
+package com.neuronet.impl;
 
-import com.neuronet.edged.api.IConfiguration;
-import com.neuronet.edged.api.IEdge;
-import com.neuronet.edged.api.ILayer;
-import com.neuronet.edged.api.INeuron;
+import com.neuronet.api.IConfiguration;
+import com.neuronet.api.IEdge;
+import com.neuronet.api.ILayer;
+import com.neuronet.api.INeuron;
 import com.neuronet.util.FunctionType;
 import com.neuronet.util.Functions;
 import com.neuronet.util.Util;

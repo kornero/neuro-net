@@ -1,8 +1,8 @@
-package com.neuronet.edged.example;
+package com.neuronet.impl.example;
 
-import com.neuronet.edged.api.INet;
-import com.neuronet.generator.NetGenerator;
-import com.neuronet.generator.NetInfo;
+import com.neuronet.api.INet;
+import com.neuronet.api.generator.NetGenerator;
+import com.neuronet.api.generator.NetInfo;
 import com.neuronet.util.Util;
 import org.junit.Ignore;
 import org.junit.Test;

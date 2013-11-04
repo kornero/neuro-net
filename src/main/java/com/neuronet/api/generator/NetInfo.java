@@ -1,6 +1,6 @@
-package com.neuronet.generator;
+package com.neuronet.api.generator;
 
-import com.neuronet.edged.api.IConfiguration;
+import com.neuronet.api.IConfiguration;
 import com.neuronet.util.FunctionType;
 
 import java.util.Map;

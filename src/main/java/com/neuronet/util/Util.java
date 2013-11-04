@@ -1,12 +1,12 @@
 package com.neuronet.util;
 
-import com.neuronet.edged.InputLayer;
-import com.neuronet.edged.Neuron;
-import com.neuronet.edged.NullEdge;
-import com.neuronet.edged.api.IEdge;
-import com.neuronet.edged.api.ILayer;
-import com.neuronet.edged.api.INet;
-import com.neuronet.edged.api.INeuron;
+import com.neuronet.api.IEdge;
+import com.neuronet.api.ILayer;
+import com.neuronet.api.INet;
+import com.neuronet.api.INeuron;
+import com.neuronet.impl.InputLayer;
+import com.neuronet.impl.Neuron;
+import com.neuronet.impl.NullEdge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

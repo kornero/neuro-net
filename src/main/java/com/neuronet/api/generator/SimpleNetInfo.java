@@ -1,7 +1,7 @@
-package com.neuronet.generator;
+package com.neuronet.api.generator;
 
-import com.neuronet.edged.api.IConfiguration;
-import com.neuronet.edged.api.RandomConfiguration;
+import com.neuronet.api.IConfiguration;
+import com.neuronet.api.RandomConfiguration;
 import com.neuronet.util.FunctionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

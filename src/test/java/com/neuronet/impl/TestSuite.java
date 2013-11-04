@@ -1,8 +1,8 @@
-package com.neuronet.edged;
+package com.neuronet.impl;
 
-import com.neuronet.edged.api.Configuration;
-import com.neuronet.edged.api.INet;
-import com.neuronet.edged.api.RandomWeight;
+import com.neuronet.api.Configuration;
+import com.neuronet.api.INet;
+import com.neuronet.api.RandomWeight;
 import com.neuronet.util.FunctionType;
 import com.neuronet.util.Util;
 import org.junit.Assert;

@@ -1,6 +1,6 @@
-package com.neuronet.edged.example;
+package com.neuronet.impl.example;
 
-import com.neuronet.generator.SimpleNetInfo;
+import com.neuronet.api.generator.SimpleNetInfo;
 import com.neuronet.util.FunctionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

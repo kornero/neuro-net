@@ -1,4 +1,4 @@
-package com.neuronet.edged.api;
+package com.neuronet.api;
 
 import java.io.Serializable;
 

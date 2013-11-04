@@ -1,7 +1,7 @@
-package com.neuronet.edged;
+package com.neuronet.impl;
 
-import com.neuronet.edged.api.IEdge;
-import com.neuronet.edged.api.INeuron;
+import com.neuronet.api.IEdge;
+import com.neuronet.api.INeuron;
 import com.neuronet.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,7 +1,7 @@
-package com.neuronet.generator;
+package com.neuronet.api.generator;
 
-import com.neuronet.edged.Net;
-import com.neuronet.edged.api.INet;
+import com.neuronet.api.INet;
+import com.neuronet.impl.Net;
 import com.neuronet.util.FunctionType;
 import com.neuronet.util.Util;
 import org.apache.commons.lang.ArrayUtils;
