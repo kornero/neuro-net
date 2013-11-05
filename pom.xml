@@ -29,16 +29,18 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Graphics -->
+        <dependency>
+            <groupId>com.xeiam.xchart</groupId>
+            <artifactId>xchart</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+
+        <!-- Collections -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>15.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
         </dependency>
         <dependency>
             <groupId>commons-collections</groupId>
@@ -46,14 +48,21 @@
             <version>3.2.1</version>
         </dependency>
         <dependency>
-            <groupId>commons-math</groupId>
-            <artifactId>commons-math</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.mahout</groupId>
             <artifactId>mahout-collections</artifactId>
             <version>1.0</version>
+        </dependency>
+
+        <!-- Common -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-math</groupId>
+            <artifactId>commons-math</artifactId>
+            <version>1.2</version>
         </dependency>
     </dependencies>
 </project>

@@ -98,7 +98,7 @@ public class TestSuite {
         final float[] expected = new float[1];
         final INet net = createSinNet();
 
-        for (int i = 0; i < 10 * 10; i++) {
+        for (int i = 0; i < 10 * 100; i++) {
             for (float j = 0; j < Math.PI; j += 0.01) {
                 input[0] = j;
                 expected[0] = (float) Math.sin(input[0]);
@@ -166,15 +166,15 @@ public class TestSuite {
     private static INet createSinNet() {
         final INet net = new Net(1, (float) Math.PI,
                 new RandomWeight(
-                        0.05f, //Configuration.DEFAULT_DX,
-                        0.001f  //Configuration.DEFAULT_EDUCATION_SPEED,
+                        0.5f, //Configuration.DEFAULT_DX,
+                        0.01f  //Configuration.DEFAULT_EDUCATION_SPEED,
                 )
 //                new RandomConfiguration()
         );
 
         final IFunction functionType = BipolarSigmaFunction.getInstance();
-        net.addLayer(150, functionType);
-        net.addLayer(25, functionType);
+        net.addLayer(4, functionType);
+        net.addLayer(4, functionType);
         net.addLayer(1, functionType);
 
         logger.debug("createSinNet(): Net created successful.");
