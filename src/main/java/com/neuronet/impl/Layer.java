@@ -28,7 +28,7 @@ public class Layer implements ILayer {
     private final INet net;
     private final IFunction function;
 
-    private float[] lastResult;
+    private volatile float[] lastResult;
 
     public Layer(final int neurons, final Collection<INeuron> inputNeurons, final IFunction function, final INet net) {
         this.neurons = new ArrayList<>(neurons);
@@ -51,42 +51,13 @@ public class Layer implements ILayer {
     @Override
     public float[] run() {
         final float[] result = new float[this.getNeurons().size()];
-/*   */
+
         int i = 0;
         for (final INeuron neuron : this.getNeurons()) {
             result[i] = neuron.run();
             i++;
         }
 
-/*
-        final int neuronsSize = this.neurons.size();
-        final int step = neuronsSize / threads + neuronsSize % threads;
-
-        final CountDownLatch countDownLatch = new CountDownLatch(threads);
-
-        for (int i = 0; i < threads; i++) {
-            final int start = i * step;
-//            service.submit(new Runnable() {
-//                @Override
-//                public void run() {
-                    for (int j = start; j < start + step && j < neuronsSize; j++) {
-                        result[j] = neurons.get(j).run();
-                    }
-                    countDownLatch.countDown();
-//                }
-//            });
-        }
-
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            logger.warn("run(): Interrupted.", e);
-            Thread.currentThread().interrupt();
-        }
-
- /**/
-//        System.out.println(this.neurons.size());
-//        System.out.println("--------------");
         if (logger.isTraceEnabled()) {
             logger.trace("Result: {}", Arrays.toString(result));
         }

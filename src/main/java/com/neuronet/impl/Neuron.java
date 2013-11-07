@@ -23,8 +23,8 @@ public class Neuron implements INeuron {
     private final ILayer layer;
     private final int position;
 
-    private float dx = 0;
-    private float lastPotential = 0;
+    private volatile float dx = 0;
+    private volatile float lastPotential = 0;
 
     public Neuron(final IFunction function, final float defaultDx, final int position, final ILayer layer) {
         if (position <= 0) {
@@ -34,7 +34,7 @@ public class Neuron implements INeuron {
         this.function = function;
         this.layer = layer;
         this.position = position;
-        this.dx = defaultDx;
+        this.setDx(defaultDx);
     }
 
     @Override
@@ -64,8 +64,9 @@ public class Neuron implements INeuron {
 
     @Override
     public boolean isAccessible(INeuron neuron) {
+        return true;
 //        logger.debug(10.0f / (1 + Math.abs(this.getPosition() - neuron.getPosition())));
-        return Util.chance(10.0f / (1 + Math.abs(this.getPosition() - neuron.getPosition())));
+//        return Util.chance(10.0f / (1 + Math.abs(this.getPosition() - neuron.getPosition())));
     }
 
     @Override
@@ -78,8 +79,9 @@ public class Neuron implements INeuron {
             logger.trace("Potential: {}, Function: {}", potential,
                     this.function.executeFunction(potential));
         }
+        potential = this.function.executeFunction(potential);
         setLastPotential(potential);
-        return this.function.executeFunction(this.getLastPotential());
+        return potential;
     }
 
     @Override
@@ -93,6 +95,11 @@ public class Neuron implements INeuron {
     }
 
     @Override
+    public void setDx(final float dx) {
+        this.dx = dx;
+    }
+
+    @Override
     public float[] educate(final float error, final float[] s, final float educationSpeed) {
         if (s.length != this.getInputEdges().size()) {
             throw new RuntimeException();
@@ -103,7 +110,7 @@ public class Neuron implements INeuron {
         final float errorCoefficient = commonError * educationSpeed;
 
         // Educating neuron dx.
-//        this.dx += errorCoefficient; Do we really need this?
+//        this.setDx(this.getDx() + errorCoefficient); // Do we really need this?
 
         int i = 0;
         for (final IEdge edge : this.getInputEdges()) {

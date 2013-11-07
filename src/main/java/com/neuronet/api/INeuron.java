@@ -13,9 +13,11 @@ public interface INeuron extends Serializable {
 
     public int getPosition();
 
+    public float getDerived();
+
     public float getDx();
 
-    public float getDerived();
+    public void setDx(final float dx);
 
     public float getLastPotential();
 

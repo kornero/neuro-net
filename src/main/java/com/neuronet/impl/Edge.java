@@ -13,7 +13,7 @@ public class Edge implements IEdge {
     private final INeuron input;
     private final INeuron output;
 
-    private float weight = 0;
+    private volatile float weight = 0;
 
     public Edge(INeuron input, INeuron output) {
         this(input, output, input.getLayer().getNet().getConfiguration().getDefaultEdgeWeight());

@@ -253,8 +253,10 @@ public class Util {
     public static String toString(final INet net) {
         final StringBuilder builder = new StringBuilder();
         builder.append("NeuroNet [").append(net.getInputsAmount()).append(" --> ").append(net.getOutputsAmount()).append("]");
+        int i = 0;
         for (final ILayer iLayer : net.getLayers()) {
-            builder.append("\n").append(iLayer);
+            builder.append("\n\t").append("#").append(i++).append(" ");
+            builder.append(iLayer.toString().replace("\n", "\n\t"));
         }
         return builder.toString();
     }
@@ -262,9 +264,11 @@ public class Util {
     public static String toString(final ILayer layer) {
         final StringBuilder builder = new StringBuilder();
         builder.append("Layer [").append(layer.getNeurons().size()).append("]");
+        int i = 0;
         for (final INeuron neuron : layer.getNeurons()) {
             if (neuron instanceof Neuron) {
-                builder.append("\n").append(neuron);
+                builder.append("\n\t").append("#").append(i++).append(" ");
+                builder.append(neuron.toString().replace("\n", "\n\t"));
             }
         }
         return builder.toString();
@@ -274,9 +278,20 @@ public class Util {
         final StringBuilder builder = new StringBuilder();
         builder.append("Neuron [").append(neuron.getPosition()).append("], ");
         builder.append("dx=").append(neuron.getDx());
+        builder.append("\n\tInputs");
+        int i = 0;
         for (final IEdge edge : neuron.getInputEdges()) {
             if (edge != NullEdge.getInstance()) {
-                builder.append("\n").append(edge);
+                builder.append("\n\t\t").append("#").append(i++).append(" --> ");
+                builder.append(edge.toString().replace("\n", "\n\t"));
+            }
+        }
+        builder.append("\n\tOutputs");
+        i = 0;
+        for (final IEdge edge : neuron.getOutputEdges()) {
+            if (edge != NullEdge.getInstance()) {
+                builder.append("\n\t\t").append("#").append(i++).append(" <-- ");
+                builder.append(edge.toString().replace("\n", "\n\t"));
             }
         }
         return builder.toString();

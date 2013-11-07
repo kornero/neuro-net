@@ -32,14 +32,21 @@ public class BinarySigmaFunction implements IFunction {
         return function;
     }
 
+    /**
+     * f(x) = 1 / (1 + e^(-ax))
+     */
     @Override
-    public float executeFunction(float x) {
-        return div(x, 1 + Math.exp(-1 * alfa * x));
+    public float executeFunction(final float x) {
+        return div(1, 1 + Math.exp(-1 * alfa * x));
     }
 
+    /**
+     * f(x) = 1 / (1 + e^(-ax))
+     * f'(x) = a * f(x) * (1 + f(x))
+     */
     @Override
-    public float executeDerived(float x) {
-        return div(1 + Math.exp(-1 * alfa * x) + alfa * x * Math.exp(-1 * alfa * x),
-                (1 + Math.exp(-1 * alfa * x)) * (1 + Math.exp(-1 * alfa * x)));
+    public float executeDerived(final float x) {
+        final float fx = executeFunction(x);
+        return alfa * fx * (1 - fx);
     }
 }

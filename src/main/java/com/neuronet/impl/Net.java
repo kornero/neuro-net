@@ -5,6 +5,7 @@ import com.neuronet.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Deque;
 import java.util.LinkedList;
@@ -18,7 +19,7 @@ public class Net implements INet {
     private final IConfiguration configuration;
     private final float maxInputValue;
 
-    private float educationSpeed;
+    private volatile float educationSpeed;
 
     public Net(final int inputs) {
         this(inputs, 0, Configuration.getDefaultConfiguration());
@@ -94,7 +95,7 @@ public class Net implements INet {
 
     @Override
     public Deque<ILayer> getLayers() {
-        return this.layers;
+        return new ArrayDeque<>(this.layers);
     }
 
     @Override

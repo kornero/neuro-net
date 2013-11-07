@@ -21,15 +21,15 @@ public class SinNetInfo extends SimpleNetInfo {
     private static final Logger logger = LoggerFactory.getLogger(SinNetInfo.class);
 
     private static final int MIN_NEURONS = 5;
-    private static final int MAX_NEURONS = 100;
+    private static final int MAX_NEURONS = 50;
     private static final int MIN_LAYERS = 1;
     private static final int MAX_LAYERS = 3;
     private static final int INPUTS = 1;
     private static final int OUTPUTS = 1;
 
-    private static final float MIN_X = 0; //(float) (Math.PI * (-2))
-    private static final float MAX_X = (float) (Math.PI * 2); // (float) (Math.PI * 2)
-    private static final float MAX_STEP_SIZE = 0.01f;
+    private static final float MIN_X = (float) (Math.PI * (-6));
+    private static final float MAX_X = (float) (Math.PI * 6); // (float) (Math.PI * 2)
+    private static final float MAX_STEP_SIZE = 0.1f;
 
     public SinNetInfo() {
         super(MIN_NEURONS, MAX_NEURONS, MIN_LAYERS, MAX_LAYERS, INPUTS, OUTPUTS);

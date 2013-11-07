@@ -16,7 +16,8 @@ public class InputLayer implements ILayer {
 
     private final List<INeuron> neurons;
     private final INet net;
-    private float[] lastResult;
+
+    private volatile float[] lastResult;
 
     public InputLayer(final int inputs, final INet net) {
         this.neurons = new ArrayList<>(inputs);
@@ -38,13 +39,13 @@ public class InputLayer implements ILayer {
 
     @Override
     public float[] run() {
-        this.lastResult = new float[neurons.size()];
+        final float[] result = new float[neurons.size()];
         int i = 0;
-        for (INeuron n : getNeurons()) {
-            lastResult[i] = n.getLastPotential();
+        for (final INeuron n : getNeurons()) {
+            result[i] = n.getLastPotential();
             i++;
         }
-        return lastResult;
+        return this.lastResult = result;
     }
 
     @Override
@@ -72,7 +73,7 @@ public class InputLayer implements ILayer {
         private static final long serialVersionUID = 201504112013L;
 
         private final int position;
-        private float signal = 0;
+        private volatile float signal = 0;
 
         private InputNeuron(final int position) {
             if (position <= 0) {
@@ -114,6 +115,11 @@ public class InputLayer implements ILayer {
 
         @Override
         public float getDx() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public void setDx(final float dx) {
             throw new UnsupportedOperationException();
         }
 
