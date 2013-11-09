@@ -91,7 +91,7 @@ public class NetGenerator {
 
     public static float examineNet(final INet net, final NetInfo netInfo) {
         float error = 0.0f;
-        for (final EductionSample sample : netInfo.getTestData()) {
+        for (final EducationSample sample : netInfo.getTestData()) {
             final float[] runResult = net.run(sample.getInputsSample());
 
             error += Util.absMeanDifference(runResult, sample.getExpectedOutputs());
@@ -100,7 +100,7 @@ public class NetGenerator {
     }
 
     public static void educateNet(final INet net, final NetInfo netInfo) {
-        for (final EductionSample sample : netInfo.getEducationData()) {
+        for (final EducationSample sample : netInfo.getEducationData()) {
             net.educate(sample.getInputsSample(), sample.getExpectedOutputs());
         }
     }

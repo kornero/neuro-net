@@ -14,8 +14,8 @@ public abstract class SimpleNetInfo implements NetInfo {
     private final int minLayers, maxLayers;
     private final int inputs, outputs;
 
-    private final List<EductionSample> educationData;
-    private final List<EductionSample> testData;
+    private final List<EducationSample> educationData;
+    private final List<EducationSample> testData;
 
     protected SimpleNetInfo(final int minNeurons, final int maxNeurons,
                             final int minLayers, final int maxLayers,
@@ -62,16 +62,16 @@ public abstract class SimpleNetInfo implements NetInfo {
     }
 
     @Override
-    public List<EductionSample> getEducationData() {
+    public List<EducationSample> getEducationData() {
         return this.educationData;
     }
 
     @Override
-    public List<EductionSample> getTestData() {
+    public List<EducationSample> getTestData() {
         return this.testData;
     }
 
-    protected abstract List<EductionSample> loadEducationData();
+    protected abstract List<EducationSample> loadEducationData();
 
-    protected abstract List<EductionSample> loadTestData();
+    protected abstract List<EducationSample> loadTestData();
 }

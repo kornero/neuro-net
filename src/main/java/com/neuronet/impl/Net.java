@@ -1,6 +1,7 @@
 package com.neuronet.impl;
 
 import com.neuronet.api.*;
+import com.neuronet.api.generator.EducationSample;
 import com.neuronet.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,6 +63,11 @@ public class Net implements INet {
         }
 
         return result;
+    }
+
+    @Override
+    public float[] educate(final EducationSample educationSample) {
+        return educate(educationSample.getInputsSample(), educationSample.getExpectedOutputs());
     }
 
     @Override

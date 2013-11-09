@@ -25,7 +25,7 @@ public interface NetInfo {
 
     public IConfiguration getConfiguration();
 
-    public List<EductionSample> getEducationData();
+    public List<EducationSample> getEducationData();
 
-    public List<EductionSample> getTestData();
+    public List<EducationSample> getTestData();
 }

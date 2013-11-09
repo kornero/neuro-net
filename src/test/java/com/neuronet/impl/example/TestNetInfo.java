@@ -5,7 +5,7 @@ import com.neuronet.api.IFunction;
 import com.neuronet.api.RandomConfiguration;
 import com.neuronet.api.generator.EducationSample;
 import com.neuronet.api.generator.SimpleNetInfo;
-import com.neuronet.impl.functions.BipolarSigmaFunction;
+import com.neuronet.impl.functions.BinarySigmaFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,12 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * net = sin(x), where x ~ [ 0; 3.1415].
- */
-public class SinNetInfo extends SimpleNetInfo {
+public class TestNetInfo extends SimpleNetInfo {
 
-    private static final Logger logger = LoggerFactory.getLogger(SinNetInfo.class);
+    private static final Logger logger = LoggerFactory.getLogger(TestNetInfo.class);
 
     private static final int MIN_NEURONS = 5;
     private static final int MAX_NEURONS = 50;
@@ -27,11 +24,11 @@ public class SinNetInfo extends SimpleNetInfo {
     private static final int INPUTS = 1;
     private static final int OUTPUTS = 1;
 
-    private static final float MIN_X = (float) (Math.PI * (-6));
-    private static final float MAX_X = (float) (Math.PI * 6); // (float) (Math.PI * 2)
+    private static final float MIN_X = 0;
+    private static final float MAX_X = 25; // (float) (Math.PI * 2)
     private static final float MAX_STEP_SIZE = 0.1f;
 
-    public SinNetInfo() {
+    public TestNetInfo() {
         super(MIN_NEURONS, MAX_NEURONS, MIN_LAYERS, MAX_LAYERS, INPUTS, OUTPUTS);
     }
 
@@ -40,7 +37,7 @@ public class SinNetInfo extends SimpleNetInfo {
         final Random random = new Random();
         final List<EducationSample> list = new ArrayList<>();
         for (float j = MIN_X; j < MAX_X; j += random.nextFloat() * MAX_STEP_SIZE) {
-            list.add(new EducationSample(j, (float) Math.sin(j)));
+            list.add(new EducationSample(j, (float) Math.pow(j, 2) / (MAX_X * MAX_X)));
         }
 
         return list;
@@ -50,8 +47,8 @@ public class SinNetInfo extends SimpleNetInfo {
     protected List<EducationSample> loadTestData() {
         final Random random = new Random();
         final List<EducationSample> list = new ArrayList<>();
-        for (float j = MIN_X; j < MAX_X; j += random.nextFloat() * MAX_STEP_SIZE * 10) {
-            list.add(new EducationSample(j, (float) Math.sin(j)));
+        for (float j = MIN_X; j < MAX_X; j += random.nextFloat() * MAX_STEP_SIZE * 3) {
+            list.add(new EducationSample(j, (float) Math.pow(j, 2) / (MAX_X * MAX_X)));
         }
 
         return list;
@@ -69,6 +66,6 @@ public class SinNetInfo extends SimpleNetInfo {
 
     @Override
     public IFunction getOutputFunction() {
-        return BipolarSigmaFunction.getInstance();
+        return BinarySigmaFunction.getInstance();
     }
 }

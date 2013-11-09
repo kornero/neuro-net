@@ -3,7 +3,7 @@ package com.neuronet.impl.example;
 import com.neuronet.api.IConfiguration;
 import com.neuronet.api.IFunction;
 import com.neuronet.api.RandomConfiguration;
-import com.neuronet.api.generator.EductionSample;
+import com.neuronet.api.generator.EducationSample;
 import com.neuronet.api.generator.SimpleNetInfo;
 import com.neuronet.impl.functions.BinaryFunction;
 import org.slf4j.Logger;
@@ -28,11 +28,11 @@ public class SimpleImageNetInfo extends SimpleNetInfo {
     }
 
     @Override
-    protected List<EductionSample> loadEducationData() {
-        final List<EductionSample> list = new ArrayList<>();
+    protected List<EducationSample> loadEducationData() {
+        final List<EducationSample> list = new ArrayList<>();
 
         // H
-        list.add(new EductionSample(new float[]
+        list.add(new EducationSample(new float[]
                 {
                         1f, 0f, 1f,
                         1f, 0f, 1f,
@@ -40,7 +40,7 @@ public class SimpleImageNetInfo extends SimpleNetInfo {
                         1f, 0f, 1f,
                         1f, 0f, 1f,
                 }, new float[]{1f}));
-        list.add(new EductionSample(new float[]
+        list.add(new EducationSample(new float[]
                 {
                         0f, 0f, 0f,
                         1f, 0f, 1f,
@@ -48,7 +48,7 @@ public class SimpleImageNetInfo extends SimpleNetInfo {
                         1f, 0f, 1f,
                         1f, 0f, 1f,
                 }, new float[]{1f}));
-        list.add(new EductionSample(new float[]
+        list.add(new EducationSample(new float[]
                 {
                         1f, 0f, 1f,
                         1f, 0f, 1f,
@@ -58,7 +58,7 @@ public class SimpleImageNetInfo extends SimpleNetInfo {
                 }, new float[]{1f}));
 
         // 4
-        list.add(new EductionSample(new float[]
+        list.add(new EducationSample(new float[]
                 {
                         0f, 0f, 0f,
                         1f, 0f, 1f,
@@ -66,7 +66,7 @@ public class SimpleImageNetInfo extends SimpleNetInfo {
                         1f, 1f, 1f,
                         1f, 0f, 1f,
                 }, new float[]{0f}));
-        list.add(new EductionSample(new float[]
+        list.add(new EducationSample(new float[]
                 {
                         1f, 0f, 1f,
                         1f, 0f, 1f,
@@ -74,7 +74,7 @@ public class SimpleImageNetInfo extends SimpleNetInfo {
                         0f, 0f, 1f,
                         0f, 0f, 1f,
                 }, new float[]{0f}));
-        list.add(new EductionSample(new float[]
+        list.add(new EducationSample(new float[]
                 {
                         1f, 0f, 1f,
                         1f, 1f, 1f,
@@ -87,11 +87,11 @@ public class SimpleImageNetInfo extends SimpleNetInfo {
     }
 
     @Override
-    protected List<EductionSample> loadTestData() {
-        final List<EductionSample> list = new ArrayList<>();
+    protected List<EducationSample> loadTestData() {
+        final List<EducationSample> list = new ArrayList<>();
 
         // H
-        list.add(new EductionSample(new float[]
+        list.add(new EducationSample(new float[]
                 {
                         1f, 0f, 1f,
                         1f, 1f, 1f,
@@ -101,7 +101,7 @@ public class SimpleImageNetInfo extends SimpleNetInfo {
                 }, new float[]{1f}));
 
         // 4
-        list.add(new EductionSample(new float[]
+        list.add(new EducationSample(new float[]
                 {
                         0f, 0f, 0f,
                         1f, 0f, 1f,
