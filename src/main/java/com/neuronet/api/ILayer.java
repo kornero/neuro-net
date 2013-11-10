@@ -13,7 +13,7 @@ public interface ILayer extends Serializable {
 
     public List<INeuron> getNeurons();
 
-    public IFunction getFunction();
+    public ILayerConfiguration getLayerConfiguration();
 
     public INet getNet();
 }

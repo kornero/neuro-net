@@ -1,8 +1,7 @@
 package com.neuronet.api.generator;
 
-import com.neuronet.api.IFunction;
-import com.neuronet.api.INet;
-import com.neuronet.impl.Net;
+import com.neuronet.api.*;
+import com.neuronet.impl.NetBuilder;
 import com.neuronet.impl.functions.FunctionsFactory;
 import com.neuronet.util.Util;
 import org.slf4j.Logger;
@@ -17,31 +16,31 @@ import java.util.concurrent.TimeUnit;
 public class NetGenerator {
 
     private static final Logger logger = LoggerFactory.getLogger(NetGenerator.class);
-
     private static final int EDUCATE_ROUNDS = 10;
 
-    public static NavigableMap<Float, INet> generateNet(final NetInfo netInfo, final float threshold,
+    public static NavigableMap<Float, INet> generateNet(final INetInfo netInfo, final float threshold,
                                                         final long timeout, final TimeUnit timeUnit) {
         final int threads = Runtime.getRuntime().availableProcessors();
         return generateNet(netInfo, threads, threshold, timeout, timeUnit);
     }
 
-    public static NavigableMap<Float, INet> generateNet(final NetInfo netInfo, final int threads, final float threshold,
+    public static NavigableMap<Float, INet> generateNet(final INetInfo netInfo, final int threads, final float threshold,
                                                         final long timeout, final TimeUnit timeUnit) {
         final Map<Float, INet> iNets = new ConcurrentHashMap<>();
         final Random random = new Random();
-        final int inputs = netInfo.getInputs();
-        final int outputs = netInfo.getOutputs();
 
-        final IFunction outputFunctionType = netInfo.getOutputFunction();
+        final INetConfiguration netConfiguration = netInfo.getNetConfiguration();
+        final INetParameters netParameters = netInfo.getParameters();
+        final IEducationDataSource educationDataSource = netInfo.getEducationDataSource();
+
+        final int inputs = netConfiguration.getInputsAmount();
+        final int outputs = netConfiguration.getOutputsAmount();
 
         final int minNeurons = netInfo.getMinNeurons();
         final int maxNeurons = netInfo.getMaxNeurons();
 
         final int minLayers = netInfo.getMinLayers();
         final int maxLayers = netInfo.getMaxLayers();
-
-        final float maxValue = netInfo.getMaxInputValue();
 
         final ExecutorService service = Executors.newFixedThreadPool(threads);
         for (int i = 0; i < threads; i++) {
@@ -54,18 +53,22 @@ public class NetGenerator {
                             logger.trace("Thread {}", me.getName());
 
                             final int layers = random.nextInt(maxLayers - 1) + minLayers;
-                            final INet net = new Net(inputs, maxValue, netInfo.getConfiguration());
+                            final INetBuilder netBuilder = new NetBuilder();
+                            netBuilder.setNetConfiguration(netConfiguration);
+                            netBuilder.setNetParameters(netParameters);
+                            netBuilder.addLayer(inputs, null); // Input layer.
                             for (int i = 1; i <= layers; i++) {
                                 final int neurons = random.nextInt(maxNeurons - 1) + minNeurons;
-                                net.addLayer(neurons, FunctionsFactory.getRandomFunction());
+                                netBuilder.addLayer(neurons, FunctionsFactory.getRandomFunction());
                             }
-                            net.addLayer(outputs, outputFunctionType);
+                            netBuilder.addLayer(outputs, FunctionsFactory.getRandomFunction()); // Output layer.
 
+                            final INet net = netBuilder.build();
                             if (checkNet(net)) {
                                 for (int i = 0; i < EDUCATE_ROUNDS; i++) {
-                                    educateNet(net, netInfo);
+                                    educateNet(net, educationDataSource);
                                 }
-                                final float error = examineNet(net, netInfo);
+                                final float error = examineNet(net, educationDataSource);
                                 if (error < threshold) {
                                     iNets.put(error, net);
                                     logger.debug("Error: {}, net: {}", error, Util.summary(net));
@@ -89,18 +92,18 @@ public class NetGenerator {
         return new TreeMap<>(iNets);
     }
 
-    public static float examineNet(final INet net, final NetInfo netInfo) {
+    public static float examineNet(final INet net, final IEducationDataSource educationDataSource) {
         float error = 0.0f;
-        for (final EducationSample sample : netInfo.getTestData()) {
+        for (final EducationSample sample : educationDataSource.getTestData()) {
             final float[] runResult = net.run(sample.getInputsSample());
 
             error += Util.absMeanDifference(runResult, sample.getExpectedOutputs());
         }
-        return error / (float) netInfo.getTestData().size();
+        return error / (float) educationDataSource.getTestData().size();
     }
 
-    public static void educateNet(final INet net, final NetInfo netInfo) {
-        for (final EducationSample sample : netInfo.getEducationData()) {
+    public static void educateNet(final INet net, final IEducationDataSource educationDataSource) {
+        for (final EducationSample sample : educationDataSource.getEducationData()) {
             net.educate(sample.getInputsSample(), sample.getExpectedOutputs());
         }
     }
@@ -108,7 +111,7 @@ public class NetGenerator {
     public static boolean checkNet(final INet net) {
         final int checks = 10;
         final Set<Integer> roundedResults = new HashSet<>();
-        final int in = net.getInputsAmount();
+        final int in = net.getNetConfiguration().getInputsAmount();
         float sum = 0;
         for (int i = 0; i < checks; i++) {
             final float act = net.run(Util.randomFloats(in))[0];

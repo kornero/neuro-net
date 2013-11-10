@@ -9,34 +9,31 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Layer implements ILayer {
 
     private static final long serialVersionUID = 202204112013L;
     private static final Logger logger = LoggerFactory.getLogger(Layer.class);
-
-    private static final int threads = Runtime.getRuntime().availableProcessors();
-    private static final ExecutorService service = Executors.newFixedThreadPool(threads);
-
     public final AtomicInteger edgesCounter = new AtomicInteger();
     public final AtomicInteger nullEdgesCounter = new AtomicInteger();
-
     private final List<INeuron> neurons;
     private final INet net;
-    private final IFunction function;
-
+    private final ILayerConfiguration layerConfiguration;
     private volatile float[] lastResult;
 
-    public Layer(final int neurons, final Collection<INeuron> inputNeurons, final IFunction function, final INet net) {
-        this.neurons = new ArrayList<>(neurons);
+    public Layer(final ILayerConfiguration layerConfiguration, final Collection<INeuron> inputNeurons,
+                 final INetParameters netParameters, final INet net) {
         this.net = net;
-        this.function = function;
+        this.layerConfiguration = layerConfiguration;
+        this.neurons = new ArrayList<>(layerConfiguration.getNeurons());
 
-        for (int i = 1; i <= neurons; i++) {
-            final INeuron neuron = NeuronsFactory.createNeuron(function, net.getConfiguration().getDefaultDX(), i, this);
+        for (int i = 1; i <= layerConfiguration.getNeurons(); i++) {
+            final INeuron neuron = NeuronsFactory.createNeuron(
+                    layerConfiguration.getFunction(),
+                    netParameters.generateDx(),
+                    i, this
+            );
             for (INeuron inputNeuron : inputNeurons) {
                 final IEdge edge = createEdge(inputNeuron, neuron);
                 neuron.addInputEdge(edge);
@@ -92,8 +89,8 @@ public class Layer implements ILayer {
     }
 
     @Override
-    public IFunction getFunction() {
-        return this.function;
+    public ILayerConfiguration getLayerConfiguration() {
+        return this.layerConfiguration;
     }
 
     @Override

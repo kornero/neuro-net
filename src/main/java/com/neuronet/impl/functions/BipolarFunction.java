@@ -4,7 +4,7 @@ import com.neuronet.api.IFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BipolarFunction implements IFunction {
+public class BipolarFunction extends AbstractBipolarFunction {
 
     private static final Logger logger = LoggerFactory.getLogger(BipolarFunction.class);
 

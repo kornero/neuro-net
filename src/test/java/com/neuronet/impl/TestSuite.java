@@ -1,9 +1,6 @@
 package com.neuronet.impl;
 
-import com.neuronet.api.Configuration;
-import com.neuronet.api.IFunction;
-import com.neuronet.api.INet;
-import com.neuronet.api.RandomWeight;
+import com.neuronet.api.*;
 import com.neuronet.impl.functions.BipolarSigmaFunction;
 import com.neuronet.util.Util;
 import org.junit.Assert;
@@ -17,6 +14,62 @@ import static com.neuronet.util.Util.randomFloats;
 public class TestSuite {
 
     private static final Logger logger = LoggerFactory.getLogger(TestSuite.class);
+
+    private static INet createMemorizingNet(final int inputs, final int outputs) {
+        final INetBuilder netBuilder = new NetBuilder();
+        netBuilder.setNetParameters(new NetParameters(
+                0.05f,  //Configuration.DEFAULT_DX,
+                0.025f, //Configuration.DEFAULT_EDGE_WEIGHT,
+                0.01f   //Configuration.DEFAULT_EDUCATION_SPEED,
+        ));
+        netBuilder.setNetConfiguration(new ImmutableNetConfiguration(inputs, outputs, -1, 1, -1, 1));
+
+        final IFunction functionType = BipolarSigmaFunction.getInstance();
+
+        netBuilder.addLayer(10, functionType);
+        netBuilder.addLayer(15, functionType);
+        netBuilder.addLayer(150, functionType);
+        netBuilder.addLayer(25, functionType);
+        netBuilder.addLayer(5, functionType);
+        netBuilder.addLayer(outputs, functionType);
+
+        logger.debug("createMemorizingNet(): Net created successful.");
+
+        return netBuilder.build();
+    }
+
+    private static INet createSignumNet(final int inputs, final int outputs) {
+        final INetBuilder netBuilder = new NetBuilder();
+        netBuilder.setNetConfiguration(new ImmutableNetConfiguration(inputs, outputs, -1, 1, -1, 1));
+
+        final IFunction functionType = BipolarSigmaFunction.getInstance();
+
+        netBuilder.addLayer(10, functionType);
+        netBuilder.addLayer(5, functionType);
+        netBuilder.addLayer(outputs, functionType);
+
+        logger.debug("createSignumNet(): Net created successful.");
+
+        return netBuilder.build();
+    }
+
+    private static INet createSinNet() {
+        final INetBuilder netBuilder = new NetBuilder();
+        netBuilder.setNetConfiguration(new ImmutableNetConfiguration(1, 1, 0, 4 /* pi ~ 3,1415 */, -1, 1));
+        netBuilder.setNetParameters(new RandomWeight(
+                0.05f, //Configuration.DEFAULT_DX,
+                0.00051f  //Configuration.DEFAULT_EDUCATION_SPEED,
+        ));
+
+        final IFunction functionType = BipolarSigmaFunction.getInstance(0.05f);
+        netBuilder.addLayer(10, functionType);
+        netBuilder.addLayer(4, functionType);
+        netBuilder.addLayer(1, functionType);
+
+        logger.debug("createSinNet(): Net created successful.");
+
+        return netBuilder.build();
+    }
 
     /**
      * Trivial memorizing net.
@@ -121,64 +174,5 @@ public class TestSuite {
             );
 //            Assert.assertEquals("Unexpected result.", exp, act, 0.25);
         }
-    }
-
-    private static INet createMemorizingNet(final int inputs, final int outputs) {
-        final INet net = new Net(inputs, 1.0f, new Configuration(
-                0.05f,  //Configuration.DEFAULT_DX,
-                0.025f, //Configuration.DEFAULT_EDGE_WEIGHT,
-                0.01f   //Configuration.DEFAULT_EDUCATION_SPEED,
-        )
-        );
-
-        final IFunction functionType = BipolarSigmaFunction.getInstance();
-
-        net.addLayer(10, functionType);
-        net.addLayer(15, functionType);
-        net.addLayer(150, functionType);
-        net.addLayer(25, functionType);
-        net.addLayer(5, functionType);
-        net.addLayer(outputs, functionType);
-
-        logger.debug("createMemorizingNet(): Net created successful.");
-
-        ((Net) net).printStatistic();
-
-        return net;
-    }
-
-    private static INet createSignumNet(final int inputs, final int outputs) {
-        final INet net = new Net(inputs, 1.0f);
-
-        final IFunction functionType = BipolarSigmaFunction.getInstance();
-
-        net.addLayer(10, functionType);
-        net.addLayer(5, functionType);
-        net.addLayer(outputs, functionType);
-
-        logger.debug("createSignumNet(): Net created successful.");
-
-        ((Net) net).printStatistic();
-
-        return net;
-    }
-
-    private static INet createSinNet() {
-        final INet net = new Net(1, (float) Math.PI,
-                new RandomWeight(
-                        0.5f, //Configuration.DEFAULT_DX,
-                        0.01f  //Configuration.DEFAULT_EDUCATION_SPEED,
-                )
-//                new RandomConfiguration()
-        );
-
-        final IFunction functionType = BipolarSigmaFunction.getInstance();
-        net.addLayer(4, functionType);
-        net.addLayer(4, functionType);
-        net.addLayer(1, functionType);
-
-        logger.debug("createSinNet(): Net created successful.");
-
-        return net;
     }
 }

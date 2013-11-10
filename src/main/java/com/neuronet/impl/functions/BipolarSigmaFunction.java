@@ -5,12 +5,11 @@ import org.apache.mahout.math.map.OpenFloatObjectHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BipolarSigmaFunction implements IFunction {
+public class BipolarSigmaFunction extends AbstractBipolarFunction {
 
     private static final Logger logger = LoggerFactory.getLogger(BipolarSigmaFunction.class);
     private static final OpenFloatObjectHashMap<IFunction> MAP = new OpenFloatObjectHashMap<>();
     private static final float DEFAULT_ALFA = 1.0f;
-
     private final float alfa;
 
     private BipolarSigmaFunction(float alfa) {

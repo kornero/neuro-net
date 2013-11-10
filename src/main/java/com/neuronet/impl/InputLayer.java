@@ -11,12 +11,9 @@ import java.util.List;
 public class InputLayer implements ILayer {
 
     private static final long serialVersionUID = 202204112013L;
-
     private static final Logger logger = LoggerFactory.getLogger(InputLayer.class);
-
     private final List<INeuron> neurons;
     private final INet net;
-
     private volatile float[] lastResult;
 
     public InputLayer(final int inputs, final INet net) {
@@ -54,7 +51,7 @@ public class InputLayer implements ILayer {
     }
 
     @Override
-    public IFunction getFunction() {
+    public ILayerConfiguration getLayerConfiguration() {
         throw new UnsupportedOperationException();
     }
 
@@ -71,7 +68,6 @@ public class InputLayer implements ILayer {
     private class InputNeuron implements INeuron {
 
         private static final long serialVersionUID = 201504112013L;
-
         private final int position;
         private volatile float signal = 0;
 
@@ -155,7 +151,7 @@ public class InputLayer implements ILayer {
 
         @Override
         public String toString() {
-            return Util.toString(this);
+            return "Input neuron [" + this.position + "]";
         }
     }
 }

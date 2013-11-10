@@ -9,8 +9,9 @@ public class LinearFunction implements IFunction {
 
     private static final Logger logger = LoggerFactory.getLogger(LinearFunction.class);
     private static final OpenFloatObjectHashMap<IFunction> MAP = new OpenFloatObjectHashMap<>();
+    private static final float MIN_OUTPUT = Float.MIN_VALUE;
+    private static final float MAX_OUTPUT = Float.MAX_VALUE;
     private static final float DEFAULT_ALFA = 1.0f;
-
     private final float alfa;
 
     private LinearFunction(float alfa) {
@@ -28,6 +29,16 @@ public class LinearFunction implements IFunction {
             MAP.put(alfa, function);
         }
         return function;
+    }
+
+    @Override
+    public float getMinOutput() {
+        return MIN_OUTPUT;
+    }
+
+    @Override
+    public float getMaxOutput() {
+        return MAX_OUTPUT;
     }
 
     @Override

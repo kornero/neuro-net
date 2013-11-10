@@ -13,38 +13,47 @@ import java.util.LinkedList;
 
 public class Net implements INet {
 
-    private static final long serialVersionUID = 202704112013L;
+    private static final long serialVersionUID = 163210112013L;
     private static final Logger logger = LoggerFactory.getLogger(Net.class);
-
     private final Deque<ILayer> layers = new LinkedList<>();
-    private final IConfiguration configuration;
-    private final float maxInputValue;
-
+    private final INetParameters netParameters;
+    private final INetConfiguration netConfiguration;
     private volatile float educationSpeed;
 
-    public Net(final int inputs) {
-        this(inputs, 0, Configuration.getDefaultConfiguration());
+    public Net(final INetConfiguration netConfiguration, final Deque<ILayerConfiguration> layers) {
+        this(netConfiguration, NetParameters.getDefaultParameters(), layers);
     }
 
-    public Net(final int inputs, final float maxInputValue) {
-        this(inputs, maxInputValue, Configuration.getDefaultConfiguration());
-    }
+    public Net(final INetConfiguration netConfiguration, INetParameters netParameters, final Deque<ILayerConfiguration> layerConfigurations) {
+        if (netConfiguration == null) {
+            throw new NullPointerException("NetConfiguration can't be null");
+        }
+        if (netParameters == null) {
+            netParameters = NetParameters.getDefaultParameters();
+        }
+        if (layerConfigurations == null) {
+            throw new NullPointerException("Layers can't be null");
+        }
+        if (layerConfigurations.getFirst().getNeurons() != netConfiguration.getInputsAmount()) {
+            throw new IllegalArgumentException("Inputs amount in configuration and neurons amount in first layer is different: " +
+                    "inputs=" + netConfiguration.getInputsAmount() + ", neurons=" + layerConfigurations.getFirst().getNeurons());
+        }
+        if (layerConfigurations.getLast().getNeurons() != netConfiguration.getInputsAmount()) {
+            throw new IllegalArgumentException("Outputs amount in configuration and neurons amount in last layer is different: " +
+                    "outputs=" + netConfiguration.getInputsAmount() + ", neurons=" + layerConfigurations.getLast().getNeurons());
+        }
 
-    public Net(final int inputs, final IConfiguration configuration) {
-        this(inputs, 0, configuration);
-    }
+        this.netConfiguration = netConfiguration;
+        this.netParameters = netParameters;
+        this.educationSpeed = netParameters.getDefaultEducationSpeed();
 
-    public Net(final int inputs, final float maxInputValue, final IConfiguration configuration) {
-        layers.addFirst(new InputLayer(inputs, this));
-        this.configuration = configuration;
-        this.maxInputValue = maxInputValue;
-        this.educationSpeed = configuration.getDefaultEducationSpeed();
-    }
+        final ILayerConfiguration inputLayer = layerConfigurations.removeFirst();
+        this.layers.addFirst(new InputLayer(inputLayer.getNeurons(), this));
 
-    @Override
-    public void addLayer(final int neurons, IFunction function) {
-        final Collection<INeuron> inputNeurons = this.getLayers().getLast().getNeurons();
-        layers.add(new Layer(neurons, inputNeurons, function, this));
+        for (final ILayerConfiguration layerConfiguration : layerConfigurations) {
+            final Collection<INeuron> inputNeurons = this.layers.getLast().getNeurons();
+            this.layers.add(new Layer(layerConfiguration, inputNeurons, netParameters, this));
+        }
     }
 
     @Override
@@ -52,8 +61,7 @@ public class Net implements INet {
         if (logger.isTraceEnabled()) {
             logger.trace("run(): {}", Util.toString(inputData));
         }
-        final float[] tempData = inputData.clone();
-        Util.normalize(tempData, this.maxInputValue);
+        final float[] tempData = Util.normalizeInputs(inputData, this.getNetConfiguration());
 
         this.setInputData(tempData);
 
@@ -74,10 +82,13 @@ public class Net implements INet {
     public float[] educate(final float[] inputData, final float[] expectedOutput) {
         final float[] result = this.run(inputData);
 
+        // Normalize expected outputs;
+        final float[] tempData = Util.normalizeOutputs(expectedOutput, this.getNetConfiguration());
+
         //  Finding first ("previous") error.
         float[] error = new float[result.length];
         for (int i = 0; i < error.length; i++) {
-            error[i] = expectedOutput[i] - result[i];
+            error[i] = tempData[i] - result[i];
         }
 
         if (logger.isTraceEnabled()) {
@@ -95,8 +106,13 @@ public class Net implements INet {
     }
 
     @Override
-    public IConfiguration getConfiguration() {
-        return this.configuration;
+    public INetParameters getNetParameters() {
+        return this.netParameters;
+    }
+
+    @Override
+    public INetConfiguration getNetConfiguration() {
+        return this.netConfiguration;
     }
 
     @Override
@@ -105,38 +121,13 @@ public class Net implements INet {
     }
 
     @Override
-    public int getInputsAmount() {
-        return this.getLayers().getFirst().getNeurons().size();
-    }
-
-    @Override
-    public int getOutputsAmount() {
-        return this.getLayers().getLast().getNeurons().size();
-    }
-
-    @Override
     public void setEducationSpeed(final float educationSpeed) {
         this.educationSpeed = educationSpeed;
     }
 
-    public void printStatistic() {
-        if (logger.isDebugEnabled()) {
-            int edges = 0;
-            int nullEdges = 0;
-            for (final ILayer iLayer : layers) {
-                if (iLayer instanceof Layer) {
-                    edges += ((Layer) iLayer).edgesCounter.get();
-                    nullEdges += ((Layer) iLayer).nullEdgesCounter.get();
-                }
-            }
-            logger.debug("printStatistic(): edges = {}, nullEdges = {}, % = {}",
-                    edges, nullEdges, Util.toString(nullEdges * 100f / (edges + nullEdges)));
-        }
-    }
-
     private void setInputData(final float[] inputData) {
         final Collection<INeuron> inputs = this.getLayers().getFirst().getNeurons();
-        if (inputData.length != inputs.size()) {
+        if (inputData.length != this.getNetConfiguration().getInputsAmount()) {
             throw new RuntimeException("Inputs amount is: " + inputs.size() + ", but was: " + inputData.length);
         }
 

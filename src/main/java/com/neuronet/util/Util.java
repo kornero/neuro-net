@@ -1,12 +1,9 @@
 package com.neuronet.util;
 
-import com.neuronet.api.IEdge;
-import com.neuronet.api.ILayer;
-import com.neuronet.api.INet;
-import com.neuronet.api.INeuron;
+import com.neuronet.api.*;
 import com.neuronet.impl.InputLayer;
-import com.neuronet.impl.Neuron;
 import com.neuronet.impl.NullEdge;
+import org.apache.commons.lang.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,13 +12,10 @@ import java.util.Random;
 
 public class Util {
 
-    private static final Logger logger = LoggerFactory.getLogger(Util.class);
-
-    private static final Random rnd = new Random(System.currentTimeMillis());
-
     public static final int UPPER_BOUND = 2 * 1000;
-
     public static final float MIN_POSITIVE = 0.0001f;
+    private static final Logger logger = LoggerFactory.getLogger(Util.class);
+    private static final Random rnd = new Random(System.currentTimeMillis());
 
     /**
      * Generates random floats.
@@ -102,30 +96,272 @@ public class Util {
      * Normalized x = x / norm.
      * Method normalizing given data.
      *
-     * @param inputData Data will be normalized.
+     * @param data Data will be normalized.
      * @see Util#getNorm(float[])
      */
-    public static void normalize(final float[] inputData) {
-        normalize(inputData, 0);
+    public static void normalize(final float[] data) {
+        normalize(data, 0);
     }
 
     /**
      * Normalized x = x / norm.
      * Method normalizing given data.
      *
-     * @param inputData Data will be normalized.
-     * @param maxValue  Special value - max of normalization.
+     * @param data     Data will be normalized.
+     * @param maxValue Special value - max of normalization.
      * @see Util#getNorm(float[])
      */
-    public static void normalize(final float[] inputData, final float maxValue) {
+    public static void normalize(final float[] data, final float maxValue) {
 
         //  Calculating norm.
-        final float norma = getNorm(maxValue, inputData);
+        final float norma = getNorm(maxValue, data);
 
         //  Normalizing.
-        for (int i = 0; i < inputData.length; i++) {
-            inputData[i] = div(inputData[i], norma);
+        for (int i = 0; i < data.length; i++) {
+            data[i] = div(data[i], norma);
         }
+    }
+
+    /**
+     * Normalized x = (x - xMin) / (xMax - xMin).
+     * Method do not change input data.
+     *
+     * @param data     Data for normalization.
+     * @param minValue Min of normalization.
+     * @param maxValue Max of normalization.
+     * @return New normalized array.
+     */
+    public static float[] normalize(final float[] data, final float minValue, final float maxValue) {
+        if (ArrayUtils.isEmpty(data)) {
+            throw new IllegalArgumentException("Data can't be empty or null.");
+        }
+        if (minValue >= maxValue) {
+            throw new IllegalArgumentException("Min value >= max value: min=" + minValue + ", max=" + maxValue);
+        }
+
+        //  Calculating norm.
+        final float norm = maxValue - minValue;
+
+        //  Normalizing.
+        final float[] normalizedData = new float[data.length];
+        for (int i = 0; i < data.length; i++) {
+            normalizedData[i] = (data[i] - minValue) / norm;
+        }
+        return normalizedData;
+    }
+
+    /**
+     * Method do not change input data.
+     *
+     * @param inputData        Data for normalization.
+     * @param netConfiguration Required for min and max input values parameters.
+     * @return New normalized array.
+     * @see Util#normalize(float[], float, float)
+     */
+    public static float[] normalizeInputs(final float[] inputData, final INetConfiguration netConfiguration) {
+        if (netConfiguration == null) {
+            throw new NullPointerException("NetConfiguration can't be null");
+        }
+
+        return normalize(inputData, netConfiguration.getMinInput(), netConfiguration.getMaxInput());
+    }
+
+    /**
+     * Method do not change input data.
+     *
+     * @param outputData       Data for normalization.
+     * @param netConfiguration Required for min and max input values parameters.
+     * @return New normalized array.
+     * @see Util#normalize(float[], float, float)
+     */
+    public static float[] normalizeOutputs(final float[] outputData, final INetConfiguration netConfiguration) {
+        if (netConfiguration == null) {
+            throw new NullPointerException("NetConfiguration can't be null");
+        }
+
+        return normalize(outputData, netConfiguration.getMinOutput(), netConfiguration.getMaxOutput());
+    }
+
+    /**
+     * Normalized x = (x - xMin) / (xMax - xMin).
+     * Method do not change input data.
+     *
+     * @param data     Data for normalization.
+     * @param minValue Min of normalization.
+     * @param maxValue Max of normalization.
+     * @return New normalized array.
+     */
+    public static double[] normalize(final double[] data, final double minValue, final double maxValue) {
+        if (ArrayUtils.isEmpty(data)) {
+            throw new IllegalArgumentException("Data can't be empty or null.");
+        }
+        if (minValue >= maxValue) {
+            throw new IllegalArgumentException("Min value >= max value: min=" + minValue + ", max=" + maxValue);
+        }
+
+        //  Calculating norm.
+        final double norm = maxValue - minValue;
+
+        //  Normalizing.
+        final double[] normalizedData = new double[data.length];
+        for (int i = 0; i < data.length; i++) {
+            normalizedData[i] = (data[i] - minValue) / norm;
+        }
+        return normalizedData;
+    }
+
+    /**
+     * Method do not change input data.
+     *
+     * @param inputData        Data for normalization.
+     * @param netConfiguration Required for min and max input values parameters.
+     * @return New normalized array.
+     * @see Util#normalize(double[], double, double)
+     */
+    public static double[] normalizeInputs(final double[] inputData, final INetConfiguration netConfiguration) {
+        if (netConfiguration == null) {
+            throw new NullPointerException("NetConfiguration can't be null");
+        }
+
+        return normalize(inputData, netConfiguration.getMinInput(), netConfiguration.getMaxInput());
+    }
+
+    /**
+     * Method do not change input data.
+     *
+     * @param outputData       Data for normalization.
+     * @param netConfiguration Required for min and max input values parameters.
+     * @return New normalized array.
+     * @see Util#normalize(double[], double, double)
+     */
+    public static double[] normalizeOutputs(final double[] outputData, final INetConfiguration netConfiguration) {
+        if (netConfiguration == null) {
+            throw new NullPointerException("NetConfiguration can't be null");
+        }
+
+        return normalize(outputData, netConfiguration.getMinOutput(), netConfiguration.getMaxOutput());
+    }
+
+    /**
+     * Normalized xN = (x - xMin) / (xMax - xMin).
+     * De normalization: x = xN * (xMax - xMin) + xMin.
+     * Method do not change input normalizedData.
+     *
+     * @param normalizedData Data for de normalization.
+     * @param minValue       Min of normalization.
+     * @param maxValue       Max of normalization.
+     * @return New de normalized array.
+     */
+    public static float[] denormalize(final float[] normalizedData, final float minValue, final float maxValue) {
+        if (ArrayUtils.isEmpty(normalizedData)) {
+            throw new IllegalArgumentException("Data can't be empty or null.");
+        }
+        if (minValue >= maxValue) {
+            throw new IllegalArgumentException("Min value >= max value: min=" + minValue + ", max=" + maxValue);
+        }
+
+        //  Calculating norm.
+        final float norm = maxValue - minValue;
+
+        //  Normalizing.
+        final float[] denormalizedData = new float[normalizedData.length];
+        for (int i = 0; i < normalizedData.length; i++) {
+            denormalizedData[i] = normalizedData[i] * norm + minValue;
+        }
+        return denormalizedData;
+    }
+
+    /**
+     * Method do not change input data.
+     *
+     * @param inputData        Data for normalization.
+     * @param netConfiguration Required for min and max input values parameters.
+     * @return New normalized array.
+     * @see Util#denormalize(float[], float, float)
+     */
+    public static float[] denormalizeInputs(final float[] inputData, final INetConfiguration netConfiguration) {
+        if (netConfiguration == null) {
+            throw new NullPointerException("NetConfiguration can't be null");
+        }
+
+        return denormalize(inputData, netConfiguration.getMinInput(), netConfiguration.getMaxInput());
+    }
+
+    /**
+     * Method do not change input data.
+     *
+     * @param outputData       Data for normalization.
+     * @param netConfiguration Required for min and max input values parameters.
+     * @return New normalized array.
+     * @see Util#denormalize(float[], float, float)
+     */
+    public static float[] denormalizeOutputs(final float[] outputData, final INetConfiguration netConfiguration) {
+        if (netConfiguration == null) {
+            throw new NullPointerException("NetConfiguration can't be null");
+        }
+
+        return denormalize(outputData, netConfiguration.getMinOutput(), netConfiguration.getMaxOutput());
+    }
+
+    /**
+     * Normalized xN = (x - xMin) / (xMax - xMin).
+     * De normalization: x = xN * (xMax - xMin) + xMin.
+     * Method do not change input normalizedData.
+     *
+     * @param normalizedData Data for de normalization.
+     * @param minValue       Min of normalization.
+     * @param maxValue       Max of normalization.
+     * @return New de normalized array.
+     */
+    public static double[] denormalize(final double[] normalizedData, final double minValue, final double maxValue) {
+        if (ArrayUtils.isEmpty(normalizedData)) {
+            throw new IllegalArgumentException("Data can't be empty or null.");
+        }
+        if (minValue >= maxValue) {
+            throw new IllegalArgumentException("Min value >= max value: min=" + minValue + ", max=" + maxValue);
+        }
+
+        //  Calculating norm.
+        final double norm = maxValue - minValue;
+
+        //  Normalizing.
+        final double[] denormalizedData = new double[normalizedData.length];
+        for (int i = 0; i < normalizedData.length; i++) {
+            denormalizedData[i] = normalizedData[i] * norm + minValue;
+        }
+        return denormalizedData;
+    }
+
+    /**
+     * Method do not change input data.
+     *
+     * @param inputData        Data for normalization.
+     * @param netConfiguration Required for min and max input values parameters.
+     * @return New normalized array.
+     * @see Util#denormalize(double[], double, double)
+     */
+    public static double[] denormalizeInputs(final double[] inputData, final INetConfiguration netConfiguration) {
+        if (netConfiguration == null) {
+            throw new NullPointerException("NetConfiguration can't be null");
+        }
+
+        return denormalize(inputData, netConfiguration.getMinInput(), netConfiguration.getMaxInput());
+    }
+
+    /**
+     * Method do not change input data.
+     *
+     * @param outputData       Data for normalization.
+     * @param netConfiguration Required for min and max input values parameters.
+     * @return New normalized array.
+     * @see Util#denormalize(double[], double, double)
+     */
+    public static double[] denormalizeOutputs(final double[] outputData, final INetConfiguration netConfiguration) {
+        if (netConfiguration == null) {
+            throw new NullPointerException("NetConfiguration can't be null");
+        }
+
+        return denormalize(outputData, netConfiguration.getMinOutput(), netConfiguration.getMaxOutput());
     }
 
     public static double[] convertFloatsToDoubles(final float[] input) {
@@ -206,12 +442,12 @@ public class Util {
 
     public static String summary(final INet net) {
         final StringBuilder builder = new StringBuilder();
-        builder.append("NeuroNet [").append(net.getInputsAmount());
+        builder.append("NeuroNet [").append(net.getNetConfiguration().getInputsAmount());
 
         for (final ILayer iLayer : net.getLayers()) {
             if (!(iLayer instanceof InputLayer)) {
                 builder.append("-->");
-                builder.append("{").append(iLayer.getFunction().getClass().getSimpleName()).append("}");
+                builder.append("{").append(iLayer.getLayerConfiguration().getClass().getSimpleName()).append("}");
                 builder.append("-->");
                 builder.append(iLayer.getNeurons().size());
             }
@@ -252,7 +488,7 @@ public class Util {
 
     public static String toString(final INet net) {
         final StringBuilder builder = new StringBuilder();
-        builder.append("NeuroNet [").append(net.getInputsAmount()).append(" --> ").append(net.getOutputsAmount()).append("]");
+        builder.append("NeuroNet [").append(net.getNetConfiguration().getInputsAmount()).append(" --> ").append(net.getNetConfiguration().getOutputsAmount()).append("]");
         int i = 0;
         for (final ILayer iLayer : net.getLayers()) {
             builder.append("\n\t").append("#").append(i++).append(" ");
@@ -266,10 +502,8 @@ public class Util {
         builder.append("Layer [").append(layer.getNeurons().size()).append("]");
         int i = 0;
         for (final INeuron neuron : layer.getNeurons()) {
-            if (neuron instanceof Neuron) {
-                builder.append("\n\t").append("#").append(i++).append(" ");
-                builder.append(neuron.toString().replace("\n", "\n\t"));
-            }
+            builder.append("\n\t").append("#").append(i++).append(" ");
+            builder.append(neuron.toString().replace("\n", "\n\t"));
         }
         return builder.toString();
     }
@@ -298,9 +532,7 @@ public class Util {
     }
 
     public static String toString(final IEdge edge) {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Edge [").append(edge.getWeight()).append("]");
-        return builder.toString();
+        return "Edge [" + edge.getWeight() + "]";
     }
 
     public static void serialize(final Serializable object, final File file) {

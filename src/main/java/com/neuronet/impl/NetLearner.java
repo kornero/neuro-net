@@ -1,11 +1,8 @@
 package com.neuronet.impl;
 
-import com.neuronet.api.IEdge;
-import com.neuronet.api.ILayer;
-import com.neuronet.api.INet;
-import com.neuronet.api.INeuron;
+import com.neuronet.api.*;
 import com.neuronet.api.generator.EducationSample;
-import com.neuronet.api.generator.NetInfo;
+import com.neuronet.api.generator.INetInfo;
 import com.neuronet.util.Util;
 import com.neuronet.view.NetGraphPanel;
 import com.neuronet.view.Visualizer;
@@ -19,12 +16,12 @@ import java.util.Iterator;
 public class NetLearner {
 
     private static final Logger logger = LoggerFactory.getLogger(NetLearner.class);
-
+    private static final int FRAMES_PER_SECOND = 1000 / 24;
     private final INet net;
-    private final NetInfo netInfo;
+    private final INetInfo netInfo;
     private final float educationSpeed;
 
-    public NetLearner(INet net, NetInfo netInfo, float educationSpeed) {
+    public NetLearner(INet net, INetInfo netInfo, float educationSpeed) {
         this.net = net;
         this.netInfo = netInfo;
         this.educationSpeed = educationSpeed;
@@ -37,20 +34,23 @@ public class NetLearner {
 
         Visualizer.createFrame(panel);
 
+        final IEducationDataSource educationDataSource = this.netInfo.getEducationDataSource();
+        long timeStamp = System.currentTimeMillis();
         for (int j = 0; j < i; j++) {
-            for (final EducationSample sample : netInfo.getEducationData()) {
+            for (final EducationSample sample : educationDataSource.getEducationData()) {
                 educate(sample);
             }
 
             float error = 0;
-            for (final EducationSample sample : netInfo.getTestData()) {
-                final float[] result = this.net.run(sample.getInputsSample());
+            for (final EducationSample sample : educationDataSource.getTestData()) {
+                final float[] result = Util.denormalizeOutputs(this.net.run(sample.getInputsSample()), netInfo.getNetConfiguration());
                 error += Util.absMeanDifference(result, sample.getExpectedOutputs());
             }
 
-            if (i % 500 == 0) {
-                chart.setChartTitle("Iteration = " + j + ", test error = " + error);
+            if (System.currentTimeMillis() - timeStamp > FRAMES_PER_SECOND) {
+                chart.setChartTitle("Iteration = " + j + ", test error = " + Util.toString(error));
                 panel.repaint();
+                timeStamp = System.currentTimeMillis();
             }
 
             if (logger.isTraceEnabled()) {
@@ -64,7 +64,7 @@ public class NetLearner {
     }
 
     private void educate(final float[] inputData, final float[] expectedOutput) {
-        float[] error = getNetError(inputData, expectedOutput);
+        float[] error = getNetError(inputData, Util.normalizeOutputs(expectedOutput, netInfo.getNetConfiguration()));
         final Deque<ILayer> layers = this.net.getLayers();
 
         // Do not run first layer, because it is an inputLayer (fake).
@@ -122,7 +122,6 @@ public class NetLearner {
 
         return commonNeuronError;
     }
-
 
     private float[] getNetError(final float[] inputData, final float[] expectedOutput) {
         final float[] result = this.net.run(inputData);

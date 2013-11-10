@@ -7,12 +7,11 @@ import org.slf4j.LoggerFactory;
 
 import static com.neuronet.util.Util.div;
 
-public class BinarySigmaFunction implements IFunction {
+public class BinarySigmaFunction extends AbstractBinaryFunction {
 
     private static final Logger logger = LoggerFactory.getLogger(BinarySigmaFunction.class);
     private static final OpenFloatObjectHashMap<IFunction> MAP = new OpenFloatObjectHashMap<>();
     private static final float DEFAULT_ALFA = 1.0f;
-
     private final float alfa;
 
     private BinarySigmaFunction(float alfa) {

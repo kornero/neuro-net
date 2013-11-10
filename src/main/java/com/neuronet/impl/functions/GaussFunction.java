@@ -4,10 +4,9 @@ import com.neuronet.api.IFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GaussFunction implements IFunction {
+public class GaussFunction extends AbstractBinaryFunction {
 
     private static final Logger logger = LoggerFactory.getLogger(GaussFunction.class);
-
     private static final IFunction INSTANCE = new GaussFunction();
 
     private GaussFunction() {

@@ -1,8 +1,8 @@
 package com.neuronet.impl.example;
 
 import com.neuronet.api.INet;
+import com.neuronet.api.generator.INetInfo;
 import com.neuronet.api.generator.NetGenerator;
-import com.neuronet.api.generator.NetInfo;
 import com.neuronet.util.Util;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -42,7 +42,7 @@ public class UsageTest {
     @Test
     public void debug() {
         final int iterations = 20;
-        final NetInfo netInfo = new SinNetInfo();
+        final INetInfo netInfo = new SinNetInfo();
         final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\nets\\sinus_net\\sin.date[1383593252607].error[0.4962418].net");
 //
         final INet net = Util.deserialize(file);
@@ -51,14 +51,14 @@ public class UsageTest {
         printSinValues(net);
         printSinGraph(net);
 
-        logger.debug("Error before learning: {}", NetGenerator.examineNet(net, netInfo));
+        logger.debug("Error before learning: {}", NetGenerator.examineNet(net, netInfo.getEducationDataSource()));
         for (int i = 0; i < iterations; i++) {
             if (i % (iterations / 10) == 0) {
                 logger.debug("Iterations left: {}", iterations - i);
             }
-            NetGenerator.educateNet(net, netInfo);
+            NetGenerator.educateNet(net, netInfo.getEducationDataSource());
         }
-        logger.debug("Error after learning: {}", NetGenerator.examineNet(net, netInfo));
+        logger.debug("Error after learning: {}", NetGenerator.examineNet(net, netInfo.getEducationDataSource()));
 
         printSinValues(net);
         printSinGraph(net);
@@ -86,12 +86,12 @@ public class UsageTest {
     @Test
     public void debug2() {
         final File file = new File("C:\\Users\\Sasha\\IdeaProjects\\neuro_net_project\\nets\\image_net\\image.1380135053104.net");
-        final NetInfo netInfo = new SimpleImageNetInfo();
+        final INetInfo netInfo = new SimpleImageNetInfo();
 
         final INet net = Util.deserialize(file);
         net.setEducationSpeed(0.0001f);
         for (int i = 0; i < 5000; i++) {
-            NetGenerator.educateNet(net, netInfo);
+            NetGenerator.educateNet(net, netInfo.getEducationDataSource());
         }
 
         System.out.println(Arrays.toString(net.run(new float[]{

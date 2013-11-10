@@ -4,7 +4,7 @@ import com.neuronet.api.IFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BinaryFunction implements IFunction {
+public class BinaryFunction extends AbstractBinaryFunction {
 
     private static final Logger logger = LoggerFactory.getLogger(BinaryFunction.class);
     private static final IFunction INSTANCE = new BinaryFunction();

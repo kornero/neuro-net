@@ -1,34 +1,33 @@
 package com.neuronet.api.generator;
 
+import com.neuronet.api.IEducationDataSource;
+import com.neuronet.api.INetConfiguration;
+import com.neuronet.impl.ImmutableEducationDataSource;
+import com.neuronet.impl.ImmutableNetConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
 import java.util.List;
 
-public abstract class SimpleNetInfo implements NetInfo {
+public abstract class SimpleNetInfo implements INetInfo {
 
     private static final Logger logger = LoggerFactory.getLogger(SimpleNetInfo.class);
-
     private final int minNeurons, maxNeurons;
     private final int minLayers, maxLayers;
-    private final int inputs, outputs;
-
-    private final List<EducationSample> educationData;
-    private final List<EducationSample> testData;
+    private final INetConfiguration netConfiguration;
+    private final IEducationDataSource educationDataSource;
 
     protected SimpleNetInfo(final int minNeurons, final int maxNeurons,
                             final int minLayers, final int maxLayers,
-                            final int inputs, final int outputs) {
+                            final int inputs, final int outputs,
+                            final int minInput, final int maxInput,
+                            final int minOutput, final int maxOutput) {
         this.minNeurons = minNeurons;
         this.maxNeurons = maxNeurons;
         this.minLayers = minLayers;
         this.maxLayers = maxLayers;
-        this.inputs = inputs;
-        this.outputs = outputs;
-
-        this.educationData = Collections.unmodifiableList(loadEducationData());
-        this.testData = Collections.unmodifiableList(loadTestData());
+        this.netConfiguration = new ImmutableNetConfiguration(inputs, outputs, minInput, maxInput, minOutput, maxOutput);
+        this.educationDataSource = new ImmutableEducationDataSource(loadEducationData(), loadTestData());
     }
 
     @Override
@@ -52,23 +51,13 @@ public abstract class SimpleNetInfo implements NetInfo {
     }
 
     @Override
-    public int getInputs() {
-        return this.inputs;
+    public INetConfiguration getNetConfiguration() {
+        return this.netConfiguration;
     }
 
     @Override
-    public int getOutputs() {
-        return this.outputs;
-    }
-
-    @Override
-    public List<EducationSample> getEducationData() {
-        return this.educationData;
-    }
-
-    @Override
-    public List<EducationSample> getTestData() {
-        return this.testData;
+    public IEducationDataSource getEducationDataSource() {
+        return this.educationDataSource;
     }
 
     protected abstract List<EducationSample> loadEducationData();

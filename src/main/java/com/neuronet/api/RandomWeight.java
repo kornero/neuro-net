@@ -4,7 +4,7 @@ import com.neuronet.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RandomWeight extends Configuration {
+public class RandomWeight extends NetParameters {
 
     private static final Logger logger = LoggerFactory.getLogger(RandomWeight.class);
 
@@ -13,7 +13,7 @@ public class RandomWeight extends Configuration {
     }
 
     @Override
-    public float getDefaultEdgeWeight() {
+    public float generateEdgeWeight() {
         return Util.randomFloats(1)[0];
     }
 }

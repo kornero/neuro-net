@@ -16,7 +16,7 @@ public class Edge implements IEdge {
     private volatile float weight = 0;
 
     public Edge(INeuron input, INeuron output) {
-        this(input, output, input.getLayer().getNet().getConfiguration().getDefaultEdgeWeight());
+        this(input, output, input.getLayer().getNet().getNetParameters().generateEdgeWeight());
     }
 
     public Edge(INeuron input, INeuron output, float weight) {
