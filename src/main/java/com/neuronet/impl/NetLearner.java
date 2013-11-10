@@ -4,9 +4,6 @@ import com.neuronet.api.*;
 import com.neuronet.api.generator.EducationSample;
 import com.neuronet.api.generator.INetInfo;
 import com.neuronet.util.Util;
-import com.neuronet.view.NetGraphPanel;
-import com.neuronet.view.Visualizer;
-import com.xeiam.xchart.Chart;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,27 +13,23 @@ import java.util.Iterator;
 public class NetLearner {
 
     private static final Logger logger = LoggerFactory.getLogger(NetLearner.class);
-    private static final int FRAMES_PER_SECOND = 1000 / 24;
-    private final INet net;
-    private final INetInfo netInfo;
-    private final float educationSpeed;
+    protected final INet net;
+    protected final INetInfo netInfo;
+    protected final float educationSpeed;
 
-    public NetLearner(INet net, INetInfo netInfo, float educationSpeed) {
+    public NetLearner(final INet net, final INetInfo netInfo) {
+        this(net, netInfo, netInfo.getParameters().getDefaultEducationSpeed());
+    }
+
+    public NetLearner(final INet net, final INetInfo netInfo, final float educationSpeed) {
         this.net = net;
         this.netInfo = netInfo;
         this.educationSpeed = educationSpeed;
     }
 
-    public void learn(final int i) {
-        final NetGraphPanel panel = new NetGraphPanel(net, netInfo);
-        final Chart chart = panel.getChart();
-        chart.setChartTitle("Iteration = 0");
-
-        Visualizer.createFrame(panel);
-
+    public void learn(final int learnRoundsThreshold, final float stopLearnError) {
         final IEducationDataSource educationDataSource = this.netInfo.getEducationDataSource();
-        long timeStamp = System.currentTimeMillis();
-        for (int j = 0; j < i; j++) {
+        for (int i = 0; i < learnRoundsThreshold; i++) {
             for (final EducationSample sample : educationDataSource.getEducationData()) {
                 educate(sample);
             }
@@ -47,10 +40,10 @@ public class NetLearner {
                 error += Util.absMeanDifference(result, sample.getExpectedOutputs());
             }
 
-            if (System.currentTimeMillis() - timeStamp > FRAMES_PER_SECOND) {
-                chart.setChartTitle("Iteration = " + j + ", test error = " + Util.toString(error));
-                panel.repaint();
-                timeStamp = System.currentTimeMillis();
+            learnRoundCallback(i, error);
+
+            if (error < stopLearnError) {
+                return;
             }
 
             if (logger.isTraceEnabled()) {
@@ -59,7 +52,11 @@ public class NetLearner {
         }
     }
 
-    private void educate(final EducationSample sample) {
+    protected void learnRoundCallback(final int learnRound, final float error) {
+
+    }
+
+    protected void educate(final EducationSample sample) {
         educate(sample.getInputsSample(), sample.getExpectedOutputs());
     }
 

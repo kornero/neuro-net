@@ -19,8 +19,8 @@ public class SinNetInfo extends SimpleNetInfo {
     private static final int MAX_LAYERS = 3;
     private static final int INPUTS = 1;
     private static final int OUTPUTS = 1;
-    private static final int MIN_INPUT = (int) (Math.PI * (-6));
-    private static final int MAX_INPUT = (int) (Math.PI * 6); // (float) (Math.PI * 2)
+    private static final int MIN_INPUT = (int) (Math.PI * (-2));
+    private static final int MAX_INPUT = (int) (Math.PI * 2); // (float) (Math.PI * 2)
     private static final int MIN_OUTPUT = -1;
     private static final int MAX_OUTPUT = 1;
     private static final float MAX_STEP_SIZE = 0.1f;
@@ -45,7 +45,7 @@ public class SinNetInfo extends SimpleNetInfo {
     protected List<EducationSample> loadTestData() {
         final Random random = new Random();
         final List<EducationSample> list = new ArrayList<>();
-        for (float j = MIN_INPUT; j < MAX_INPUT; j += random.nextFloat() * MAX_STEP_SIZE * 10) {
+        for (float j = MIN_INPUT; j < MAX_INPUT; j += random.nextFloat() * MAX_STEP_SIZE * 3) {
             list.add(new EducationSample(j, (float) Math.sin(j)));
         }
 

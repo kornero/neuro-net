@@ -25,12 +25,16 @@ public class NetBuilder implements INetBuilder {
 
     @Override
     public INetBuilder addLayer(final int neurons, final IFunction function) {
+        if (function == null) {
+            throw new NullPointerException("Function can't be null.");
+        }
         layers.add(new ImmutableLayerConfiguration(neurons, function));
         return this;
     }
 
     @Override
     public INet build() {
+        layers.addFirst(new ImmutableLayerConfiguration(this.netConfiguration.getInputsAmount(), null)); // Input layer.
         return new Net(netConfiguration, netParameters, layers);
     }
 

@@ -2,8 +2,8 @@ package com.neuronet.api;
 
 public class NetParameters implements INetParameters {
 
-    public static final float DEFAULT_DX = 0.25f;
-    public static final float DEFAULT_EDGE_WEIGHT = 0.25f;
+    public static final float DEFAULT_DX = 0.05f;
+    public static final float DEFAULT_EDGE_WEIGHT = 0.15f;
     public static final float DEFAULT_EDUCATION_SPEED = 0.1f;
 
     private static final INetParameters INSTANCE = new NetParameters();

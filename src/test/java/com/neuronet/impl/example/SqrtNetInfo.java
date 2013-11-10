@@ -16,11 +16,10 @@ public class SqrtNetInfo extends SimpleNetInfo {
     private static final int MAX_LAYERS = 3;
     private static final int INPUTS = 1;
     private static final int OUTPUTS = 1;
-    private static final int MIN_INPUT = 0;
+    private static final int MIN_INPUT = 4;
     private static final int MAX_INPUT = 25;
-    private static final int MIN_OUTPUT = 0;
-    private static final int MAX_OUTPUT = 5;
-
+    private static final int MIN_OUTPUT = (int) Math.sqrt(MIN_INPUT) - 1;
+    private static final int MAX_OUTPUT = (int) Math.sqrt(MAX_INPUT) + 1;
     private static final float MAX_STEP_SIZE = 0.1f;
 
     public SqrtNetInfo() {

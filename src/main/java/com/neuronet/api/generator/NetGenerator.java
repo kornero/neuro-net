@@ -2,6 +2,7 @@ package com.neuronet.api.generator;
 
 import com.neuronet.api.*;
 import com.neuronet.impl.NetBuilder;
+import com.neuronet.impl.NetLearner;
 import com.neuronet.impl.functions.FunctionsFactory;
 import com.neuronet.util.Util;
 import org.slf4j.Logger;
@@ -16,22 +17,46 @@ import java.util.concurrent.TimeUnit;
 public class NetGenerator {
 
     private static final Logger logger = LoggerFactory.getLogger(NetGenerator.class);
-    private static final int EDUCATE_ROUNDS = 10;
+    private static final int DEFAULT_EDUCATION_ROUNDS = 50;
+    private final int educationRounds;
+    private final INetInfo netInfo;
 
-    public static NavigableMap<Float, INet> generateNet(final INetInfo netInfo, final float threshold,
-                                                        final long timeout, final TimeUnit timeUnit) {
-        final int threads = Runtime.getRuntime().availableProcessors();
-        return generateNet(netInfo, threads, threshold, timeout, timeUnit);
+    public NetGenerator(final INetInfo netInfo) {
+        this(netInfo, DEFAULT_EDUCATION_ROUNDS);
     }
 
-    public static NavigableMap<Float, INet> generateNet(final INetInfo netInfo, final int threads, final float threshold,
-                                                        final long timeout, final TimeUnit timeUnit) {
+    public NetGenerator(final INetInfo netInfo, final int educationRounds) {
+        this.netInfo = netInfo;
+        this.educationRounds = educationRounds;
+    }
+
+    public static boolean checkNet(final INet net) {
+        final int checks = 10;
+        final Set<Integer> roundedResults = new HashSet<>();
+        final int in = net.getNetConfiguration().getInputsAmount();
+        float sum = 0;
+        for (int i = 0; i < checks; i++) {
+            final float act = net.run(Util.randomFloats(in))[0];
+            final int round = (int) (1000 * act);
+            roundedResults.add(round);
+            sum += Math.abs(act);
+        }
+        return sum > 1.0f && roundedResults.size() == checks;
+    }
+
+    public NavigableMap<Float, INet> generateNet(final float threshold,
+                                                 final long timeout, final TimeUnit timeUnit) {
+        final int threads = Runtime.getRuntime().availableProcessors();
+        return generateNet(threads, threshold, timeout, timeUnit);
+    }
+
+    public NavigableMap<Float, INet> generateNet(final int threads, final float threshold,
+                                                 final long timeout, final TimeUnit timeUnit) {
         final Map<Float, INet> iNets = new ConcurrentHashMap<>();
         final Random random = new Random();
 
         final INetConfiguration netConfiguration = netInfo.getNetConfiguration();
         final INetParameters netParameters = netInfo.getParameters();
-        final IEducationDataSource educationDataSource = netInfo.getEducationDataSource();
 
         final int inputs = netConfiguration.getInputsAmount();
         final int outputs = netConfiguration.getOutputsAmount();
@@ -56,7 +81,6 @@ public class NetGenerator {
                             final INetBuilder netBuilder = new NetBuilder();
                             netBuilder.setNetConfiguration(netConfiguration);
                             netBuilder.setNetParameters(netParameters);
-                            netBuilder.addLayer(inputs, null); // Input layer.
                             for (int i = 1; i <= layers; i++) {
                                 final int neurons = random.nextInt(maxNeurons - 1) + minNeurons;
                                 netBuilder.addLayer(neurons, FunctionsFactory.getRandomFunction());
@@ -65,10 +89,8 @@ public class NetGenerator {
 
                             final INet net = netBuilder.build();
                             if (checkNet(net)) {
-                                for (int i = 0; i < EDUCATE_ROUNDS; i++) {
-                                    educateNet(net, educationDataSource);
-                                }
-                                final float error = examineNet(net, educationDataSource);
+                                educateNet(net, threshold);
+                                final float error = examineNet(net);
                                 if (error < threshold) {
                                     iNets.put(error, net);
                                     logger.debug("Error: {}, net: {}", error, Util.summary(net));
@@ -92,33 +114,21 @@ public class NetGenerator {
         return new TreeMap<>(iNets);
     }
 
-    public static float examineNet(final INet net, final IEducationDataSource educationDataSource) {
+    public float examineNet(final INet net) {
+        final IEducationDataSource educationDataSource = netInfo.getEducationDataSource();
+        final INetConfiguration netConfiguration = netInfo.getNetConfiguration();
+
         float error = 0.0f;
         for (final EducationSample sample : educationDataSource.getTestData()) {
-            final float[] runResult = net.run(sample.getInputsSample());
+            final float[] runResult = Util.denormalizeOutputs(net.run(sample.getInputsSample()), netConfiguration);
 
             error += Util.absMeanDifference(runResult, sample.getExpectedOutputs());
         }
-        return error / (float) educationDataSource.getTestData().size();
+        return error;// / (float) educationDataSource.getTestData().size();
     }
 
-    public static void educateNet(final INet net, final IEducationDataSource educationDataSource) {
-        for (final EducationSample sample : educationDataSource.getEducationData()) {
-            net.educate(sample.getInputsSample(), sample.getExpectedOutputs());
-        }
-    }
-
-    public static boolean checkNet(final INet net) {
-        final int checks = 10;
-        final Set<Integer> roundedResults = new HashSet<>();
-        final int in = net.getNetConfiguration().getInputsAmount();
-        float sum = 0;
-        for (int i = 0; i < checks; i++) {
-            final float act = net.run(Util.randomFloats(in))[0];
-            final int round = (int) (1000 * act);
-            roundedResults.add(round);
-            sum += Math.abs(act);
-        }
-        return sum > 1.0f && roundedResults.size() == checks;
+    public void educateNet(final INet net, final float errorThreshold) {
+        final NetLearner learner = new NetLearner(net, netInfo);
+        learner.learn(educationRounds, errorThreshold);
     }
 }

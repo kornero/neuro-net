@@ -24,7 +24,7 @@ public class Example {
     public static void main(String[] args) {
         final INetInfo netInfo = new ParabolaNetInfo();
         final NetLearner learner = new NetLearner(createNet(netInfo), netInfo, 0.00051f);
-        learner.learn(100000);
+        learner.learn(100000, 20);
     }
 
     private static INet createNet(final INetInfo netInfo) {
@@ -34,8 +34,6 @@ public class Example {
                 0.05f, //Configuration.DEFAULT_DX,
                 0.00051f  //Configuration.DEFAULT_EDUCATION_SPEED,
         ));
-
-        netBuilder.addLayer(1, null); // Input layer.
 
         final IFunction functionType = BipolarSigmaFunction.getInstance(0.05f);
         netBuilder.addLayer(10, functionType);

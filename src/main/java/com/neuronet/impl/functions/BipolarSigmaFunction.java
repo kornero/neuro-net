@@ -29,6 +29,9 @@ public class BipolarSigmaFunction extends AbstractBipolarFunction {
         return function;
     }
 
+    /**
+     * @return x / (a + |x|)
+     */
     @Override
     public float executeFunction(float x) {
         return x / (alfa + Math.abs(x));

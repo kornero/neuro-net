@@ -447,7 +447,8 @@ public class Util {
         for (final ILayer iLayer : net.getLayers()) {
             if (!(iLayer instanceof InputLayer)) {
                 builder.append("-->");
-                builder.append("{").append(iLayer.getLayerConfiguration().getClass().getSimpleName()).append("}");
+                builder.append("{").append(iLayer.getLayerConfiguration().
+                        getFunction().getClass().getSimpleName()).append("}");
                 builder.append("-->");
                 builder.append(iLayer.getNeurons().size());
             }
@@ -544,7 +545,7 @@ public class Util {
             fileOut.close();
             logger.info("Serialized object {} is saved in: {}", object.getClass().getSimpleName(), file);
         } catch (IOException i) {
-            logger.error("deserialize(): File=" + file, i);
+            logger.error("serialize(): File=" + file, i);
         }
     }
 
