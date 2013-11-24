@@ -3,14 +3,13 @@ package com.neuronet.impl;
 import com.neuronet.api.INet;
 import com.neuronet.api.generator.INetInfo;
 import com.neuronet.util.Util;
+import com.neuronet.view.IVisualizer;
 import com.neuronet.view.NetGraphPanel;
-import com.neuronet.view.Visualizer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.neuronet.view.VisualizerFactory;
 
 public class VisualNetLearner extends NetLearner {
 
-    private static final Logger logger = LoggerFactory.getLogger(VisualNetLearner.class);
+    private static final IVisualizer visualizer = VisualizerFactory.getVisualizer();
     private static final int FRAMES_PER_SECOND = 1000 / 24;
     private NetGraphPanel panel;
     private long timeStamp;
@@ -21,11 +20,11 @@ public class VisualNetLearner extends NetLearner {
 
     @Override
     public void learn(final int learnRoundsThreshold, final float stopLearnError) {
-        this.panel = new NetGraphPanel(net, netInfo);
+        this.panel = new NetGraphPanel(net, netInfo, visualizer);
         this.panel.getChart().setChartTitle("Iteration = 0");
         this.timeStamp = System.currentTimeMillis();
 
-        Visualizer.createFrame(panel);
+        visualizer.createFrame(panel);
 
         super.learn(learnRoundsThreshold, stopLearnError);
     }

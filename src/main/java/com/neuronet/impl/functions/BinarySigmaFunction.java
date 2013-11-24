@@ -5,8 +5,6 @@ import org.apache.mahout.math.map.OpenFloatObjectHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.neuronet.util.Util.div;
-
 public class BinarySigmaFunction extends AbstractBinaryFunction {
 
     private static final Logger logger = LoggerFactory.getLogger(BinarySigmaFunction.class);
@@ -36,7 +34,8 @@ public class BinarySigmaFunction extends AbstractBinaryFunction {
      */
     @Override
     public float executeFunction(final float x) {
-        return div(1, 1 + Math.exp(-1 * alfa * x));
+//        return div(1, 1 + Math.exp(-1 * alfa * x));
+        return (float) (1.0f / (1.0f + Math.exp(-1.0f * alfa * x)));
     }
 
     /**
@@ -46,6 +45,6 @@ public class BinarySigmaFunction extends AbstractBinaryFunction {
     @Override
     public float executeDerived(final float x) {
         final float fx = executeFunction(x);
-        return alfa * fx * (1 - fx);
+        return alfa * fx * (1.0f - fx);
     }
 }

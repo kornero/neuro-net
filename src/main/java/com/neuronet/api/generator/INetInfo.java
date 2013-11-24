@@ -19,4 +19,6 @@ public interface INetInfo {
     public INetConfiguration getNetConfiguration();
 
     public INetParameters getParameters();
+
+    // TODO: public IVisualizer getVisualizer();
 }

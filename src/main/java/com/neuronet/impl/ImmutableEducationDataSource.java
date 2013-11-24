@@ -12,6 +12,7 @@ public class ImmutableEducationDataSource implements IEducationDataSource {
     private final List<EducationSample> testData;
 
     public ImmutableEducationDataSource(final List<EducationSample> educationData, final List<EducationSample> testData) {
+        Collections.shuffle(educationData);
         this.educationData = Collections.unmodifiableList(educationData);
         this.testData = Collections.unmodifiableList(testData);
     }

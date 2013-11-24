@@ -40,7 +40,10 @@ public class BipolarSigmaFunction extends AbstractBipolarFunction {
 
     @Override
     public float executeDerived(float x) {
-        return (alfa - x * Math.abs(x) + Math.abs(x)) / ((alfa + Math.abs(x)) * (alfa + Math.abs(x)));
+        final float absX = Math.abs(x);
+        final float alfaPlusAbsX = alfa + absX;
+        return (alfaPlusAbsX - x * absX) / (alfaPlusAbsX * alfaPlusAbsX);
+//        return (alfa - x * Math.abs(x) + Math.abs(x)) / ((alfa + Math.abs(x)) * (alfa + Math.abs(x)));
 //        return div(alfa - x * Math.abs(x) + Math.abs(x), (alfa + Math.abs(x)) * (alfa + Math.abs(x)));
     }
 }
