@@ -38,9 +38,9 @@ public class Net implements INet {
             throw new IllegalArgumentException("Inputs amount in configuration and neurons amount in first layer is different: " +
                     "inputs=" + netConfiguration.getInputsAmount() + ", neurons=" + layerConfigurations.getFirst().getNeurons());
         }
-        if (layerConfigurations.getLast().getNeurons() != netConfiguration.getInputsAmount()) {
+        if (layerConfigurations.getLast().getNeurons() != netConfiguration.getOutputsAmount()) {
             throw new IllegalArgumentException("Outputs amount in configuration and neurons amount in last layer is different: " +
-                    "outputs=" + netConfiguration.getInputsAmount() + ", neurons=" + layerConfigurations.getLast().getNeurons());
+                    "outputs=" + netConfiguration.getOutputsAmount() + ", neurons=" + layerConfigurations.getLast().getNeurons());
         }
 
         this.netConfiguration = netConfiguration;
