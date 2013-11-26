@@ -2,6 +2,7 @@ package com.neuronet.impl;
 
 import com.neuronet.api.INet;
 import com.neuronet.api.generator.INetInfo;
+import com.neuronet.util.GUIUtil;
 import com.neuronet.util.Util;
 import com.neuronet.view.IVisualizer;
 import com.neuronet.view.NetGraphPanel;
@@ -24,7 +25,7 @@ public class VisualNetLearner extends NetLearner {
         this.panel.getChart().setChartTitle("Iteration = 0");
         this.timeStamp = System.currentTimeMillis();
 
-        visualizer.createFrame(panel);
+        GUIUtil.createFrame(panel);
 
         super.learn(learnRoundsThreshold, stopLearnError);
     }

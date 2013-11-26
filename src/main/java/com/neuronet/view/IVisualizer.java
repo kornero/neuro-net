@@ -5,7 +5,6 @@ import com.neuronet.api.generator.EducationSample;
 import com.neuronet.api.generator.INetInfo;
 import com.xeiam.xchart.Chart;
 
-import javax.swing.*;
 import java.util.List;
 
 public interface IVisualizer {
@@ -14,12 +13,6 @@ public interface IVisualizer {
     public static final String ACTUAL = "act(x)";
 
     public Chart createChart(final INet net, final INetInfo netInfo);
-
-    public JFrame createFrame(final INet net, final INetInfo netInfo);
-
-    public JFrame createFrame(final JPanel chartPanel);
-
-    public void visualize(final INet net, final INetInfo netInfo);
 
     public double[] getX(final List<EducationSample> samples);
 

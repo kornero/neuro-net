@@ -64,7 +64,7 @@ public class Example {
 
         final JFrame frame = new JFrame("XChart");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        final NetGraphPanel chartPanel = new NetGraphPanel(net, info, new Visualizer());
+        final NetGraphPanel chartPanel = new NetGraphPanel(net, info, new SimpleMathFunctionVisualizer());
         frame.add(chartPanel);
 
         // Display the window.

@@ -5,7 +5,7 @@ import com.neuronet.api.generator.EducationSample;
 
 import java.util.List;
 
-public class ManyInputsOneOutputVisualizer extends Visualizer {
+public class ManyInputsOneOutputVisualizer extends SimpleMathFunctionVisualizer {
 
     @Override
     public double[] getX(final List<EducationSample> samples) {

@@ -2,37 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9c43230-5cc3-43df-b857-e60941c77ec4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/AbstractMathFunctionNetInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/CosSinNetInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/view/IVisualizer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/view/ManyInputsOneOutputVisualizer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/view/VisualizerFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/neuronet/impl/functions/BinarySigmaFunction.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/impl/functions/BinarySigmaFunction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/neuronet/impl/functions/BipolarSigmaFunction.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/impl/functions/BipolarSigmaFunction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/util/GUIUtil.java" />
+      <change type="MOVED" beforePath="C:\Users\Sasha\IdeaProjects\neuro_net_project\neuro-net\src\main\java\com\neuronet\api\generator\SimpleNetInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/AbstractNetInfo.java" />
+      <change type="MOVED" beforePath="C:\Users\Sasha\IdeaProjects\neuro_net_project\neuro-net\src\main\java\com\neuronet\view\Visualizer.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/view/SimpleMathFunctionVisualizer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/AbstractMathFunctionNetInfo.java" afterPath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/AbstractMathFunctionNetInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/CosSinNetInfo.java" afterPath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/CosSinNetInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/EducationSample.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/EducationSample.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/neuronet/view/Example.java" afterPath="$PROJECT_DIR$/src/test/java/com/neuronet/view/Example.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/INetInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/INetInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/neuronet/impl/ImmutableEducationDataSource.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/impl/ImmutableEducationDataSource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/neuronet/view/NetGraphPanel.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/view/NetGraphPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/neuronet/view/IVisualizer.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/view/IVisualizer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/neuronet/view/ManyInputsOneOutputVisualizer.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/view/ManyInputsOneOutputVisualizer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/neuronet/impl/NetBuilder.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/impl/NetBuilder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/NetLearnerTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/NetLearnerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/ParabolaNetInfo.java" afterPath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/ParabolaNetInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/SimpleNetInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/SimpleNetInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/SinNetInfo.java" afterPath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/SinNetInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/SqrtNetInfo.java" afterPath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/SqrtNetInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/SimpleImageNetInfo.java" afterPath="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/SimpleImageNetInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/neuronet/impl/VisualNetLearner.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/impl/VisualNetLearner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/neuronet/view/Visualizer.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/view/Visualizer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/neuronet/view/VisualizerFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/neuronet/view/VisualizerFactory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NeuroNet.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385047846150" ignored="false" />
+    <file path="/Dummy.txt" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385485061298" ignored="false" />
     <file path="/Util.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384111738401" ignored="false" />
     <file path="/UtilTest.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1379869932651" ignored="false" />
     <file path="/TestSuite.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384110034400" ignored="false" />
-    <file path="/Net.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384102217823" ignored="false" />
+    <file path="/Net.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385485023835" ignored="false" />
     <file path="/Neuron.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1383853564127" ignored="false" />
     <file path="/Functions.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375602380566" ignored="false" />
     <file path="/Layer.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384093369796" ignored="false" />
-    <file path="/fragment.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384090364108" ignored="false" />
+    <file path="/fragment.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385482416427" ignored="false" />
     <file path="/logback.xml" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384110758582" ignored="false" />
     <file path="/Edge.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1383841867178" ignored="false" />
     <file path="/Constants.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1375628505071" ignored="false" />
@@ -67,27 +64,29 @@
     <file path="/FunctionsFactory.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1383592938081" ignored="false" />
     <file path="/Example.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385320702842" ignored="false" />
     <file path="/Visualizer.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385320684627" ignored="false" />
-    <file path="/NetGraphPanel.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385320598840" ignored="false" />
+    <file path="/NetGraphPanel.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385490362534" ignored="false" />
     <file path="/NetLearner.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384110529432" ignored="false" />
     <file path="/TrivialNetInfo.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384027506817" ignored="false" />
     <file path="/TestNetInfo.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384091440443" ignored="false" />
     <file path="/INetConfigurationReal.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384085122807" ignored="false" />
     <file path="/IEducationDataSource.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384085755185" ignored="false" />
     <file path="/AbstractBinaryFunction.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384085990580" ignored="false" />
-    <file path="/NetBuilder.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384104173682" ignored="false" />
+    <file path="/NetBuilder.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385485312028" ignored="false" />
     <file path="/ILayerConfiguration.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384089537094" ignored="false" />
     <file path="/ImmutableEducationDataSource.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384283426897" ignored="false" />
     <file path="/ImmutableNetConfiguration.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384090965225" ignored="false" />
-    <file path="/VisualNetLearner.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385320662015" ignored="false" />
-    <file path="/NetLearnerTest.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384360588556" ignored="false" />
+    <file path="/VisualNetLearner.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385481930250" ignored="false" />
+    <file path="/NetLearnerTest.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385490706346" ignored="false" />
     <file path="/SqrtNetInfo.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384284750211" ignored="false" />
-    <file path="/AbstractMathFunctionNetInfo.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384285055255" ignored="false" />
+    <file path="/AbstractMathFunctionNetInfo.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385482423735" ignored="false" />
     <file path="/ParabolaNetInfo.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384284708015" ignored="false" />
-    <file path="/CosSinNetInfo.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1384286334771" ignored="false" />
+    <file path="/CosSinNetInfo.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385489328087" ignored="false" />
     <file path="/IVisualizer.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385320109877" ignored="false" />
-    <file path="/VisualizerFactory.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385320870159" ignored="false" />
+    <file path="/VisualizerFactory.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385481629917" ignored="false" />
     <file path="/SimpleVisualizer.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385320920131" ignored="false" />
     <file path="/INetInfo.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385321016597" ignored="false" />
+    <file path="/GUIUtil.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385481893905" ignored="false" />
+    <file path="/SimpleMathFunctionVisualizer.java" changelist="d9c43230-5cc3-43df-b857-e60941c77ec4" time="1385489740055" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +143,7 @@
       </breakpoint>
     </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/AbstractMathFunctionNetInfo.java" line="25" class="com.neuronet.impl.example.AbstractMathFunctionNetInfo" package="com.neuronet.impl.example">
+      <breakpoint url="file://$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/AbstractMathFunctionNetInfo.java" line="32" class="com.neuronet.impl.example.AbstractMathFunctionNetInfo" package="com.neuronet.impl.example">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -169,10 +168,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AbstractMathFunctionNetInfo.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/AbstractMathFunctionNetInfo.java">
+      <file leaf-file-name="NetLearnerTest.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/neuronet/impl/NetLearnerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="65" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0">
+            <state line="113" column="72" selection-start="4503" selection-end="4503" vertical-scroll-proportion="0.7556719">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NetBuilder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/impl/NetBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="85" column="9" selection-start="2602" selection-end="2602" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -181,19 +189,8 @@
       <file leaf-file-name="CosSinNetInfo.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/CosSinNetInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="53" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0">
+            <state line="76" column="29" selection-start="2691" selection-end="2691" vertical-scroll-proportion="0.0">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VisualNetLearner.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/impl/VisualNetLearner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="83" selection-start="391" selection-end="391" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -201,7 +198,16 @@
       <file leaf-file-name="VisualizerFactory.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/VisualizerFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="50" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0">
+            <state line="5" column="37" selection-start="147" selection-end="147" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManyInputsOneOutputVisualizer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/ManyInputsOneOutputVisualizer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="43" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -210,7 +216,7 @@
       <file leaf-file-name="NetGraphPanel.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/NetGraphPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="75" selection-start="1274" selection-end="1274" vertical-scroll-proportion="0.0">
+            <state line="53" column="53" selection-start="2028" selection-end="2028" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -218,55 +224,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Visualizer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/Visualizer.java">
+      <file leaf-file-name="IVisualizer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/IVisualizer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="0" selection-start="1726" selection-end="2721" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="method#createChart#0;class#Visualizer#0" expanded="false" />
-                <element signature="method#createFrame#1;class#Visualizer#0" expanded="false" />
-                <element signature="method#visualize#0;class#Visualizer#0" expanded="false" />
-                <element signature="method#getX#0;class#Visualizer#0" expanded="false" />
-                <element signature="method#getY#0;class#Visualizer#0" expanded="false" />
-                <element signature="method#getY#1;class#Visualizer#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ManyInputsOneOutputVisualizer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/ManyInputsOneOutputVisualizer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="32" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="method#getY#1;class#ManyInputsOneOutputVisualizer#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimpleNetInfo.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/SimpleNetInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="51" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0">
+            <state line="21" column="20" selection-start="585" selection-end="585" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="INetInfo.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/INetInfo.java">
+      <file leaf-file-name="SimpleImageNetInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/SimpleImageNetInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="48" selection-start="530" selection-end="530" vertical-scroll-proportion="0.7678883">
+            <state line="10" column="6" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Example.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/neuronet/view/Example.java">
+      <file leaf-file-name="SimpleMathFunctionVisualizer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/SimpleMathFunctionVisualizer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="86" selection-start="2533" selection-end="2533" vertical-scroll-proportion="0.0">
+            <state line="26" column="24" selection-start="981" selection-end="981" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -296,22 +275,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/SimpleNetInfo.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/SinNetInfo.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/ParabolaNetInfo.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/SqrtNetInfo.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/CosSinNetInfo.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/AbstractMathFunctionNetInfo.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/neuronet/impl/NetLearnerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/view/IVisualizer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/view/NetGraphPanel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/impl/VisualNetLearner.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/view/Visualizer.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/neuronet/view/Example.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/view/VisualizerFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/neuronet/view/SimpleVisualizer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/neuronet/view/ManyInputsOneOutputVisualizer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/INetInfo.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/SimpleImageNetInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/view/VisualizerFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/util/GUIUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/impl/VisualNetLearner.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/view/IVisualizer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/impl/Net.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/AbstractMathFunctionNetInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/EducationSample.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/impl/NetBuilder.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/CosSinNetInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/view/SimpleMathFunctionVisualizer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/neuronet/view/NetGraphPanel.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/neuronet/impl/NetLearnerTest.java" />
       </list>
     </option>
   </component>
@@ -715,14 +694,14 @@
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Project" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="135" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="OverrideImplement.combined" value="true" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="152" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="156" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="156" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="159" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="823" />
@@ -737,17 +716,17 @@
     <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/tests/com/neuronet/edged" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="options.lastSelected" value="reference.settings.project.maven.repository.indices" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -761,15 +740,15 @@
       <recent name="C:\Users\Sasha\IdeaProjects\NeuroNet\lib\guava" />
       <recent name="C:\Users\Sasha\IdeaProjects\NeuroNet\lib" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Sasha\IdeaProjects\neuro_net_project\neuro-net\src\main\resources" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.neuronet.view" />
       <recent name="com.neuronet.impl" />
       <recent name="com" />
       <recent name="com.neuronet.edged" />
       <recent name="com.neuronet" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Sasha\IdeaProjects\neuro_net_project\neuro-net\src\main\resources" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.NetLearnerTest.test_cos_sin_net">
@@ -1211,11 +1190,19 @@
       <created>1384115131177</created>
       <updated>1384115131177</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Add IVisualizer interface for different visualization strategies.">
+      <created>1385321117065</created>
+      <updated>1385321117065</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Fix outputs amount check.">
+      <created>1385485067467</created>
+      <updated>1385485067467</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32419354" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -1225,15 +1212,15 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24772727" sideWeight="0.67580646" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24772727" sideWeight="0.67580646" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3983287" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1389" y="73" width="1202" height="914" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.32096773" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1426" y="36" width="1207" height="935" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21168438" sideWeight="0.67808217" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928678" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Dilbert" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928678" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21168438" sideWeight="0.67808217" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962063" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1287,7 +1274,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add VisualNetBuilder.&#10;Refactor NetGenerator." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix outputs amount check." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1301,8 +1288,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Some major changes in structure and architecture." />
-    <MESSAGE value="Add empty edges. This relation will be between far away neurons." />
     <MESSAGE value="Add metric: now only nearest neurons has relations." />
     <MESSAGE value="Add javadocs." />
     <MESSAGE value="Init" />
@@ -1326,6 +1311,8 @@
     <MESSAGE value="Sin function prediction finally works!&#10;Add new class - Learner. Soon I will retrofit it as interface with many different learning strategies." />
     <MESSAGE value="Add NetBuilder.&#10;Refactor net parameter classes." />
     <MESSAGE value="Add VisualNetBuilder.&#10;Refactor NetGenerator." />
+    <MESSAGE value="Add IVisualizer interface for different visualization strategies." />
+    <MESSAGE value="Fix outputs amount check." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1335,127 +1322,176 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/SinNetInfo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/api/INetBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="24" selection-start="421" selection-end="1276" vertical-scroll-proportion="0.0">
+        <state line="2" column="17" selection-start="44" selection-end="44" vertical-scroll-proportion="0.07678883">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/impl/NetLearner.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/impl/ImmutableEducationDataSource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="11" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0">
+        <state line="10" column="47" selection-start="304" selection-end="304" vertical-scroll-proportion="0.23571429">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/api/RandomWeight.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/AbstractNetInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="12" selection-start="331" selection-end="331" vertical-scroll-proportion="0.0">
+        <state line="18" column="0" selection-start="670" selection-end="670" vertical-scroll-proportion="0.5107143">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/api/NetParameters.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/EducationSample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="26" selection-start="40" selection-end="53" vertical-scroll-proportion="0.03691275">
+        <state line="16" column="11" selection-start="496" selection-end="496" vertical-scroll-proportion="-0.11343805">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/neuronet/impl/NetLearnerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/impl/Net.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="46" selection-start="4327" selection-end="4327" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/IVisualizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="28" selection-start="410" selection-end="421" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/NetGraphPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="75" selection-start="1274" selection-end="1274" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/impl/VisualNetLearner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="83" selection-start="391" selection-end="391" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/neuronet/view/Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="86" selection-start="2533" selection-end="2533" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/Visualizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="0" selection-start="1726" selection-end="2721" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="method#createChart#0;class#Visualizer#0" expanded="false" />
-            <element signature="method#createFrame#1;class#Visualizer#0" expanded="false" />
-            <element signature="method#visualize#0;class#Visualizer#0" expanded="false" />
-            <element signature="method#getX#0;class#Visualizer#0" expanded="false" />
-            <element signature="method#getY#0;class#Visualizer#0" expanded="false" />
-            <element signature="method#getY#1;class#Visualizer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/VisualizerFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="50" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/ManyInputsOneOutputVisualizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="32" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="method#getY#1;class#ManyInputsOneOutputVisualizer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/CosSinNetInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="53" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0">
+        <state line="15" column="78" selection-start="406" selection-end="483" vertical-scroll-proportion="-3.0671256">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/AbstractMathFunctionNetInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="65" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0">
+        <state line="27" column="33" selection-start="1062" selection-end="1062" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/SimpleNetInfo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/util/Util.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="51" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0">
+        <state line="358" column="109" selection-start="12802" selection-end="12802" vertical-scroll-proportion="0.33333334">
+          <folding>
+            <element signature="docComment;method#randomFloats#0;class#Util#0" expanded="false" />
+            <element signature="method#randomFloats#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#randomFloats#1;class#Util#0" expanded="false" />
+            <element signature="method#randomFloats#1;class#Util#0" expanded="false" />
+            <element signature="docComment;method#multiply#0;class#Util#0" expanded="false" />
+            <element signature="method#multiply#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#getNorm#0;class#Util#0" expanded="false" />
+            <element signature="method#getNorm#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#getNorm#1;class#Util#0" expanded="false" />
+            <element signature="method#getNorm#1;class#Util#0" expanded="false" />
+            <element signature="docComment;method#normalize#0;class#Util#0" expanded="false" />
+            <element signature="method#normalize#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#normalize#1;class#Util#0" expanded="false" />
+            <element signature="method#normalize#1;class#Util#0" expanded="false" />
+            <element signature="docComment;method#normalize#2;class#Util#0" expanded="false" />
+            <element signature="method#normalize#2;class#Util#0" expanded="false" />
+            <element signature="docComment;method#normalizeInputs#0;class#Util#0" expanded="false" />
+            <element signature="method#normalizeInputs#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#normalizeOutputs#0;class#Util#0" expanded="false" />
+            <element signature="method#normalizeOutputs#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#normalize#3;class#Util#0" expanded="false" />
+            <element signature="method#normalize#3;class#Util#0" expanded="false" />
+            <element signature="docComment;method#normalizeInputs#1;class#Util#0" expanded="false" />
+            <element signature="method#normalizeInputs#1;class#Util#0" expanded="false" />
+            <element signature="docComment;method#normalizeOutputs#1;class#Util#0" expanded="false" />
+            <element signature="method#normalizeOutputs#1;class#Util#0" expanded="false" />
+            <element signature="docComment;method#denormalize#0;class#Util#0" expanded="false" />
+            <element signature="method#denormalize#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#denormalizeInputs#0;class#Util#0" expanded="false" />
+            <element signature="method#denormalizeInputs#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#denormalizeOutputs#0;class#Util#0" expanded="false" />
+            <element signature="method#denormalizeOutputs#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#denormalize#1;class#Util#0" expanded="false" />
+            <element signature="method#denormalize#1;class#Util#0" expanded="false" />
+            <element signature="docComment;method#denormalizeInputs#1;class#Util#0" expanded="false" />
+            <element signature="method#denormalizeInputs#1;class#Util#0" expanded="false" />
+            <element signature="docComment;method#denormalizeOutputs#1;class#Util#0" expanded="false" />
+            <element signature="method#convertFloatsToDoubles#0;class#Util#0" expanded="false" />
+            <element signature="method#absMeanDifference#0;class#Util#0" expanded="false" />
+            <element signature="method#absSumDifference#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#chance#0;class#Util#0" expanded="false" />
+            <element signature="method#chance#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#chance#1;class#Util#0" expanded="false" />
+            <element signature="method#chance#1;class#Util#0" expanded="false" />
+            <element signature="method#div#0;class#Util#0" expanded="false" />
+            <element signature="method#div#1;class#Util#0" expanded="false" />
+            <element signature="method#equals#0;class#Util#0" expanded="false" />
+            <element signature="method#equals#1;class#Util#0" expanded="false" />
+            <element signature="method#summary#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#toString#0;class#Util#0" expanded="false" />
+            <element signature="method#toString#0;class#Util#0" expanded="false" />
+            <element signature="docComment;method#toString#1;class#Util#0" expanded="false" />
+            <element signature="method#toString#1;class#Util#0" expanded="false" />
+            <element signature="method#toString#2;class#Util#0" expanded="false" />
+            <element signature="method#toString#3;class#Util#0" expanded="false" />
+            <element signature="method#toString#4;class#Util#0" expanded="false" />
+            <element signature="method#toString#5;class#Util#0" expanded="false" />
+            <element signature="method#serialize#0;class#Util#0" expanded="false" />
+            <element signature="method#deserialize#0;class#Util#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/SimpleMathFunctionVisualizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="24" selection-start="981" selection-end="981" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/api/generator/INetInfo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/IVisualizer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="48" selection-start="530" selection-end="530" vertical-scroll-proportion="0.7678883">
+        <state line="21" column="20" selection-start="585" selection-end="585" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/ManyInputsOneOutputVisualizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="43" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/CosSinNetInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="29" selection-start="2691" selection-end="2691" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/VisualizerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="37" selection-start="147" selection-end="147" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/neuronet/impl/example/SimpleImageNetInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="6" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/impl/NetBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="9" selection-start="2602" selection-end="2602" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/neuronet/view/NetGraphPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="53" selection-start="2028" selection-end="2028" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/neuronet/impl/NetLearnerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="113" column="72" selection-start="4503" selection-end="4503" vertical-scroll-proportion="0.7556719">
           <folding />
         </state>
       </provider>

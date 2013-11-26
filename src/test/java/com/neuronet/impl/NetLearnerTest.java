@@ -89,8 +89,7 @@ public class NetLearnerTest {
     @Test
     public void test_cos_sin_net() {
         final INetInfo netInfo = new CosSinNetInfo();
-        final INetBuilder netBuilder = new NetBuilder();
-        netBuilder.setNetConfiguration(netInfo.getNetConfiguration());
+        final INetBuilder netBuilder = new NetBuilder(netInfo);
         netBuilder.setNetParameters(new RandomWeight(
 //        netBuilder.setNetParameters(new NetParameters(
                 0.15f, //Configuration.DEFAULT_DX,
@@ -103,13 +102,15 @@ public class NetLearnerTest {
 //        netBuilder.addLayer(4, functionType);
 //        netBuilder.addLayer(1, functionType);
 
-        final IFunction functionType = BipolarSigmaFunction.getInstance(5.0f);
-        netBuilder.addLayer(10, functionType);
-        netBuilder.addLayer(10, functionType);
+//        final IFunction functionType = BipolarSigmaFunction.getInstance(5.0f);
+//        final IFunction functionType = BinarySigmaFunction.getInstance();
+        final IFunction functionType = BipolarSigmaFunction.getInstance();
+        netBuilder.addLayer(4, functionType);
+        netBuilder.addLayer(4, functionType);
         netBuilder.addLayer(1, functionType);
 
         final INet net = netBuilder.build();
-        final NetLearner learner = new VisualNetLearner(net, netInfo, 00.05f);
+        final NetLearner learner = new VisualNetLearner(net, netInfo, 0.5f);
         learner.learn(1000 * 1000, 5);
 
         float[] input = new float[1];

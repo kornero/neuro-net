@@ -2,13 +2,13 @@ package com.neuronet.impl.example;
 
 import com.neuronet.api.INetParameters;
 import com.neuronet.api.RandomNetParameters;
+import com.neuronet.api.generator.AbstractNetInfo;
 import com.neuronet.api.generator.EducationSample;
-import com.neuronet.api.generator.SimpleNetInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleImageNetInfo extends SimpleNetInfo {
+public abstract class SimpleImageNetInfo extends AbstractNetInfo {
     private static final int MIN_NEURONS = 10;
     private static final int MAX_NEURONS = 500;
     private static final int MIN_LAYERS = 2;

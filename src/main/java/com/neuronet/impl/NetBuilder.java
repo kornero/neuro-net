@@ -1,6 +1,7 @@
 package com.neuronet.impl;
 
 import com.neuronet.api.*;
+import com.neuronet.api.generator.INetInfo;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -10,6 +11,14 @@ public class NetBuilder implements INetBuilder {
     private final Deque<ILayerConfiguration> layers = new LinkedList<>();
     private INetParameters netParameters;
     private INetConfiguration netConfiguration;
+
+    public NetBuilder() {
+    }
+
+    public NetBuilder(final INetInfo netInfo) {
+        this.setNetParameters(netInfo.getParameters());
+        this.setNetConfiguration(netInfo.getNetConfiguration());
+    }
 
     @Override
     public INetBuilder setNetParameters(final INetParameters netParameters) {
@@ -55,6 +64,34 @@ public class NetBuilder implements INetBuilder {
         @Override
         public IFunction getFunction() {
             return this.function;
+        }
+
+        @Override
+        public String toString() {
+            return "ImmutableLayerConfiguration{" +
+                    "neurons=" + neurons +
+                    ", function=" + function +
+                    '}';
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            ImmutableLayerConfiguration that = (ImmutableLayerConfiguration) o;
+
+            if (neurons != that.neurons) return false;
+            if (!function.equals(that.function)) return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = neurons;
+            result = 31 * result + function.hashCode();
+            return result;
         }
     }
 }

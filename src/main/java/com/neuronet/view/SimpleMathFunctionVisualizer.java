@@ -6,12 +6,10 @@ import com.neuronet.api.generator.INetInfo;
 import com.neuronet.util.Util;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
-import com.xeiam.xchart.SwingWrapper;
 
-import javax.swing.*;
 import java.util.List;
 
-public class Visualizer implements IVisualizer {
+public class SimpleMathFunctionVisualizer implements IVisualizer {
 
     @Override
     public Chart createChart(final INet net, final INetInfo netInfo) {
@@ -24,35 +22,11 @@ public class Visualizer implements IVisualizer {
         return QuickChart.getChart("Neural Net", "X", "Y",
                 new String[]{EXPECTED, ACTUAL},
                 xData,
-                new double[][]{expData, Util.denormalizeOutputs(actData, netInfo.getNetConfiguration())}
+                new double[][]{
+                        expData, //Util.denormalizeOutputs(expData, netInfo.getNetConfiguration()),
+                        Util.denormalizeOutputs(actData, netInfo.getNetConfiguration())
+                }
         );
-    }
-
-    @Override
-    public JFrame createFrame(final INet net, final INetInfo netInfo) {
-        return createFrame(new NetGraphPanel(net, netInfo, this));
-    }
-
-    @Override
-    public JFrame createFrame(final JPanel chartPanel) {
-        final JFrame frame = new JFrame("XChart");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.add(chartPanel);
-
-        // Display the window.
-        frame.pack();
-        frame.setVisible(true);
-        return frame;
-    }
-
-    @Override
-    public void visualize(final INet net, final INetInfo netInfo) {
-
-        // Create Chart
-        final Chart chart = createChart(net, netInfo);
-
-        // Show it
-        new SwingWrapper(chart).displayChart();
     }
 
     @Override

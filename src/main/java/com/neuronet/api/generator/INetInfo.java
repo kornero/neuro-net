@@ -3,6 +3,7 @@ package com.neuronet.api.generator;
 import com.neuronet.api.IEducationDataSource;
 import com.neuronet.api.INetConfiguration;
 import com.neuronet.api.INetParameters;
+import com.neuronet.view.IVisualizer;
 
 public interface INetInfo {
 
@@ -20,5 +21,5 @@ public interface INetInfo {
 
     public INetParameters getParameters();
 
-    // TODO: public IVisualizer getVisualizer();
+    public IVisualizer getVisualizer();
 }

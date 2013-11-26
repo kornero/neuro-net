@@ -7,18 +7,18 @@ import com.neuronet.impl.ImmutableNetConfiguration;
 
 import java.util.List;
 
-public abstract class SimpleNetInfo implements INetInfo {
+public abstract class AbstractNetInfo implements INetInfo {
 
     private final int minNeurons, maxNeurons;
     private final int minLayers, maxLayers;
     private final INetConfiguration netConfiguration;
     private final IEducationDataSource educationDataSource;
 
-    protected SimpleNetInfo(final int minNeurons, final int maxNeurons,
-                            final int minLayers, final int maxLayers,
-                            final int inputs, final int outputs,
-                            final int minInput, final int maxInput,
-                            final int minOutput, final int maxOutput) {
+    protected AbstractNetInfo(final int minNeurons, final int maxNeurons,
+                              final int minLayers, final int maxLayers,
+                              final int inputs, final int outputs,
+                              final int minInput, final int maxInput,
+                              final int minOutput, final int maxOutput) {
         this.minNeurons = minNeurons;
         this.maxNeurons = maxNeurons;
         this.minLayers = minLayers;

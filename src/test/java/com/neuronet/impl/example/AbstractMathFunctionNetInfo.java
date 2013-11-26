@@ -1,13 +1,15 @@
 package com.neuronet.impl.example;
 
+import com.neuronet.api.generator.AbstractNetInfo;
 import com.neuronet.api.generator.EducationSample;
-import com.neuronet.api.generator.SimpleNetInfo;
+import com.neuronet.view.IVisualizer;
+import com.neuronet.view.VisualizerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class AbstractMathFunctionNetInfo extends SimpleNetInfo {
+public abstract class AbstractMathFunctionNetInfo extends AbstractNetInfo {
 
     private static final int INPUTS = 1;
     private static final int OUTPUTS = 1;
@@ -19,6 +21,11 @@ public abstract class AbstractMathFunctionNetInfo extends SimpleNetInfo {
                                           int minInput, int maxInput,
                                           int minOutput, int maxOutput) {
         super(minNeurons, maxNeurons, minLayers, maxLayers, INPUTS, OUTPUTS, minInput, maxInput, minOutput, maxOutput);
+    }
+
+    @Override
+    public IVisualizer getVisualizer() {
+        return VisualizerFactory.getSimpleMathFunctionVisualizer();
     }
 
     @Override
@@ -41,7 +48,7 @@ public abstract class AbstractMathFunctionNetInfo extends SimpleNetInfo {
 
         final Random random = new Random();
         final List<EducationSample> list = new ArrayList<>();
-        for (float x = minInput - 5; x < maxInput; x += random.nextFloat() * MAX_STEP_SIZE / TEST_PART) {
+        for (float x = minInput - 5; x < maxInput; x += random.nextFloat() * MAX_STEP_SIZE * TEST_PART) {
             list.add(new EducationSample(x, f(x)));
         }
 
