@@ -8,6 +8,7 @@ import com.neuronet.api.generator.INetInfo;
 import com.neuronet.impl.example.CosSinNetInfo;
 import com.neuronet.impl.example.SinNetInfo;
 import com.neuronet.impl.example.SqrtNetInfo;
+import com.neuronet.impl.functions.BinarySigmaFunction;
 import com.neuronet.impl.functions.BipolarSigmaFunction;
 import com.neuronet.util.Util;
 import org.junit.Assert;
@@ -103,14 +104,14 @@ public class NetLearnerTest {
 //        netBuilder.addLayer(1, functionType);
 
 //        final IFunction functionType = BipolarSigmaFunction.getInstance(5.0f);
-//        final IFunction functionType = BinarySigmaFunction.getInstance();
-        final IFunction functionType = BipolarSigmaFunction.getInstance();
-        netBuilder.addLayer(4, functionType);
-        netBuilder.addLayer(4, functionType);
+        final IFunction functionType = BinarySigmaFunction.getInstance();
+//        final IFunction functionType = BipolarSigmaFunction.getInstance();
+        netBuilder.addLayer(20, functionType);
+        netBuilder.addLayer(10, functionType);
         netBuilder.addLayer(1, functionType);
 
         final INet net = netBuilder.build();
-        final NetLearner learner = new VisualNetLearner(net, netInfo, 0.5f);
+        final NetLearner learner = new VisualNetLearner(net, netInfo, 0.0005f);
         learner.learn(1000 * 1000, 5);
 
         float[] input = new float[1];

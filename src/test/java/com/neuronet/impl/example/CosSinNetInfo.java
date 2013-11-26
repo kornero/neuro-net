@@ -16,12 +16,12 @@ import java.util.List;
 public class CosSinNetInfo extends AbstractNetInfo {
 
     private static final Logger logger = LoggerFactory.getLogger(CosSinNetInfo.class);
-    private static final int INPUTS = 5;
+    private static final int INPUTS = 4;
     private static final int OUTPUTS = 1;
-    private static final int MIN_INPUT = (int) (Math.PI * (-4)) + 1;
-    private static final int MAX_INPUT = (int) (Math.PI * 4) + 1; // (float) (Math.PI * 2)
-    private static final int MIN_OUTPUT = -1;
-    private static final int MAX_OUTPUT = 1;
+    private static final int MIN_INPUT = -2;//(int) (Math.PI * (-4)) + 1; // TODO: normalize inputs as outputs
+    private static final int MAX_INPUT = 2;//(int) (Math.PI * 4) + 1; // (float) (Math.PI * 2)
+    private static final int MIN_OUTPUT = -2;
+    private static final int MAX_OUTPUT = 2;
     private static final int MIN_NEURONS = 5;
     private static final int MAX_NEURONS = 50;
     private static final int MIN_LAYERS = 1;
@@ -35,7 +35,7 @@ public class CosSinNetInfo extends AbstractNetInfo {
     }
 
     private static float f(final float x) {
-        return (float) (Math.sin(3 * x) + Math.cos(x));
+        return (float) (Math.sin(3 * x / 3) + Math.cos(x / 3));
     }
 
     @Override
@@ -59,8 +59,11 @@ public class CosSinNetInfo extends AbstractNetInfo {
     }
 
     private List<EducationSample> generateTestData(final float step) {
-        final float minInput = this.getNetConfiguration().getMinInput();
-        final float maxInput = this.getNetConfiguration().getMaxInput();
+//        final float minInput = this.getNetConfiguration().getMinInput();
+//        final float maxInput = this.getNetConfiguration().getMaxInput();
+
+        final float minInput = (int) (Math.PI * (-4)) + 1;
+        final float maxInput = (int) (Math.PI * 4) + 1;
 
         final List<EducationSample> list = new ArrayList<>();
         for (float x = minInput + step * INPUTS; x < maxInput; x += step) {

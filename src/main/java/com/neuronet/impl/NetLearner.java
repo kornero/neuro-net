@@ -7,6 +7,7 @@ import com.neuronet.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.Iterator;
 
@@ -127,6 +128,7 @@ public class NetLearner {
         final float[] error = getError(result, expectedOutput);
 
         if (logger.isTraceEnabled()) {
+            logger.trace("educate(): in: {}, exp: {}, act: {}", Arrays.toString(inputData), Arrays.toString(expectedOutput), Arrays.toString(result));
             logger.trace("educate(): run result: {}", Util.toString(result));
             logger.trace("educate(): error: {}", Util.toString(error));
         }
