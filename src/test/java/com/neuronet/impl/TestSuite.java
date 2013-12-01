@@ -156,7 +156,7 @@ public class TestSuite {
     private static INet createSinNet() {
         final INetBuilder netBuilder = new NetBuilder();
         netBuilder.setNetConfiguration(new ImmutableNetConfiguration(1, 1, 0, 4 /* pi ~ 3,1415 */, -1, 1));
-        netBuilder.setNetParameters(new RandomWeight(
+        netBuilder.setNetParameters(new RandomWeightNetParameters(
                 0.05f, //Configuration.DEFAULT_DX,
                 0.00051f  //Configuration.DEFAULT_EDUCATION_SPEED,
         ));

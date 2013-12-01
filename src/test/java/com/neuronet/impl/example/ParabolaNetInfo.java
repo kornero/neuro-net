@@ -2,6 +2,7 @@ package com.neuronet.impl.example;
 
 import com.neuronet.api.INetParameters;
 import com.neuronet.api.RandomNetParameters;
+import com.neuronet.api.generator.AbstractMathFunctionNetInfo;
 
 public class ParabolaNetInfo extends AbstractMathFunctionNetInfo {
     private static final int MIN_NEURONS = 5;
@@ -21,7 +22,7 @@ public class ParabolaNetInfo extends AbstractMathFunctionNetInfo {
 
     @Override
     public INetParameters getParameters() {
-        return RandomNetParameters.getDefaultConfiguration();
+        return RandomNetParameters.getDefaultParameters();
     }
 
     @Override

@@ -35,8 +35,12 @@ public class NetGraphPanel extends XChartPanel {
         this.repaint();
     }
 
-    public NetGraphPanel(final INet net, final INetInfo netInfo, final IVisualizer visualizer) {
+    private NetGraphPanel(final INet net, final INetInfo netInfo, final IVisualizer visualizer) {
         this(visualizer.createChart(net, netInfo), net, netInfo, visualizer);
+    }
+
+    public NetGraphPanel(final INet net, final INetInfo netInfo) {
+        this(net, netInfo, netInfo.getVisualizer());
     }
 
     @Override

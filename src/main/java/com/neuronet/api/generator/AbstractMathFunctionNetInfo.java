@@ -1,7 +1,5 @@
-package com.neuronet.impl.example;
+package com.neuronet.api.generator;
 
-import com.neuronet.api.generator.AbstractNetInfo;
-import com.neuronet.api.generator.EducationSample;
 import com.neuronet.view.IVisualizer;
 import com.neuronet.view.VisualizerFactory;
 

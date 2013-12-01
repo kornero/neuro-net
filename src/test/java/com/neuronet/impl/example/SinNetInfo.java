@@ -2,6 +2,7 @@ package com.neuronet.impl.example;
 
 import com.neuronet.api.INetParameters;
 import com.neuronet.api.RandomNetParameters;
+import com.neuronet.api.generator.AbstractMathFunctionNetInfo;
 
 /**
  * net = sin(x), where x ~ [ 0; 3.1415].
@@ -29,6 +30,6 @@ public class SinNetInfo extends AbstractMathFunctionNetInfo {
 
     @Override
     public INetParameters getParameters() {
-        return RandomNetParameters.getDefaultConfiguration();
+        return RandomNetParameters.getDefaultParameters();
     }
 }

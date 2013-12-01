@@ -10,7 +10,7 @@ public class RandomNetParameters extends NetParameters {
 
     private static final INetParameters INSTANCE = new NetParameters();
 
-    public static INetParameters getDefaultConfiguration() {
+    public static INetParameters getDefaultParameters() {
         return INSTANCE;
     }
 

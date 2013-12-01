@@ -3,7 +3,7 @@ package com.neuronet.impl;
 import com.neuronet.api.IFunction;
 import com.neuronet.api.INet;
 import com.neuronet.api.INetBuilder;
-import com.neuronet.api.RandomWeight;
+import com.neuronet.api.RandomWeightNetParameters;
 import com.neuronet.api.generator.INetInfo;
 import com.neuronet.impl.example.CosSinNetInfo;
 import com.neuronet.impl.example.SinNetInfo;
@@ -24,7 +24,7 @@ public class NetLearnerTest {
     private static INet createNet(final INetInfo netInfo) {
         final INetBuilder netBuilder = new NetBuilder();
         netBuilder.setNetConfiguration(netInfo.getNetConfiguration());
-        netBuilder.setNetParameters(new RandomWeight(
+        netBuilder.setNetParameters(new RandomWeightNetParameters(
                 0.05f, //Configuration.DEFAULT_DX,
                 0.00051f  //Configuration.DEFAULT_EDUCATION_SPEED,
         ));
@@ -52,7 +52,7 @@ public class NetLearnerTest {
         final INetInfo netInfo = new SqrtNetInfo();
         final INetBuilder netBuilder = new NetBuilder();
         netBuilder.setNetConfiguration(netInfo.getNetConfiguration());
-        netBuilder.setNetParameters(new RandomWeight(
+        netBuilder.setNetParameters(new RandomWeightNetParameters(
                 0.05f, //Configuration.DEFAULT_DX,
                 0.00051f  //Configuration.DEFAULT_EDUCATION_SPEED,
         ));
@@ -91,17 +91,6 @@ public class NetLearnerTest {
     public void test_cos_sin_net() {
         final INetInfo netInfo = new CosSinNetInfo();
         final INetBuilder netBuilder = new NetBuilder(netInfo);
-        netBuilder.setNetParameters(new RandomWeight(
-//        netBuilder.setNetParameters(new NetParameters(
-                0.15f, //Configuration.DEFAULT_DX,
-//                0.10f, //Configuration.DEFAULT_EDGE_WEIGHT,
-                0.00051f  //Configuration.DEFAULT_EDUCATION_SPEED,
-        ));
-
-//        final IFunction functionType = BipolarSigmaFunction.getInstance(5);
-//        netBuilder.addLayer(4, functionType);
-//        netBuilder.addLayer(4, functionType);
-//        netBuilder.addLayer(1, functionType);
 
 //        final IFunction functionType = BipolarSigmaFunction.getInstance(5.0f);
         final IFunction functionType = BinarySigmaFunction.getInstance();
@@ -111,7 +100,7 @@ public class NetLearnerTest {
         netBuilder.addLayer(1, functionType);
 
         final INet net = netBuilder.build();
-        final NetLearner learner = new VisualNetLearner(net, netInfo, 0.0005f);
+        final NetLearner learner = new VisualNetLearner(net, netInfo, 0.055f);
         learner.learn(1000 * 1000, 5);
 
         float[] input = new float[1];

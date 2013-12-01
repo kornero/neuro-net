@@ -113,6 +113,6 @@ public abstract class SimpleImageNetInfo extends AbstractNetInfo {
 
     @Override
     public INetParameters getParameters() {
-        return RandomNetParameters.getDefaultConfiguration();
+        return RandomNetParameters.getDefaultParameters();
     }
 }

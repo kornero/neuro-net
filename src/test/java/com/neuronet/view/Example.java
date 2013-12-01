@@ -3,7 +3,7 @@ package com.neuronet.view;
 import com.neuronet.api.IFunction;
 import com.neuronet.api.INet;
 import com.neuronet.api.INetBuilder;
-import com.neuronet.api.RandomWeight;
+import com.neuronet.api.RandomWeightNetParameters;
 import com.neuronet.api.generator.EducationSample;
 import com.neuronet.api.generator.INetInfo;
 import com.neuronet.impl.NetBuilder;
@@ -30,7 +30,7 @@ public class Example {
     private static INet createNet(final INetInfo netInfo) {
         final INetBuilder netBuilder = new NetBuilder();
         netBuilder.setNetConfiguration(netInfo.getNetConfiguration());
-        netBuilder.setNetParameters(new RandomWeight(
+        netBuilder.setNetParameters(new RandomWeightNetParameters(
                 0.05f, //Configuration.DEFAULT_DX,
                 0.00051f  //Configuration.DEFAULT_EDUCATION_SPEED,
         ));
@@ -48,7 +48,7 @@ public class Example {
 
         final INetBuilder netBuilder = new NetBuilder();
         netBuilder.setNetConfiguration(info.getNetConfiguration());
-        netBuilder.setNetParameters(new RandomWeight(
+        netBuilder.setNetParameters(new RandomWeightNetParameters(
                 0.05f, //Configuration.DEFAULT_DX,
                 0.00051f  //Configuration.DEFAULT_EDUCATION_SPEED,
         ));
@@ -64,7 +64,7 @@ public class Example {
 
         final JFrame frame = new JFrame("XChart");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        final NetGraphPanel chartPanel = new NetGraphPanel(net, info, new SimpleMathFunctionVisualizer());
+        final NetGraphPanel chartPanel = new NetGraphPanel(net, info);
         frame.add(chartPanel);
 
         // Display the window.
