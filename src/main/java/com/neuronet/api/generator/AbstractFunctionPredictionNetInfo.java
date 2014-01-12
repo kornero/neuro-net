@@ -19,7 +19,7 @@ public abstract class AbstractFunctionPredictionNetInfo extends AbstractNetInfo 
     private static final Logger logger = LoggerFactory.getLogger(AbstractFunctionPredictionNetInfo.class);
     private static final int OUTPUTS = 1;
     private static final float STEP_SIZE = 0.1f;
-    private static final float PREDICTION_TEST_SIZE = 0.3f; // 50%.
+    private static final float PREDICTION_TEST_SIZE = 0.3f; // 30%.
     private final List<EducationSample> fullData;
 
     public AbstractFunctionPredictionNetInfo(final int minNeurons, final int maxNeurons,

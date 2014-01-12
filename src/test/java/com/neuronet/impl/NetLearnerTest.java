@@ -95,12 +95,12 @@ public class NetLearnerTest {
 //        final IFunction functionType = BipolarSigmaFunction.getInstance(5.0f);
         final IFunction functionType = BinarySigmaFunction.getInstance();
 //        final IFunction functionType = BipolarSigmaFunction.getInstance();
-        netBuilder.addLayer(20, functionType);
         netBuilder.addLayer(10, functionType);
+        netBuilder.addLayer(5, functionType);
         netBuilder.addLayer(1, functionType);
 
         final INet net = netBuilder.build();
-        final NetLearner learner = new VisualNetLearner(net, netInfo, 0.055f);
+        final NetLearner learner = new VisualNetLearner(net, netInfo, 0.005f);
         learner.learn(1000 * 1000, 5);
 
         float[] input = new float[1];

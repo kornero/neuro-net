@@ -1,7 +1,9 @@
 package com.neuronet.impl;
 
 import com.neuronet.api.*;
+import com.neuronet.api.generator.BasicEducationSpeedCorrector;
 import com.neuronet.api.generator.EducationSample;
+import com.neuronet.api.generator.IEducationSpeedCorrector;
 import com.neuronet.api.generator.INetInfo;
 import com.neuronet.util.Util;
 import org.slf4j.Logger;
@@ -10,13 +12,16 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.Iterator;
+import java.util.Random;
 
 public class NetLearner {
 
     private static final Logger logger = LoggerFactory.getLogger(NetLearner.class);
     protected final INet net;
     protected final INetInfo netInfo;
-    protected final float educationSpeed;
+    private final IEducationSpeedCorrector educationSpeedCorrector = new BasicEducationSpeedCorrector();
+    protected volatile float educationSpeed;
+    protected volatile float lastError;
 
     public NetLearner(final INet net, final INetInfo netInfo) {
         this(net, netInfo, netInfo.getParameters().getDefaultEducationSpeed());
@@ -43,8 +48,18 @@ public class NetLearner {
 
             learnRoundCallback(i, error);
 
+            this.educationSpeed = correctEducationSpeed(i, error);
+
             if (error < stopLearnError) {
                 return;
+            }
+
+            if (i % 250 == 0) {
+                if (this.educationSpeed < 0.0001 || Math.abs(lastError - error) < 0.1f) {
+                    this.shock();
+                    this.educationSpeed = 0.005f;
+                }
+                lastError = error;
             }
 
             if (logger.isTraceEnabled()) {
@@ -55,6 +70,10 @@ public class NetLearner {
 
     protected void learnRoundCallback(final int learnRound, final float error) {
 
+    }
+
+    protected float correctEducationSpeed(final int learnRound, final float error) {
+        return educationSpeedCorrector.correctEducationSpeed(learnRound, error, this.educationSpeed);
     }
 
     protected void educate(final EducationSample sample) {
@@ -142,5 +161,24 @@ public class NetLearner {
             error[i] = expectedValues[i] - actualValues[i];
         }
         return error;
+    }
+
+    public void shock() {
+        final Random random = new Random();
+        final Deque<ILayer> layers = this.net.getLayers();
+
+        // Do not run first layer, because it is an inputLayer (fake).
+        layers.removeFirst();
+
+        for (final ILayer layer : layers) {
+
+            for (final INeuron neuron : layer.getNeurons()) {
+                for (final IEdge edge : neuron.getInputEdges()) {
+
+                    //  Changing synapses.
+                    edge.setWeight(edge.getWeight() + (random.nextFloat() - 0.5f) * 1.5f);
+                }
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.util.Collection;
 import java.util.Random;
 
 public class Util {
@@ -391,6 +392,14 @@ public class Util {
         return result;
     }
 
+    public static double sum(final Collection<? extends Number> collection) {
+        double sum = 0.0;
+        for (final Number number : collection) {
+            sum += number.doubleValue();
+        }
+        return sum;
+    }
+
     /**
      * Returns true if generated random number is zero.
      * 0 == rnd.nextInt(chances);
@@ -485,6 +494,19 @@ public class Util {
      */
     public static String toString(final float f) {
         return String.format("%.2f", f);
+    }
+
+    /**
+     * Formatting as given precision digits float: "111,.{precision}.".
+     * <p/>
+     * Implementation is:
+     * String.format("%."+precision+"f", f);
+     *
+     * @param f Float value.
+     * @return String representation of float.
+     */
+    public static String toString(final float f, final int precision) {
+        return String.format("%." + precision + "f", f);
     }
 
     public static String toString(final INet net) {
