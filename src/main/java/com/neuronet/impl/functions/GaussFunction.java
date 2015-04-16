@@ -17,12 +17,12 @@ public class GaussFunction extends AbstractBinaryFunction {
     }
 
     @Override
-    public float executeFunction(float x) {
+    public float executeFunction(final float x) {
         return (float) Math.exp(-0.5 * x * x);
     }
 
     @Override
-    public float executeDerived(float x) {
+    public float executeDerived(final float x) {
         return (float) (-1 * x * Math.exp(-0.5 * x * x));
     }
 }

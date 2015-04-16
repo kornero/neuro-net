@@ -6,7 +6,7 @@ public class RandomWeightNetParameters extends NetParameters {
 
     private static final INetParameters INSTANCE = new RandomWeightNetParameters(0.15f, 0.05f);
 
-    public RandomWeightNetParameters(float defaultDX, float educationSpeed) {
+    public RandomWeightNetParameters(final float defaultDX, final float educationSpeed) {
         super(defaultDX, 0, educationSpeed);
     }
 

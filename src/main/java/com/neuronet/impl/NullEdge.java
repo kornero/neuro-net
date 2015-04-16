@@ -27,7 +27,7 @@ public class NullEdge implements IEdge {
         return 0;
     }
 
-    public void incrementWeight(float incWeight) {
+    public void incrementWeight(final float incWeight) {
     }
 
     @Override
@@ -41,7 +41,7 @@ public class NullEdge implements IEdge {
     }
 
     @Override
-    public void setWeight(float weight) {
+    public void setWeight(final float weight) {
         throw new UnsupportedOperationException();
     }
 

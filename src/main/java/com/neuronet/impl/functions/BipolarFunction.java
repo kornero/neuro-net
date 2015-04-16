@@ -18,7 +18,7 @@ public class BipolarFunction extends AbstractBipolarFunction {
     }
 
     @Override
-    public float executeFunction(float x) {
+    public float executeFunction(final float x) {
         if (x > 0) {
             return 1;
         } else {
@@ -27,7 +27,7 @@ public class BipolarFunction extends AbstractBipolarFunction {
     }
 
     @Override
-    public float executeDerived(float x) {
+    public float executeDerived(final float x) {
         if (x > 0) {
             return 1;
         } else {

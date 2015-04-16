@@ -7,7 +7,7 @@ public class ImmutableNetConfiguration implements INetConfiguration {
     private final int minInput, maxInput;
     private final int minOutput, maxOutput;
 
-    public ImmutableNetConfiguration(int inputs, int outputs, int minInput, int maxInput, int minOutput, int maxOutput) {
+    public ImmutableNetConfiguration(final int inputs, final int outputs, final int minInput, final int maxInput, final int minOutput, final int maxOutput) {
         this.inputs = inputs;
         this.outputs = outputs;
         this.minInput = minInput;

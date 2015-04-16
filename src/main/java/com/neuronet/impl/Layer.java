@@ -34,7 +34,7 @@ public class Layer implements ILayer {
                     netParameters.generateDx(),
                     i, this
             );
-            for (INeuron inputNeuron : inputNeurons) {
+            for (final INeuron inputNeuron : inputNeurons) {
                 final IEdge edge = createEdge(inputNeuron, neuron);
                 neuron.addInputEdge(edge);
                 if (inputNeuron instanceof Neuron) {

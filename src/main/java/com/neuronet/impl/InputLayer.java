@@ -56,7 +56,7 @@ public class InputLayer implements ILayer {
     }
 
     @Override
-    public float[] educate(float[] inputData, float[] error, float educationSpeed) {
+    public float[] educate(final float[] inputData, final float[] error, final float educationSpeed) {
         throw new UnsupportedOperationException();
     }
 
@@ -85,12 +85,12 @@ public class InputLayer implements ILayer {
         }
 
         @Override
-        public void setLastPotential(float signal) {
+        public void setLastPotential(final float signal) {
             this.signal = signal;
         }
 
         @Override
-        public boolean isAccessible(INeuron neuron) {
+        public boolean isAccessible(final INeuron neuron) {
             return true;
         }
 
@@ -120,17 +120,17 @@ public class InputLayer implements ILayer {
         }
 
         @Override
-        public float[] educate(float error, float[] signal, float educationSpeed) {
+        public float[] educate(final float error, final float[] signal, final float educationSpeed) {
             throw new UnsupportedOperationException();
         }
 
         @Override
-        public void addInputEdge(IEdge inputEdge) {
+        public void addInputEdge(final IEdge inputEdge) {
             throw new UnsupportedOperationException();
         }
 
         @Override
-        public void addOutputEdge(IEdge outputEdge) {
+        public void addOutputEdge(final IEdge outputEdge) {
             throw new UnsupportedOperationException();
         }
 

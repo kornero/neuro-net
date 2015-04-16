@@ -12,7 +12,7 @@ public class BinarySigmaFunction extends AbstractBinaryFunction {
     private static final float DEFAULT_ALFA = 1.0f;
     private final float alfa;
 
-    private BinarySigmaFunction(float alfa) {
+    private BinarySigmaFunction(final float alfa) {
         this.alfa = alfa;
     }
 

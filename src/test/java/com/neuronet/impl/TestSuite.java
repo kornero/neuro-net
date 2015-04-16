@@ -33,8 +33,8 @@ public class TestSuite {
         final float[] runResult = net.run(randomFloats(inputs));
         logger.debug("result:{}", Util.toString(runResult));
         for (int i = 0, expectedLength = expected.length; i < expectedLength; i++) {
-            float exp = expected[i];
-            float act = runResult[i];
+            final float exp = expected[i];
+            final float act = runResult[i];
             Assert.assertEquals("Unexpected result.", exp, act, 0.25);
         }
     }
@@ -76,8 +76,8 @@ public class TestSuite {
             expected[0] = Math.signum(input[0]);
             final float[] runResult = net.run(input);
 
-            float exp = expected[0];
-            float act = runResult[0];
+            final float exp = expected[0];
+            final float act = runResult[0];
 
             logger.debug("Data: sign({}) = {}, actual = {}",
                     Util.toString(input[0]),
@@ -91,7 +91,7 @@ public class TestSuite {
     @Test
     public void test_sinusNet() {
         logger.info("NeuroNet is starting.");
-        float[] input = new float[1];
+        final float[] input = new float[1];
         final float[] expected = new float[1];
         final INet net = createSinNet();
 
@@ -108,8 +108,8 @@ public class TestSuite {
             expected[0] = (float) Math.sin(input[0]);
             final float[] runResult = net.run(input);
 
-            float exp = expected[0];
-            float act = runResult[0];
+            final float exp = expected[0];
+            final float act = runResult[0];
 
             logger.debug("Data: sin({}) = {}, actual = {}",
                     Util.toString(input[0]),

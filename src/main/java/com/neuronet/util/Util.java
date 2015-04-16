@@ -566,7 +566,7 @@ public class Util {
             out.close();
             fileOut.close();
             logger.info("Serialized object {} is saved in: {}", object.getClass().getSimpleName(), file);
-        } catch (IOException i) {
+        } catch (final IOException i) {
             logger.error("serialize(): File=" + file, i);
         }
     }
@@ -581,9 +581,9 @@ public class Util {
             fileIn.close();
             logger.info("Deserialized object {} is loaded from: {}", t.getClass().getSimpleName(), file);
             return t;
-        } catch (IOException i) {
+        } catch (final IOException i) {
             logger.error("deserialize(): File=" + file, i);
-        } catch (ClassNotFoundException c) {
+        } catch (final ClassNotFoundException c) {
             logger.error("deserialize(): Class not found, file=" + file, c);
         }
         return null;

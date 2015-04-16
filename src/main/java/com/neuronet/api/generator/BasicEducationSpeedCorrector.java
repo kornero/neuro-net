@@ -19,7 +19,7 @@ public class BasicEducationSpeedCorrector implements IEducationSpeedCorrector {
     private volatile double averageError;
 
     @Override
-    public float correctEducationSpeed(int learnRound, float error, float currentEducationSpeed) {
+    public float correctEducationSpeed(final int learnRound, final float error, final float currentEducationSpeed) {
         if (errors.size() + 1 == CORRECTION_ERRORS_AMOUNT) {
             this.averageError = error; // Initial value.
             System.out.println(error);

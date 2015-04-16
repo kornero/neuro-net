@@ -21,7 +21,7 @@ public class Example {
 
     private static final Logger logger = LoggerFactory.getLogger(Example.class);
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final INetInfo netInfo = new ParabolaNetInfo();
         final NetLearner learner = new NetLearner(createNet(netInfo), netInfo, 0.00051f);
         learner.learn(100000, 20);
@@ -43,7 +43,7 @@ public class Example {
         return netBuilder.build();
     }
 
-    public static void main1(String[] args) throws InterruptedException {
+    public static void main1(final String[] args) throws InterruptedException {
         final SinNetInfo info = new SinNetInfo();
 
         final INetBuilder netBuilder = new NetBuilder();
@@ -73,7 +73,7 @@ public class Example {
 
 
         System.out.println("---------");
-        float[] input = new float[1];
+        final float[] input = new float[1];
         final float[] expected = new float[1];
 
         final Random random = new Random();

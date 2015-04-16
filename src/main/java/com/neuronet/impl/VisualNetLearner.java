@@ -16,7 +16,7 @@ public class VisualNetLearner extends NetLearner {
     private NetGraphPanel panel;
     private long timeStamp;
 
-    public VisualNetLearner(INet net, INetInfo netInfo, float educationSpeed) {
+    public VisualNetLearner(final INet net, final INetInfo netInfo, final float educationSpeed) {
         super(net, netInfo, educationSpeed);
     }
 
@@ -29,7 +29,7 @@ public class VisualNetLearner extends NetLearner {
         final JButton button = new JButton("Shock");
         button.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 shock();
             }
         });

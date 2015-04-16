@@ -75,11 +75,11 @@ public class NetBuilder implements INetBuilder {
         }
 
         @Override
-        public boolean equals(Object o) {
+        public boolean equals(final Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
 
-            ImmutableLayerConfiguration that = (ImmutableLayerConfiguration) o;
+            final ImmutableLayerConfiguration that = (ImmutableLayerConfiguration) o;
 
             if (neurons != that.neurons) return false;
             if (!function.equals(that.function)) return false;

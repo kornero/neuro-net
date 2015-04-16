@@ -11,13 +11,13 @@ public abstract class AbstractMathFunctionNetInfo extends AbstractNetInfo {
 
     private static final int INPUTS = 1;
     private static final int OUTPUTS = 1;
-    private static final float MAX_STEP_SIZE = 1f;
+    private static final float MAX_STEP_SIZE = 0.1f;
     private static final float TEST_PART = 3f;
 
-    protected AbstractMathFunctionNetInfo(int minNeurons, int maxNeurons,
-                                          int minLayers, int maxLayers,
-                                          int minInput, int maxInput,
-                                          int minOutput, int maxOutput) {
+    protected AbstractMathFunctionNetInfo(final int minNeurons, final int maxNeurons,
+                                          final int minLayers, final int maxLayers,
+                                          final int minInput, final int maxInput,
+                                          final int minOutput, final int maxOutput) {
         super(minNeurons, maxNeurons, minLayers, maxLayers, INPUTS, OUTPUTS, minInput, maxInput, minOutput, maxOutput);
     }
 
@@ -33,7 +33,7 @@ public abstract class AbstractMathFunctionNetInfo extends AbstractNetInfo {
 
         final Random random = new Random();
         final List<EducationSample> list = new ArrayList<>();
-        for (float x = minInput + 7; x < maxInput; x += random.nextFloat() * MAX_STEP_SIZE) {
+        for (float x = minInput; x < maxInput; x += random.nextFloat() * MAX_STEP_SIZE) {
             list.add(new EducationSample(x, f(x)));
         }
         return list;
@@ -46,7 +46,7 @@ public abstract class AbstractMathFunctionNetInfo extends AbstractNetInfo {
 
         final Random random = new Random();
         final List<EducationSample> list = new ArrayList<>();
-        for (float x = minInput - 5; x < maxInput; x += random.nextFloat() * MAX_STEP_SIZE * TEST_PART) {
+        for (float x = minInput; x < maxInput; x += random.nextFloat() * MAX_STEP_SIZE * TEST_PART) {
             list.add(new EducationSample(x, f(x)));
         }
 

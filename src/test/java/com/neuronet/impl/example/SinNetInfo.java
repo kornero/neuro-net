@@ -13,8 +13,8 @@ public class SinNetInfo extends AbstractMathFunctionNetInfo {
     private static final int MIN_LAYERS = 1;
     private static final int MAX_LAYERS = 3;
 
-    private static final int MIN_INPUT = (int) (Math.PI * (-2)) + 1;
-    private static final int MAX_INPUT = (int) (Math.PI * 2) + 1; // (float) (Math.PI * 2)
+    private static final int MIN_INPUT = (int) (Math.PI * (-2)) + 4;
+    private static final int MAX_INPUT = (int) (Math.PI * 2) - 4; // (float) (Math.PI * 2)
     private static final int MIN_OUTPUT = -1;
     private static final int MAX_OUTPUT = 1;
 

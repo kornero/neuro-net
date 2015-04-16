@@ -16,7 +16,7 @@ public class NetParameters implements INetParameters {
         this(DEFAULT_DX, DEFAULT_EDGE_WEIGHT, DEFAULT_EDUCATION_SPEED);
     }
 
-    public NetParameters(float defaultDX, float defaultEdgeWeight, float educationSpeed) {
+    public NetParameters(final float defaultDX, final float defaultEdgeWeight, final float educationSpeed) {
         this.defaultDX = defaultDX;
         this.defaultEdgeWeight = defaultEdgeWeight;
         this.educationSpeed = educationSpeed;

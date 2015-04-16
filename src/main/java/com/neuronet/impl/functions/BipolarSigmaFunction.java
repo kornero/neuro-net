@@ -12,7 +12,7 @@ public class BipolarSigmaFunction extends AbstractBipolarFunction {
     private static final float DEFAULT_ALFA = 1.0f;
     private final float alfa;
 
-    private BipolarSigmaFunction(float alfa) {
+    private BipolarSigmaFunction(final float alfa) {
         this.alfa = alfa;
     }
 
@@ -33,13 +33,13 @@ public class BipolarSigmaFunction extends AbstractBipolarFunction {
      * @return x / (a + |x|)
      */
     @Override
-    public float executeFunction(float x) {
+    public float executeFunction(final float x) {
         return x / (alfa + Math.abs(x));
 //        return div(x, alfa + Math.abs(x));
     }
 
     @Override
-    public float executeDerived(float x) {
+    public float executeDerived(final float x) {
         final float absX = Math.abs(x);
         final float alfaPlusAbsX = alfa + absX;
         return (alfaPlusAbsX - x * absX) / (alfaPlusAbsX * alfaPlusAbsX);

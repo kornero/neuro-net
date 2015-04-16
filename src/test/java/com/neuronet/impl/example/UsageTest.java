@@ -25,7 +25,7 @@ public class UsageTest {
         final NavigableMap<Float, INet> nets = netGenerator.generateNet(1, 50f, 5, TimeUnit.MINUTES);
 
         for (int i = 0; i < Math.min(10, nets.size()); i++) {
-            Map.Entry<Float, INet> bestNet = nets.pollFirstEntry();
+            final Map.Entry<Float, INet> bestNet = nets.pollFirstEntry();
             logger.info("#{} : {}", i, bestNet.getKey());
             logger.info(Util.summary(bestNet.getValue()));
 

@@ -22,7 +22,7 @@ public class NetGraphPanel extends XChartPanel {
     private final INet net;
     private final INetInfo netInfo;
 
-    private NetGraphPanel(final Chart chart, INet net, INetInfo netInfo, final IVisualizer visualizer) {
+    private NetGraphPanel(final Chart chart, final INet net, final INetInfo netInfo, final IVisualizer visualizer) {
         super(chart);
         if (chart == null) {
             throw new NullPointerException("Chart can not be null!");

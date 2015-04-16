@@ -67,15 +67,15 @@ public class NetLearnerTest {
         final NetLearner learner = new NetLearner(net, netInfo, 0.00051f);
         learner.learn(100000, 7.5f);
 
-        float[] input = new float[1];
+        final float[] input = new float[1];
         final float[] expected = new float[1];
         for (int i = 5; i < 20; i += 3) {
             input[0] = i;
             expected[0] = (float) Math.sqrt(input[0]);
             final float[] runResult = net.run(input);
 
-            float exp = expected[0];
-            float act = Util.denormalizeOutputs(runResult, netInfo.getNetConfiguration())[0];
+            final float exp = expected[0];
+            final float act = Util.denormalizeOutputs(runResult, netInfo.getNetConfiguration())[0];
 
             logger.debug("Data: sqrt({}) = {}, actual = {}",
                     Util.toString(input[0]),
@@ -103,15 +103,15 @@ public class NetLearnerTest {
         final NetLearner learner = new VisualNetLearner(net, netInfo, 0.005f);
         learner.learn(1000 * 1000, 5);
 
-        float[] input = new float[1];
+        final float[] input = new float[1];
         final float[] expected = new float[1];
         for (int i = 5; i < 20; i += 3) {
             input[0] = i;
             expected[0] = (float) Math.sin(input[0]);
             final float[] runResult = net.run(input);
 
-            float exp = expected[0];
-            float act = Util.denormalizeOutputs(runResult, netInfo.getNetConfiguration())[0];
+            final float exp = expected[0];
+            final float act = Util.denormalizeOutputs(runResult, netInfo.getNetConfiguration())[0];
 
             logger.debug("Data: sin({}) = {}, actual = {}",
                     Util.toString(input[0]),
@@ -128,17 +128,17 @@ public class NetLearnerTest {
         final INetInfo netInfo = new SinNetInfo();
         final INet net = createNet(netInfo);
         final NetLearner learner = new VisualNetLearner(net, netInfo, 0.00051f);
-        learner.learn(1000 * 1000, 10);
+        learner.learn(1000 * 1000, 1);
 
-        float[] input = new float[1];
+        final float[] input = new float[1];
         final float[] expected = new float[1];
         for (int i = 5; i < 20; i += 3) {
             input[0] = i;
             expected[0] = (float) Math.sin(input[0]);
             final float[] runResult = net.run(input);
 
-            float exp = expected[0];
-            float act = Util.denormalizeOutputs(runResult, netInfo.getNetConfiguration())[0];
+            final float exp = expected[0];
+            final float act = Util.denormalizeOutputs(runResult, netInfo.getNetConfiguration())[0];
 
             logger.debug("Data: sin({}) = {}, actual = {}",
                     Util.toString(input[0]),

@@ -97,7 +97,7 @@ public class NetGenerator {
                                 }
                             }
                         }
-                    } catch (RuntimeException e) {
+                    } catch (final RuntimeException e) {
                         logger.error("Thread " + me.getName(), e);
                     }
                 }
@@ -107,7 +107,7 @@ public class NetGenerator {
         try {
             service.awaitTermination(timeout, timeUnit);
             service.shutdownNow();
-        } catch (InterruptedException e) {
+        } catch (final InterruptedException e) {
             logger.warn("generateNet(): Interrupted.", e);
             Thread.currentThread().interrupt();
         }

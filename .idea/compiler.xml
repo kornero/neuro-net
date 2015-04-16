@@ -27,6 +27,8 @@
         <module name="NeuroNet" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="NeuroNet" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
-

@@ -14,7 +14,7 @@ public class LinearFunction implements IFunction {
     private static final float DEFAULT_ALFA = 1.0f;
     private final float alfa;
 
-    private LinearFunction(float alfa) {
+    private LinearFunction(final float alfa) {
         this.alfa = alfa;
     }
 
@@ -42,12 +42,12 @@ public class LinearFunction implements IFunction {
     }
 
     @Override
-    public float executeFunction(float x) {
+    public float executeFunction(final float x) {
         return alfa * x;
     }
 
     @Override
-    public float executeDerived(float x) {
+    public float executeDerived(final float x) {
         return alfa;
     }
 }

@@ -15,11 +15,11 @@ public class Edge implements IEdge {
 
     private volatile float weight = 0;
 
-    public Edge(INeuron input, INeuron output) {
+    public Edge(final INeuron input, final INeuron output) {
         this(input, output, input.getLayer().getNet().getNetParameters().generateEdgeWeight());
     }
 
-    public Edge(INeuron input, INeuron output, float weight) {
+    public Edge(final INeuron input, final INeuron output, final float weight) {
         this.input = input;
         this.output = output;
         this.weight = weight;
@@ -49,12 +49,12 @@ public class Edge implements IEdge {
     }
 
     @Override
-    public void incrementWeight(float incWeight) {
+    public void incrementWeight(final float incWeight) {
         this.weight += incWeight;
     }
 
     @Override
-    public void setWeight(float weight) {
+    public void setWeight(final float weight) {
         this.weight = weight;
     }
 
